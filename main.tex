@@ -1,0 +1,1737 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+
+\setcounter{secnumdepth}{3}
+% Useful packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{braket}
+\usepackage{dsfont}
+%\usepackage{showlabels}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{prop}{Conjecture}
+\newtheorem{cor}{Corollary}
+%-------------------packages-------------------------
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsbsy, mathtools}
+% \usepackage{braket} % already loaded above
+% \usepackage{graphicx} % already loaded above
+\usepackage{xcolor}
+%\usepackage{multirow}
+% \usepackage{hyperref} % already loaded above
+%\usepackage{caption}
+%\usepackage{subcaption}
+%\captionsetup{compatibility=false}
+\usepackage{natbib}
+%\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{soul}
+\usepackage{showlabels}
+
+%Includes "References" in the table of contents
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{bbm}
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\theoremstyle{definition}
+%\newtheorem{definition}{Definition}[section]
+\usepackage{tikz}
+\usepackage{quantikz}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage{microtype}
+\newcommand{\Tr}{\text{tr}}
+\newcommand{\mA}{\mathcal{A}}
+\newcommand{\mB}{\mathcal{B}}
+\newcommand{\nn}{\nonumber}
+\newcommand{\mL}{\mathcal{L}}
+\newcommand{\lb}{\left(}
+\newcommand{\rb}{\right)}
+\newcommand{\mU}{\mathcal{U}}
+\newcommand{\mH}{\mathcal{H}}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{subcaption}
+\newcommand{\tOO}{\tilde{\mathcal{O}}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\mK}{\mathcal{K} }
+\newcommand{\ep}{\epsilon}
+\newcommand{\mbR}{\mathbb{R}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\mT}{\mathcal{T}}
+\newcommand{\NL}[1]{\textcolor{blue}{#1}}
+\newcommand{\p}{\partial}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\tT}{\tilde{T}}
+
+\usepackage{graphicx} % Required for inserting images
+
+\title{Information loss and ensemble-averaging theories}
+\author{Nima Lashkari}
+\date{January 2026}
+
+\begin{document}
+    \maketitle
+
+    \section{Results}
+
+
+
+    We find that in time-independent ensemble averaged quantum theories with a large
+    $N$ limit, the $k$-twirl map becomes
+    \begin{eqnarray}
+        \mathcal{E}_g\lb U^{\otimes k}\otimes (U^*)^{\otimes k} \rb=e^{-t^2\mathcal{G}_{eff}^{(k)}}
+    \end{eqnarray}
+    in the case of the infinite temperature state. At finite temperature, the
+    result will be \NL{finish}
+
+    In theories with Brownian random couplings, since the Hamiltonian is time-dependent,
+    there is no canonical notion of thermal state. Instead, we will focus on the
+    infinite temperature state. In this case, we can perform the average exactly
+    for all $N$, and the result is
+    \begin{eqnarray}
+        \mathcal{E}_g\lb U^{\otimes k}\otimes (U^*)^{\otimes k} \rb=e^{-t\mathcal{G}_{eff}^{(k)}}
+    \end{eqnarray}
+    with the same generator $\mathcal{G}_{eff}^{(k)}$.
+
+    We analyze the spectral properties of $\mathcal{G}_{eff}^{(k)}$ and find that
+    \NL{finish}
+
+    We comment on the $q$-deformed limit $N\to \infty$ with $q^{2}/N$ kept fixed.
+
+    \section{To do list:}
+    \begin{enumerate}
+        \item Finish the generalize the derviation of the $k$-twirl map in regular
+            SYK to finite temperature at large $N$.
+
+        \item Understand the physical implications of the $t^{2}$ in the exponent
+            of the $k$-twirl map in the large $N$ limit of regular SYK. At late
+            time, the decay seems too fast.
+
+        \item Establish the spectral gap in the spectrum of the generator $\mathcal{G}
+            _{eff}^{(k)}$.
+
+        \item Think about the gluing assumption 1.4 in Nick's notes. Does it
+            hold in SYK? Related issue is this: if we couple two Brownian SYK
+            models as Swingle does in his 2021 paper, does it look like the Alice-Bob
+            protocol for achieving a $k$-twirl map on a combined system $AB$ by applying
+            the $k$-twirl maps on $A$ and $B$, separately, swapping $r$ qubits,
+            and applying the local $k$-twirls again?
+    \end{enumerate}
+
+    \section{Correlation functions and $k$-twirl maps}
+
+    Let $\mH$ be the microscopic Hilbert space (dimension $d$) and $\mA=\mathrm{End}
+    (\mH)$ the operator algebra. We use the doubled (Choi/GNS) Hilbert space
+    \begin{equation}
+        \mH_{\GNS}:=\mH_{L}\otimes \mH_{R}, \qquad \ket{1}:=\frac{1}{\sqrt{d}}\sum
+        _{i=1}^{d}\ket{i}_{L}\ket{i}_{R}.
+    \end{equation}
+    We identify an operator $A\in\mA$ with the vector
+    $\ket{A}:=(A_{L}\otimes 1_{R})\ket{1}$. With this choice, for all
+    $A,B\in\mA$,
+    \begin{equation}
+        \braket{1|A_L\otimes B_R|1}=\frac{1}{d}\tr\big(A\,B^{\mathsf{T}}\big),
+    \end{equation}
+    where $\mathsf{T}$ denotes transpose in the basis used to define $\ket{1}$.
+
+    \subsection*{Permutation action and cycle states}
+
+    Consider $k$ copies of the GNS Hilbert space, $\mH_{\GNS}^{\otimes k}$, with
+    canonical vector $\ket{1^{\otimes k}}$. We choose the representation of the permutation
+    group $S_{k}$ which acts on the left factors:
+    \begin{equation}
+        \mathbb{S}_{\pi}\Big(\bigotimes_{a=1}^{k}\ket{i_a}_{L}\ket{j_a}_{R}\Big)
+        \,=\,\bigotimes_{a=1}^{k}\ket{i_{\pi(a)}}_{L}\ket{j_a}_{R},\qquad \pi\in
+        S_{k}.
+    \end{equation}
+    For a $k$-cycle $\pi\in C_{k}\subset S_{k}$ and any operators
+    $\mO_{1},\dots, \mO_{k}\in\mA$ one has the standard identity
+    \begin{equation}
+        \bra{\mathbb{S}_\pi 1^{\otimes k}}\Big(\prod_{a=1}^{k}(\mO_{a})_{L}^{(a)}
+        \Big)\ket{1^{\otimes k}}\,=\,\tr\big(\mO_{\pi(k)}\cdots \mO_{\pi(1)}\big)
+        .
+    \end{equation}
+    In particular, for the cyclic shift $\pi_{0}=(1\,2\,\dots\,k)$ this gives a cyclic
+    trace.
+
+    \subsection*{Complexified evolution as a superoperator}
+
+    We work with dimensionless variables (set $\beta=1$), so that the thermal state
+    is $\rho\equiv\rho_{\beta=1}=e^{-H}/Z$ with $Z=\mathrm{Tr}(e^{-H})$.
+    Introduce a complexified time
+    \begin{equation}
+        z=\theta+i t,\qquad \theta\in[0,\tfrac12],\quad t\in\mathbb{R},
+    \end{equation}
+    and define
+    \begin{equation}
+        U_{z}:=e^{-zH}.
+    \end{equation}
+    The corresponding completely-positive ``thermalized'' adjoint action is
+    \begin{equation}
+        \boxed{\;\mathcal{U}_{z}(\mO):=U_{z}\,\mO\,U_{z}^{\dagger} =e^{-(\theta+i t)H}\,\mO\,e^{-(\theta-i t)H}.\;}
+    \end{equation}
+    (Note that $\theta\ge 0$ produces thermal damping rather than growth.)
+
+    On the doubled space, left- and right-multiplication are represented by
+    \begin{equation}
+        \mathbb{U}_{z}:=U_{z,L}\otimes \big(U_{z}^{\dagger}\big)_{R}^{\mathsf{T}}
+        =e^{-zH_L}\otimes e^{-z^{\ast} H_R^{\mathsf{T}}}.
+    \end{equation}
+    For $\vec z=(z_{1},\dots,z_{k})$ define
+    \begin{equation}
+        \mathbb{U}_{\vec z}:=\bigotimes_{a=1}^{k}\mathbb{U}_{z_a}^{(a)}.
+    \end{equation}
+    Then the trace of a product of superoperators has the GNS/cycle
+    representation
+    \begin{equation}
+        \boxed{\; \tr\big(\mathcal{U}_{z_1}(\mO_1)\cdots \mathcal{U}_{z_k}(\mO_k)\big) \,=\,\bra{\mathbb{S}_{\pi_0}1^{\otimes k}}\,\mathbb{U}_{\vec z}\,\bigotimes_{a=1}^{k}(\mO_a)_{L}\ket{1^{\otimes k}}.\;}
+    \end{equation}
+    Thermal correlators arise by imposing the ``thermal strip'' constraint
+    \begin{equation}
+        \boxed{\;\sum_{a=1}^k \Re z_a=\tfrac12\;}
+    \end{equation}
+    (which guarantees $\tr(\mathcal{U}_{z_1}(1)\cdots \mathcal{U}_{z_k}(1))=\tr (
+    e^{-H})=Z/d$).
+
+    \subsection*{Thermal one- and two-point functions}
+
+    \paragraph{One-point.}
+    For any operator $\mO$ and any $t\in\mathbb{R}$,
+    \begin{equation}
+        \label{1ptthermal}\boxed{\; \tr(\rho\,\mO) =\frac{\bra{1}\,\mathbb{U}_{\frac{1}{2}+i t}\,(\mO)_{L}\ket{1}}{\bra{1}\,\mathbb{U}_{\frac{1}{2}+i t}\ket{1}} =\frac{\tr\big(e^{-\frac{1}{2}H}e^{-i tH}\mO\,e^{+i tH}e^{-\frac{1}{2}H}\big)}{\tr(e^{-H})}=\frac{\tr\big(e^{-H}\mO\big)}{\tr(e^{-H})}\;}
+    \end{equation}
+    The ratio is $t$-independent by cyclicity of the trace.
+
+    \paragraph{Two-point (Wightman/KMS form).}
+    Fix $\tau\in[0,\tfrac12]$ and define the thermal Wightman function
+    \begin{equation}
+        \label{2ptthermal}G_{12}(t,\tau):=\frac{\tr\big(e^{-(1-\tau)H}\,\mO_{1}(t)\,e^{-\tau
+        H}\,\mO_{2}\big)}{\tr(e^{-H})}, \qquad \mO_{1}(t):=e^{+iHt}\mO_{1}e^{-iHt}
+        .
+    \end{equation}
+    It can be written using $k=3$ copies (with the third insertion taken to be the
+    identity) as
+    \begin{equation}
+        \boxed{\; G_{12}(t,\tau) =\frac{\bra{\mathbb{S}_{\pi_0}1^{\otimes 3}}\,\mathbb{U}_{(z_1,z_2,z_3)}\,\big((\mO_{1})_{L}\otimes (\mO_{2})_{L}\otimes 1_{L}\big)\ket{1^{\otimes 3}}}{\bra{\mathbb{S}_{\pi_0}1^{\otimes 3}}\,\mathbb{U}_{(z_1,z_2,z_3)}\ket{1^{\otimes 3}}} ,}
+    \end{equation}
+    with the convenient choice
+    \begin{equation}
+        (z_{1},z_{2},z_{3})=(0,\,\tau,\,\tfrac12-\tau).
+    \end{equation}
+    (Real-time dependence may equivalently be kept in $\mO_{1}(t)$ as above, or
+    absorbed into $z_{2}\to \tau+i t$.)
+
+    \subsection*{General $(k\! -\! 1)$-point functions}
+
+    For $k\ge 2$ we define a thermal $(k-1)$-point function by inserting the
+    ideneity operator $1$ as the $k$-th operator:
+    \begin{equation}
+        \boxed{\; G_{1\cdots (k-1)}(\vec z) :=\frac{\bra{\mathbb{S}_{\pi_0}1^{\otimes k}}\,\mathbb{U}_{\vec z}\,\big((\mO_{1})_{L}\otimes\cdots\otimes (\mO_{k-1})_{L}\otimes 1_{L}\big)\ket{1^{\otimes k}}}{\bra{\mathbb{S}_{\pi_0}1^{\otimes k}}\,\mathbb{U}_{\vec z}\ket{1^{\otimes k}}},\qquad \sum_{a=1}^k\Re z_a=\tfrac12.\;}
+    \end{equation}
+    A concrete parametrization adapted to Euclidean insertion times $\tau_{1},\cdots
+    \tau_{k-1}$ with $0=\Re\tau_{1}\le \Re\tau_{2}\le\cdots\le \Re\tau_{k-1}\le \tfrac
+    12$ (which fixes the overall time-translation along the thermal circle) is
+    \begin{align}
+         & G_{1\cdots (k-1)}(\tau_{1},\cdots, \tau_{k-1})\equiv\braket{\mO_1(\tau_1)\cdots \mO_{k-1}(\tau_{k-1})}=G_{1\cdots(k-1)}(\vec{z})\nn \\
+         & \Re\tau_{1}=\Re z_{1},\qquad \Re\tau_{k}=1/2-\Re\tau_{k-1}\nn                                                                       \\
+         & \forall 1<j<k:\qquad \Re\tau_{j}=\sum_{a=1}^{j}(\Re z_{a}+\Re z_{a+1}),\qquad \tau_{j}=\Re \tau_{j}+i\Im z_{j}
+    \end{align}
+
+    %\end{document}
+
+    \section{Gaussian regulator from a time-independent ensemble}
+
+    Consider a quantum system with Hamiltonian
+    \begin{eqnarray}
+        H(g)=\sum_I g_I V_I
+    \end{eqnarray}
+    where $V_{I}$ are dimensionless self-adjoint operators and $g_{I}$ are real
+    coupling parameters with units of energy. We choose $g_{I}$ at random with a
+    probability measure that, for simplicity, we take to be Gaussian:
+    \begin{eqnarray}
+        d\mu(g)= \prod_I\lb dg_I
+        \frac{e^{-\frac{1}{2\sigma}\sum_I g_I^2}}{\sqrt{2\pi \sigma}} \rb
+    \end{eqnarray}
+    where $\sigma$ has units of energy squared and sets the width of the
+    distribution, i.e., $[\sigma]=2$ and $[g_{I}]=1$. The first moments are
+    \begin{eqnarray}
+        \mathcal{E}_g(g_I)=0, \qquad \mathcal{E}_g(g_I g_J)=\delta_{IJ}\sigma\ .
+    \end{eqnarray}
+
+    We represent the thermal state $\rho_{\beta}\propto e^{-\beta H}$ by its canonical
+    purification (thermofield double) $\ket{\rho_\beta^{1/2}}$ and the corresponding
+    GNS Hilbert space $\mathcal{H}_{\beta}$, generated by the action of
+    observables $\mO$ on this vector:
+    \begin{eqnarray}
+        \mO\to \mO\ket{\rho_\beta^{1/2}}\ .
+    \end{eqnarray}
+    It is convenient to choose $\beta$ to set the unit of time and define dimensionless
+    parameters and Hamiltonian
+    \begin{eqnarray}
+        &&\tilde{g}_I=\beta g_I,\qquad \tilde{\sigma}=\beta^2 \sigma, \qquad
+        \tilde{t}=t/\beta\nn\\
+        &&\tilde{H}=\sum_I \tilde{g}_I V_I
+    \end{eqnarray}
+    The thermal state is a function of $\tilde{g}_{I}$; its canonical
+    purification is
+    \begin{eqnarray}
+        \ket{\rho_\beta^{1/2}}=\ket{\rho_{\tilde{g}}^{1/2}}=(e^{-\tilde{H}/2}\otimes
+        1)\ket{1}\ .
+    \end{eqnarray}
+    where
+    \begin{eqnarray}
+        \ket{1}\equiv \frac{1}{\sqrt{d}}\sum_E \ket{E E}
+    \end{eqnarray}
+    and $\{\ket{E}\}$ is the eigenbasis of the Hamiltonian. Since, in general, members
+    of our ensemble of Hamiltonians do not commute, we choose some basis for
+    $\ket{1}$, and then use the mirror equation
+    \begin{eqnarray}
+        (\mathcal{O}\otimes 1)\ket{1}=(1\otimes \mathcal{O}^T)\ket{1}
+    \end{eqnarray}
+    where the transpose is defined in the basis of $\ket{1}$. For self-adjoint
+    operators like terms in the Hamiltonians, we have
+    \begin{eqnarray}
+        (V_I\otimes 1)\ket{1}=(1\otimes V_I^*)\ket{1}\ .
+    \end{eqnarray}
+
+    The measure for our ensemble average is
+    \begin{eqnarray}
+        d\mu(\tilde{g})=\prod_I\lb
+        \frac{e^{-\tilde{g}_I^2/(2\tilde{\sigma})}}{\sqrt{2\pi\tilde{\sigma}}} d\tilde{g}_I\rb
+    \end{eqnarray}
+    For fixed $\tilde{g}$, the time evolution is a unitary super-operator
+    \begin{eqnarray}
+        \mO(t)=e^{-i H t}\mO e^{i H t}=e^{-i \tilde{H}\tilde{t}} \mO e^{i\tilde{H}\tilde{t}}\ .
+    \end{eqnarray}
+    It is represented on the Hilbert space as the GNS action of the modular Hamiltonian
+    $\tilde{H}$:
+    \begin{eqnarray}
+        &&\mO(t)\ket{1}=e^{-i \tilde{H} \tilde{t}}\mO\ket{1}\nn\\
+        &&\tilde{H}=\sum_I \tilde{g}_I \hat{V}_{I},\qquad \hat{V}_I=V_{I,L}-V^T_{I,R},\qquad
+        \hat{V}_I\ket{1}=0.
+    \end{eqnarray}
+    Here, it is important that $[e^{i \tilde{H} \tilde{t}},e^{-\tilde{H}/2}]=0$.
+
+    The $g$-averaged time evolution is a unital linear CP map
+    \begin{eqnarray}
+        \mathcal{E}_g(\mO(t))=\int d\mu(g) e^{-i H(g) t}\mO e^{i H(g) t}\ .
+    \end{eqnarray}
+    %which as we will show below does not preserve the thermal state $\rho_\beta$!
+    In the GNS Hilbert space, the unital CP map $\mathcal{E}_{g}(\cdot)$
+    corresponds to the action of the operator
+    \begin{eqnarray}
+        \mathcal{E}_g(\mO(t))\ket{1}=\int d\mu(g) e^{-i \tilde{t}\sum_I \tilde{g}_I\hat{V}_I }\mO\ket{1}\ .
+    \end{eqnarray}
+
+    \subsection{Commuting case}
+
+    When there is only a single coupling $g$ (i.e. one index $I$), the Gaussian
+    integral can be performed explicitly,
+    \begin{eqnarray}
+        \int \frac{dg}{\sqrt{2\pi \tilde{\sigma}}}\:e^{-\frac{g^{2}}{2\tilde{\sigma}}}\:e^{-i\tilde{t}g\hat{V}}
+        =e^{-\frac{\tilde{\sigma}}{2}\tilde{t}^2\hat{V}^2}\ .
+    \end{eqnarray}
+    In fact, this integral can be extended to the complex $\tild{t}$ domain. Therefore,
+    for the $k$-twirl map we have
+    \begin{align}
+        \int d\mu(g) \mathbb{U}_{\vec{z}}=e^{-\frac{\tilde{\sigma}}{2}\lb\sum_{a=1}^k (iz_a)\hat{V}_{(a)}\rb^2}
+    \end{align}
+    and
+    \begin{align}
+        G_{1\cdots (k-1)k}(\tau_{1},\cdots,\tau_{k}) & =\braket{\mathbb{S}_{\pi}1^{\otimes k}|e^{-\frac{\tilde{\sigma}}{2}\lb\sum_{a=1}^k (iz_a)\hat{V}_a\rb^2} \otimes_{a=1}^k (\mO_{a})_L|1^{\otimes k}}\nn                   \\
+                                                     & = \braket{1^{\otimes k}|e^{\frac{\tilde{\sigma}}{2}\lb\sum_{a=1}^k (iz_a)(V_L^{\pi(a)}-(V_R^{(a)})^T)\rb^2} \mathbb{S}_\pi \otimes_{a=1}^k (\mO_{a})_L|1^{\otimes k}}\nn \\
+                                                     & = \braket{1^{\otimes k}|e^{\frac{\tilde{\sigma}}{2}\lb\sum_{a=1}^k (iz_a)(V_L^{\pi(a)}-(V_R^{(a)}^T))\rb^2} \otimes_{a=1}^k (\mO_{\pi(a)})_L|1^{\otimes k}}
+    \end{align}
+    where we have used
+    \begin{align}
+        \mathbb{S}_{\pi}(\otimes_{a=1}^{k}(\mO_{a})_{L}) \mathbb{S}_{\pi}^{\dagger}= \otimes_{a=1}^{k}(\mO_{\pi(a)})_{L}.
+    \end{align}
+    We also have
+    \begin{align}
+        (V_{L}^{(\pi(a))}-(V_{R}^{(a)})^{T})\ket{1^{\otimes k}}= (V_{L}^{(\pi(a))}-V_{L}^{(a)})\ket{1^{\otimes k}}
+    \end{align}
+    Therefore, we can write
+    \begin{align}
+        G_{1\cdots (k-1)k}(\tau_{1},\cdots,\tau_{k}) & =\braket{1^{\otimes k}|e^{\frac{\tilde{\sigma}}{2}\lb\sum_{a=1}^k (iz_a)(V_L^{\pi(a)}-V_L^{(a)})\rb^2} \otimes_{a=1}^k (\mO_{\pi(a)})_L|1^{\otimes k}}
+    \end{align}
+
+    It is clear from (\ref{1ptthermal})that for the one-point function individual
+    elements of the ensemble is time-independent. For the $g$-averaged thermal
+    two-point function with insertions at Euclidean times $\tau_{1}$ and
+    $\tau_{2}$ we have
+    \begin{align}
+        G_{12}(\tau_{1},\tau_{2}) & =\braket{\mathbb{S}_{\pi_0}1^{\otimes 3}| e^{-\frac{\tilde{\sigma}}{2}\lb\tau\hat{V}_2+(1/2-\tau)\hat{V}_3\rb^2} ((\mO_1)_L\otimes (\mO_2)_L\otimes 1_L)|1^{\otimes 3}} %%
+    \end{align}
+
+    % therefore, we have
+    % \begin{align}
+    %     \braket{\mathbb{S}_{\pi}1^{\otimes 3}|e^{-\frac{\tilde{\sigma}}{2}\lb\tau\hat{V}_2+(1/2-\tau)\hat{V}_3\rb^2} ((\mO_1)_L\otimes (\mO_2)_L\otimes 1_L)|1^{\otimes 3}} & = \braket{1^{\otimes 3}|e^{\frac{\tilde{\sigma}}{2}\lb\tau\hat{V}_2+(1/2-\tau)\hat{V}_3\rb^2} \mathb{S}_\pi ((\mO_1)_L\otimes (\mO_2)_L\otimes 1_L)|1^{\otimes 3}}\nn \\
+    %                                                                                                                                                                         & = \braket{1^{\otimes 3}|e^{\frac{\tilde{\sigma}}{2}\lb\tau\hat{V}_2+(1/2-\tau)\hat{V}_3\rb^2} ((\mO_1)_L\otimes (\mO_2)_L\otimes 1_L)|1^{\otimes 3}}
+    % \end{align}
+
+    % The $g$-averaged thermal one-point function is
+    % \begin{eqnarray}
+    %     \braket{\rho_\beta^{1/2}|\mathcal{E}_g\mO(t)\rho_\beta^{1/2}}&=\braket{e^{-\frac{\tilde{\sigma}}{2}\tilde{t}^2\hat{V}^2}\rho_\beta^{1/2}|\mO\rho_\beta^{1/2}}\nn\\
+    %     &=
+    % \end{eqnarray}
+    % which is clearly time-dependent. Hence, $\mathcal{E}_{g}$ does not preserve
+    % $\rho_{\beta}$. In particular, in the limit $\tilde{t}\to \infty$, the map projects
+    % onto the kernel of $\hat{V}^{2}$. The $g$-averaged two-point function is
+    % \begin{eqnarray}
+    %     &&\mathcal{E}_g(\braket{\mO(t_1)\rho_\beta^{1/2}|\mO(t_2)\rho_\beta^{1/2}})=\braket{e^{-\frac{\tilde{\sigma}}{2}\hat{V}^2(t_1-t_2)^2}\mO\rho_\beta^{1/2}|\mO\rho_\beta^{1/2}}
+    % \end{eqnarray}
+    % which is translation-invariant.
+    % \NL{When there is only one $g$, for the eigenvectors of $\tilde{V}$ of frequency $\omega$:
+    %   \begin{eqnarray}
+    %     &&e^{-i g V t}(\mO_\omega)e^{i g V t}=e^{-i\omega g t}\mO_\omega\nn\\
+    %     &&\mathcal{E}_g\tr(\rho_\beta \mO_\omega(t))=e^{-\frac{\sigma}{2}(\omega t)^2}\tr(\rho_\beta \mO_\omega)\ .
+    %   \end{eqnarray}
+    % However, note that these are not modular eigenmodes, because the modular Hamiltonian is $\tilde{H}=g \tilde{V}$ and not just $\tilde{V}$.}
+
+    % \NL{For a single $g$, note that if instead of $g$ we average over modular time with measure
+    %   \begin{eqnarray}
+    %     d\nu(t)=\sqrt{\frac{\sigma}{2\pi}}e^{-\frac{\sigma t^2}{2}}dt
+    %   \end{eqnarray}
+    %   we find
+    %   \begin{eqnarray}
+    %     \int d\nu(t) e^{-i g \tilde{V}t}\mO\ket{\rho^{1/2}}=e^{-\frac{g^2}{2\sigma}\tilde{V}^2}\mO\ket{\rho_\beta^{1/2}}\ .
+    %   \end{eqnarray}
+    % Does this imply a relation between $g$-average and time average? Should we have started with $H=V$ from the start?}
+
+    More generally, if all the operators $\hat{V}_{I}$ mutually commute, the
+    same calculation can be applied in a common eigenbasis and yields
+    \begin{eqnarray}
+        \int d\mu(g)\:e^{-i\tilde{t}\sum_I g_I\hat{V}_I}=e^{-\frac{\tilde{\sigma}}{2}\tilde{t}^2\sum_I \hat{V}_I^2}\ .
+    \end{eqnarray}
+    Physically, this acts as a Gaussian regulator. This also extends to the case
+    where
+
+    For noncommuting $\hat{V}_{I}$, the Gaussian integral above does not
+    collapse to a single exponential in $\sum_{I}\hat{V}_{I}^{2}$. An exact expression
+    can be written as an ordered Wick expansion. Expanding
+    $e^{-i\tilde{t}\sum_I g_I\hat{V}_I}$ in a power series and using Wick's
+    theorem gives
+    \begin{eqnarray}
+        &&\int d\mu(g)\:e^{-i\tilde{t}\sum_I g_I\hat{V}_I}\nn\\
+        &&\qquad=\sum_{n=0}^\infty \frac{(-1)^{n}}{(2n)!}\tilde{t}^{2n}\sum_{I_1,\ldots,I_{2n}}\mathcal{E}_g\lb
+        g_{I_1}\cdots g_{I_{2n}}\rb\;\hat{V}_{I_1}\cdots\hat{V}_{I_{2n}}\nn\\
+        &&\qquad=\sum_{n=0}^\infty \frac{(-1)^{n}}{2^{n}n!}\tilde{\sigma}^n\tilde{t}^{2n}\sum_{\text{pairings }P}\sum_{I_1,\ldots,I_n}\hat{V}_{I_{\pi_P(1)}}\hat{V}_{I_{\pi_P(2)}}\cdots\hat{V}_{I_{\pi_P(2n)}}\ ,
+    \end{eqnarray}
+    where $P$ runs over pairings of $\{1,\ldots,2n\}$ and $\pi_{P}$ is the map
+    that repeats each label $I_{r}$ in the two paired slots. The operator ordering
+    is inherited from the product inside $\hat{V}_{I_1}\cdots\hat{V}_{I_{2n}}$.
+    In particular,
+    \begin{eqnarray}
+        \int d\mu(g)\:e^{-i\tilde{t}\sum_I g_I\hat{V}_I} &&=1-\frac{\tilde{\sigma}}{2}\tilde{t}^2\sum_I
+        \hat{V}_I^2\nn\\
+        &&\qquad+\frac{\tilde{\sigma}^{2}}{8}\tilde{t}^4\sum_{I,J}\lb \hat{V}_I^2\hat{V}_J^2+\hat{V}_I\hat{V}_J\hat{V}_I\hat{V}_J+\hat{V}_I\hat{V}_J^2\hat{V}_I\rb+O(\tilde{t}^6)\ ,
+    \end{eqnarray}
+    Eq.~(17) can also be written as an exponential, but in general it is the exponential
+    of an infinite series of nested commutators (a Magnus type expansion).
+    Concretely, one may write
+    \begin{eqnarray}
+        \int d\mu(g)\:e^{-i\tilde{t}\sum_I g_I\hat{V}_I}=\exp\big(\Omega(\tilde{t})\big),\qquad
+        \Omega(\tilde{t})=\sum_{n\geq 1}\Omega_n(\tilde{t})\ .
+    \end{eqnarray}
+    where each $\Omega_{n}$ is built from $n$-fold commutators of the $\hat{V}_{I}$
+    and starts at order $\tilde{t}^{2n}$ (odd orders vanish by Gaussianity). In
+    general, the $\hat{V}_{I}$ do not commute, $\Omega(\tilde{t})$ does not
+    truncate, and we can write the full integral as
+    \begin{eqnarray}
+        \int d\mu(g)\:e^{-i\tilde{t}\sum_I g_I\hat{V}_I}=\lb \lb e^{\frac{\tilde{\sigma}^{2}}{2}\sum_I \frac{\p^{2}}{\p g^{2}_{I}}}\rb
+        e^{-i \tilde{t}\sum_I g_I \hat{V}_I}\rb_{g_I=0}\ .
+    \end{eqnarray}
+
+    \paragraph{The $k$-twirl channel and its moment operator.}
+    For a fixed realization $J$, define $U_{J}(t)=e^{-itH(J)}$ and the $k$-fold
+    adjoint action
+    \begin{equation}
+        \mathcal{U}^{(k)}_{J,t}(Y)\;:=\;U_{J}(t)^{\otimes k}\,Y\,U_{J}(t)^{\dagger\otimes
+        k}, \qquad Y\in \mathrm{End}(\mathcal{H}^{\otimes k}).
+    \end{equation}
+    The disorder-averaged $k$-twirl map is
+    \begin{equation}
+        \mathcal{E}^{(k)}_{t}(Y)\;:=\;\mathbb{E}_{J}\!\left[\mathcal{U}^{(k)}_{J,t}
+        (Y)\right].
+    \end{equation}
+
+    Introduce the vectorization/Choi-GNS map $Y\mapsto |Y\rangle\rangle$ on a doubled
+    space,
+    \begin{equation}
+        |Y\rangle\rangle := (Y\otimes \mathbf{1})\,|1\rangle, \qquad |1\rangle :=
+        \frac{1}{\sqrt{d}}\sum_{E}|E\rangle\otimes |E\rangle,
+    \end{equation}
+    so that left- and right-actions are represented by
+    \begin{equation}
+        (O_{L}- O_{R}^{T})\,|Y\rangle\rangle = |[O,Y]\rangle\rangle.
+    \end{equation}
+    Then the averaged moment operator (Choi operator) is
+    \begin{equation}
+        M_{t}^{(k)}\;:=\;\mathbb{E}_{J}\!\left[U_{J}(t)^{\otimes k}\otimes \big(U
+        _{J}(t)^{*}\big)^{\otimes k}\right], \qquad |\mathcal{E}_{t}^{(k)}(Y)\rangle
+        \rangle = M_{t}^{(k)}\,|Y\rangle\rangle.
+    \end{equation}
+
+    %------------------------------------------------------------
+    \paragraph{Hatted operators and Gaussian integral.}
+    Define, for each replica $a=1,\dots,k$,
+    \begin{equation}
+        \widehat H_{J}^{(a)}:= H_{J,L}^{(a)}- \big(H_{J,R}^{(a)}\big)^{T}, \qquad
+        \widehat H_{J}^{(k)}:= \sum_{a=1}^{k}\widehat H_{J}^{(a)}.
+    \end{equation}
+    Since $H(J)=\sum_{I}J_{I}V_{I}$, we can write
+    \begin{equation}
+        \widehat H_{J}^{(k)}\;=\; \sum_{I}J_{I}\,\widehat V_{I}^{(k)}, \qquad \widehat
+        V_{I}^{(k)}:= \sum_{a=1}^{k}\widehat V_{I}^{(a)}, \qquad \widehat V_{I}^{(a)}
+        := V_{I,L}^{(a)}- \big(V_{I,R}^{(a)}\big)^{T}.
+    \end{equation}
+    Therefore
+    \begin{equation}
+        M_{t}^{(k)}\;=\; \mathbb{E}_{J}\!\left[e^{-it\,\widehat H_J^{(k)}}\right]
+        \;=\;\int d\mu(J)\;\exp\!\left(-it\sum_{I}J_{I}\,\widehat V_{I}^{(k)}\right
+        ), \label{eq:Mt_as_gaussian_integral}
+    \end{equation}
+    where $d\mu(J)$ is the product Gaussian measure.
+
+    More generally, we can consider
+    \begin{eqnarray}
+        M(\tau_1,\cdots,\tau_k)&&:=\mathbb{E_g}\!\left[\otimes_{a=1}^k \lb e^{-\tau_a H_L^{(a)})}\otimes
+        \big(e^{-\tau_a^* H_R^{(a)}}\big)\rb^{\otimes k}\right],\nn\\
+        &&=\mathbb{E}_g\left[ e^{-i \sum_I g_I \mathbb{F}_I}\right]\nn\\
+        \mathbb{F}_I&&=\sum_{a=1}^k(\tau_a V^{(a)}_{I,L}-\tau_a^* V^{(a)}_{I,R})\nn\\
+        &&\tau_a=\beta_a/4+it_a\ .
+    \end{eqnarray}
+    Note that as a superoperator the operator above for $k=1$ acts as
+    \begin{eqnarray}
+        &&\mathcal{F}(Y)=e^{-(\beta/4+it)}Y e^{-(\beta/4-it)}\nn\\
+        &&(\mathcal{F}(Y_L)\otimes 1_R)\ket{e}=(U_t Y_L U_t^\dagger\otimes 1_R)\ket{\rho_\beta^{1/2}}\ .
+    \end{eqnarray}
+
+    %------------------------------------------------------------
+    \paragraph{Ordered Wick expansion and leading Gaussian regulator.}
+    Expanding the exponential and averaging with Wick's theorem gives the exact ordered
+    pairing series
+    \begin{equation}
+        M_{t}^{(k)}= \sum_{n=0}^{\infty}\frac{(-1)^{n}}{2^{n}n!}\,(\sigma t^{2})^{n}
+        \sum_{\text{pairings }P}\; \sum_{I_1,\dots,I_n}\widehat V_{I_{\pi_P(1)}}^{(k)}
+        \widehat V_{I_{\pi_P(2)}}^{(k)}\cdots \widehat V_{I_{\pi_P(2n)}}^{(k)}, \label{eq:ordered_wick_quenched}
+    \end{equation}
+    so in particular
+    \begin{equation}
+        M_{t}^{(k)}= \mathbf{1}-\frac{\sigma t^{2}}{2}\sum_{I}\big(\widehat V_{I}
+        ^{(k)}\big)^{2}+\mathcal{O}(t^{4}). \label{eq:Mt_smallt}
+    \end{equation}
+
+    Equivalently, one may write a Magnus/cumulant form
+    \begin{equation}
+        M_{t}^{(k)}=\exp\!\big(\Omega(t)\big), \qquad \Omega(t)=\Omega_{1}(t)+\Omega
+        _{2}(t)+\cdots,
+    \end{equation}
+    where $\Omega_{1}(t)=-(\sigma t^{2}/2)\sum_{I}(\widehat V_{I}^{(k)})^{2}$,
+    and $\Omega_{n\ge 2}(t)$ are built from nested commutators and begin at
+    order $t^{2n}$.
+
+    \subsection{Gaussian regulator from large $N$ limit}
+
+    Now, consider the system to be comprised of $N$ degrees of freedom, $i=1,\cdots
+    , N$, and $V_{I}$ is an interaction term that couples different sites. For instance,
+    if the sites sit on a lattice, it is natural to consider nearest neighbor two-body
+    interactions $V_{I}$ with $I=\{i,j\}$ that are adjacent on the lattice. More
+    generally, we can consider the interaction to be non-local and $q$-body as in
+    the case of hypergraphs such that the label $I$ is a set of $q$ distinct sites
+    $I=\{i_{1},i_{2},\cdots i_{q}\}$. Assuming that the order of labels does not
+    matter have the interaction
+    \begin{eqnarray}
+        &&H=q!\sum_{i_1<\cdots <i_q}g_{i_1\cdots i_q} V_{i_1\cdots i_q}\nn\\
+        &&V_{i_1\cdots i_q}=\mathcal{O}_{i_1}\cdots \mathcal{O}_{i_q}\ .
+    \end{eqnarray}
+    If the operators $[\mathcal{O}_{i},\mathcal{O}_{j}]\propto \delta_{ij}$, then
+    $[V_{I},V_{J}]=0$ for all $I,J$, and we obtain
+    \begin{eqnarray}
+        \int d\mu(g)e^{i t \sum_I g_I \hat{V}_I}=e^{-\sigma t^2\sum_I \hat{V}_I^2/2}\ .
+    \end{eqnarray}
+    If there are Majorana fermions sitting at each site, i.e.
+    $\{\psi_{i},\psi_{j}\}=2\delta_{ij}$, there are certain non-vanishing $[V_{I}
+    ,V_{J}]$. If the two sets of indices $I$ and $J$ have no overlaps, i.e.
+    $I\cap J=\emptyset$, we have $[V_{I},V_{J}]=0$. We will assume that $q$ is
+    even, then if the number of overlaps between the two sets $m=|I\cap J|$ is even,
+    the potential terms commute, and if it is odd, they anticommute:
+    \begin{eqnarray}
+        [V_I,V_J]=(1-(-1)^{|I\cap J|})V_IV_J\ .
+    \end{eqnarray}
+    The case with a Majorana fermion at each siste is the SYK model that we will
+    discuss in the next section. Here, we simply make the following observation.
+    Choosing random sets $I,J$ the probability of having at least one index in
+    common is
+    \begin{eqnarray}
+        P(\text{overlap})=1-\frac{{N-q\choose q}}{{N \choose q}}
+    \end{eqnarray}
+    which in the limit of fixed $q$ and large $N$ scales as $q^{2}/N\to 0$. Therefore,
+    we can ignore the commutators, and obtain the Gaussian regulator map
+    \begin{eqnarray}
+        \int d\mu(g) e^{-t\sum_I g_I \hat{V}_I}=e^{-\sigma t^2\sum_I \hat{V}_I^2/2}\ .
+    \end{eqnarray}
+    Below, we will see that this large $N$ behavior generalizes to the $k$-twirl
+    map, as well.
+
+    \subsection{Gaussian regulator for the $k$-twirl at large $N$}
+    \label{subsec:quenched_syk_gaussian_regulator}
+    %------------------------------------------------------------
+    \NL{Decide whether to use $g_{I}$ or $J_{I}$ as coupling}
+
+    Let $H(J)$ be a (quenched) SYK Hamiltonian written as a Gaussian linear combination
+    \begin{equation}
+        H(J)\;=\; i^{q/2}\sum_{I}J_{I}\,V_{I},
+        %  \qquad
+        % V_{i_1<\cdots<i_q} \;=\; \chi_{i_1}\chi_{i_2}\cdots \chi_{i_q},
+    \end{equation}
+    with independent centered Gaussian couplings
+    \begin{equation}
+        \mathbb{E}[J_{I}]=0, \qquad \mathbb{E}[J_{I}J_{J}]=\sigma\,\delta_{IJ},
+    \end{equation}
+    and we take $q$ fixed, $N\to\infty$ (with the usual SYK scaling $\sigma\sim N
+    ^{-(q-1)}$ understood).
+
+    %------------------------------------------------------------
+
+    In models in which the operators $V_{I}$ are (approximately) commuting at large
+    system size---e.g., because most pairs $V_{I},V_{J}$ have disjoint support and
+    hence commute while commutators require rare overlaps---the commutator corrections
+    are suppressed. In the diffusive scaling regime
+    \begin{equation}
+        \tau \;:=\;\sigma t^{2}\binom{N}{q}\sim N t^{2}= O(1),
+    \end{equation}
+    the leading contribution $\Omega_{1}=O(1)$ survives while $\Omega_{n\ge2}$
+    are parametrically smaller, so to leading order
+    \begin{equation}
+        M_{t}^{(k)}\;\simeq\; \exp\!\left[-\frac{\sigma t^{2}}{2}\sum_{I}\big(\widehat
+        V_{I}^{(k)}\big)^{2}\right]. \label{eq:quenched_gaussian_regulator}
+    \end{equation}
+
+    %------------------------------------------------------------
+    \paragraph{Identification of the effective generator.}
+    Define
+    \begin{equation}
+        \widehat X_{I}\;:=\;\sqrt{\sigma}\,\widehat V_{I}^{(k)}=\sqrt{\sigma}\sum
+        _{a=1}^{k}\!\left(V_{I,L}^{(a)}-\big(V_{I,R}^{(a)}\big)^{T}\right), \qquad
+        \widehat G_{eff}^{(k)}\;:=\;\frac{1}{2}\sum_{I}\widehat X_{I}^{\,2}. \label{eq:hatGeff_quenched}
+    \end{equation}
+    Then~\eqref{eq:quenched_gaussian_regulator} becomes the Gaussian regulator
+    \begin{equation}
+        M_{t}^{(k)}\simeq e^{-\tau^2\hat{G}_{eff}^{(k)}}. \label{eq:Mt_exp_hatGeff}
+    \end{equation}
+
+    On the physical $k$-replica space define Hermitian operators
+    \begin{equation}
+        X_{I}\;:=\;\sqrt{\sigma}\sum_{a=1}^{k}V_{I}^{(a)}, \qquad \widehat X_{I}=
+        (X_{I})_{L}- (X_{I})_{R}^{T}.
+    \end{equation}
+    Using
+    \begin{equation}
+        \big((X)_{L}-(X)_{R}^{T}\big)^{2}|Y\rangle\rangle = |X^{2}Y+Y X^{2}-2XYX\rangle
+        \rangle,
+    \end{equation}
+    we obtain the corresponding superoperator $G_{eff}^{(k)}$ on $Y$ via
+    \begin{equation}
+        \widehat G_{eff}^{(k)}|Y\rangle\rangle = |G_{eff}^{(k)}(Y)\rangle\rangle,
+    \end{equation}
+    namely
+    \begin{align}
+        G_{eff}^{(k)}(Y) & =\frac{1}{2}\sum_{I}\Big(X_{I}^{2}Y+Y X_{I}^{2}-2X_{I}Y X_{I}\Big) \nonumber                                                 \\
+                         & =\frac{1}{2}\sum_{I}[X_{I},[X_{I},Y]] \;=\;-\sum_{I}\Big(X_{I}Y X_{I}-\tfrac12\{X_{I}^{2},Y\}\Big). \label{eq:Geff_quenched}
+    \end{align}
+    Therefore, in the same large-$N$ regime in which~\eqref{eq:Mt_exp_hatGeff} holds,
+    \begin{equation}
+        \boxed{\mathcal{E}_t^{(k)} \;\simeq\; e^{-\tau^2\,G_{eff}^{(k)}}}
+    \end{equation}
+
+    \NL{Compute the thermal 2pt function, 4pt function and the multi-point OTOCs starting from the k-twirl map, at large N and various limits of $\beta J$.}
+
+    \section{Gaussian regulator in large $N$ SYK}
+
+    The SYK model is comprised of $N$ Majorana fermions $\chi_{i}$ with
+    $i=1,\cdots , N$ and the Hamiltonian
+    \begin{eqnarray}
+        H=i^{q/2}\sum_{i_1<\cdots <i_q}J_{i_1<\cdots<i_q} (\chi_1\cdots \chi_q)\ .
+    \end{eqnarray}
+    In comparing to the notation of the previous section, $I$ is all ordered $q$-tuples
+    $I = \{i_{1}< \dots < i_{q}\}$, and
+    \begin{eqnarray}
+        V_{i_1<\cdots <i_q}=\chi_{i_1}\chi_{i_2}\cdots \chi_{i_q}
+    \end{eqnarray}
+    is the product of $q$ Majorana fermions. It follows from $\{\chi_{i},\chi_{j}
+    \}=2\delta_{ij}$ that
+    \begin{eqnarray}
+        (V_{i_1<\cdots <i_q})^2=i^q(\chi_{i_1}\cdots \chi_{i_q})^2=i^q(-1)^{q(q-1)/2}
+    \end{eqnarray}
+    which explains the origin of $i^{q/2}$ in (\ref{SYKHam}). In this note, we will
+    restrict to the case where both $N$ and $q$ are even, and
+    $(V_{i_1<\cdots <i_q})^{2}=1$.
+
+    The time-independent noise is
+    \begin{eqnarray}
+        &&\overline{J_I}=0\nn\\
+        &&\overline{J_I J_J}=\sigma \delta_{IJ}\nn\\
+        &&\sigma=\frac{2^{q-1}q!}{q^{2}N^{q-1}}J\ .
+    \end{eqnarray}
+    Note that we are using the normalization in
+    \cite{jian2021note,jian2023linear}. Note that there are $\binom{N}{q}$ terms
+    in the Hamiltonian which in the limit of $q\ll N$ grows like $N^{q}/q!$. The
+    factor $q!/N^{q-1}$ is designed to make sure that the fluctuations of the
+    Hamiltonian are order $N$. For $q=2$ and $q=4$, we have, respectively $\sigma
+    =J/N$ and $\sigma=12\,J/N^{3}$.
+
+    \subsection{Jordan-Wigner transform}
+
+    Assuming that $N$ is even, we pair Weyl fermions of each copy $\psi^{(a)}_{2j-1}$
+    and $\psi^{(a)}_{2j}$ into $N/2$ complex fermions
+    \begin{eqnarray}
+        &&c_j^{(a)}\equiv \frac{1}{2}(\chi_{2j-1}^{(a)}+i \chi_{2j}^{(a)})\nn\\
+        &&\{c_l,c_j^\dagger\}=\delta_{l j},\qquad \{c_l,c_j\}=\{c_l^\dagger,c_j^\dagger\}=0\ .
+    \end{eqnarray}
+    For a fixed $j$, the algebra generated by $c_{k},c_{k}^{\dagger}$ is
+    isomorphic to the algebra of a qubit generated with
+    $c_{j}=\ket{0}\bra{1}_{j}$ and we can identify $\chi_{2j-1}=X_{j}$ and
+    $\chi_{2j}=Y_{j}$, where $X_{j}$ and $Y_{j}$ are Pauli matrices. The fermion
+    number operator is
+    \begin{eqnarray}
+        N_j=c_j^\dagger c_j=\ket{1}\bra{1}_j=(1+Z_j)/2\ .
+    \end{eqnarray}
+    However, the problem is that $[X_{l},Y_{j}]=0$, whereas the Weyl fermions
+    anticommute. To fix this, we define the operators
+    \begin{eqnarray}
+        &&\sigma^-_j\equiv \frac{1}{2}(X_j+i Y_j)=(-1)^{\sum_{l=1}^{j-1}c_l^\dagger c_l}c_j\nn\\
+        &&Z_j=2c_j^\dagger c_j-1
+    \end{eqnarray}
+    by attaching to $c_{j}$ a string of parity operators
+    \begin{eqnarray}
+        (-1)^{N_j}=\ket{0}\bra{0}_j-\ket{1}\bra{1}_j\ .
+    \end{eqnarray}
+    It can now be checked explicitly that Paul matrices with different $j$
+    commute. In terms of the Weyl fermions, we have the identification
+    \begin{eqnarray}
+        &&Z_j=-i \chi_{2j-1}\chi_{2j}=(-1)^{c_j^\dagger c_j+1}\nn\\
+        &&X_j=\lb \prod_{l=1}^{j-1}(i \chi_{2l-1}\chi_{2l})\rb \chi_{2j-1}=(-1)^{\sum_{j=1}^{k-1}c_j^\dagger c_j}(c_k+c_k^\dagger)\nn\\
+        &&Y_j=\lb \prod_{l=1}^{j-1}(i \chi_{2l-1}\chi_{2l})\rb \chi_{2j}=-i (-1)^{\sum_{l=1}^{j-1}c_l^\dagger c_l}(c_j-c_j^\dagger)
+    \end{eqnarray}
+    Equivalently, we can write
+    \begin{eqnarray}
+        &&c_j=(-1)^{j-1}(Z_1\cdots Z_{j-1})\sigma_j^-\nn\\
+        &&\chi_{2j-1}=(-1)^{j-1}(Z_1\cdots Z_{j-1})X_j\nn\\
+        &&\chi_{2j}=(-1)^{j-1}(Z_1\cdots Z_{j-1})Y_j\ .
+    \end{eqnarray}
+
+    Now, consider the following two purifications of a maximally mixed state of a
+    single qubit (a single complex fermion) in a two-qubit (a pair of
+    {\it commuting} complex fermions) system:
+    \begin{eqnarray}
+        &&\ket{e}=\frac{1}{\sqrt{2}}(\ket{00}+\ket{11})\nn\\
+        &&\ket{f}=\frac{1}{\sqrt{2}}(\ket{01}+\ket{10})\nn\\
+        &&c_{1L}=\sigma_{1L}^-,\qquad c_{2R}=\sigma_{1R}^-
+    \end{eqnarray}
+    which can be identified as the unique vector that satisfies the following
+    relations
+    \begin{eqnarray}
+        &&(c_{1L}-c_{1R}^\dagger)\ket{e}=0=(c_{1L}^\dagger-c_{1R})\ket{e}\nn\\
+        &&(c_{1L}-c_{1R})\ket{f}=0=(c_{1L}^\dagger-c_{1R}^\dagger)\ket{f}
+    \end{eqnarray}
+    Next, consider $N/2$ ($N$ even) pairs of Weyl fermions, and the maximally
+    mixed vectors
+    \begin{eqnarray}
+        &&\ket{e}^{\otimes N/2},\qquad \ket{f}^{\otimes N/2}\nn\\
+        &&c_{k,L/R}=(-1)^{k-1}Q_{k-1,L/R}\sigma_{k,L/R}^-,\nn\\
+        &&Q_{k,L/R}\equiv (Z_{1L/R}\cdots Z_{k,L/R})\ .
+    \end{eqnarray}
+    Note that even though we are labeling the fermions using $L$ and $R$ they
+    are commuting variables
+    \begin{eqnarray}
+        [c_{jL},c^\dagger_{l,R}]=0,\qquad \{c_{jL},c^\dagger_{lL}\}=\delta_{jl},\qquad
+        \{c_{jR},c^\dagger_{lR}\}=\delta_{jl}
+    \end{eqnarray}
+    Since
+    \begin{eqnarray}
+        (Q_{j,L}-Q_{j,R})\ket{e}^{\otimes j}=0,\qquad (Q_{j,L}+(-1)^jQ_{j,R})\ket{f}^{\otimes k}=0
+    \end{eqnarray}
+    we find that for the following equations for all $l=1,\cdots, N/2$ for $N$
+    even define the vectors $\ket{f}^{\otimes N/2}$ and $\ket{f}^{\otimes N/2}$:
+    \begin{eqnarray}
+        &&(c_{jL}-c_{jR}^\dagger)\ket{e}^{\otimes N/2}=0=(c_{jL}^\dagger-c_{jR})\ket{e}^{\otimes N/2}\nn\\
+        &&(c_{jL}-c_{jR})\ket{f}^{\otimes N/2}=0=(c_{j L}^\dagger-c_{j R}^\dagger)\ket{f}^{\otimes N/2}\ .
+    \end{eqnarray}
+    A convenient way to relate the complex fermions to Majoranas is the following
+    definitions\footnote{Note the difference compared to \cite{gu2017spread}. See
+    their equation 2.12.}:
+    \begin{eqnarray}
+        c_{kL}=\frac{1}{2}(\chi_{2k-1,L}+i \chi_{2k,L}),\qquad c_{kR}=\frac{1}{2}(\chi_{2k,R}+i\chi_{2k-1,R})
+    \end{eqnarray}
+    This ensures that for all $j$ we have\footnote{Alternatively, we could use the
+    convention in eq 2.12 of \cite{gu2017spread}
+    \begin{eqnarray}
+        c_{kL}=\frac{1}{2}(\chi_{2k-1,L}+i \chi_{2k,L}),\qquad c_{kR}=\frac{1}{2}(\chi_{2k,R}-i\chi_{2k-1,R})
+    \end{eqnarray}
+    that results in $(\chi_{j,L}+i\chi_{j,R})\ket{f}^{\otimes N/2}=0$.}
+    \begin{eqnarray}
+        \label{evector} (\chi_{j,L}+i\chi_{j,R})\ket{e}^{\otimes N/2}=0\ .
+    \end{eqnarray}
+    This is a very convenient choice, because the terms in the Hamiltonian involve
+    all $\chi_{j}$, and without the need to distinguish the even and odd labels,
+    for even $q$ we can write
+    \begin{eqnarray}
+        &&(H\otimes 1)\ket{e}^{\otimes N/2}=i^{q/2}\sum_{i_1<\cdots i_q}J_{i_1\cdots i_q}\chi_{i_1L}\cdots
+        \chi_{i_qL}\ket{e}^{\otimes N/2}\nn\\
+        &&=i^{q/2}\sum_{i_1<\cdots i_q}J_{i_1\cdots i_q}\chi_{i_1R}\cdots \chi_{i_qR}\ket{e}^{\otimes N/2}=(1\otimes
+        H)\ket{e}^{\otimes N/2}\ .
+    \end{eqnarray}
+    For a general operator $\mO_{L}$, the mirror operator in the vector
+    $\ket{e}^{\otimes N/2}$ is $\mO^{T}_{R}$
+    \begin{eqnarray}
+        (\mO\otimes 1_R)\ket{e}^{\otimes k}=(1_L\otimes \mathcal{O}^T) \ket{e}^{\otimes k}\ .
+    \end{eqnarray}
+    This means in the qubit basis, $H$ is symmetric in the qubit basis. The
+    advantage of the qubit basis is that it is totally commuting, which is convenient
+    for applying quantum circuit models. However, the Hamiltonian expressed in terms
+    of the qubit degrees of freedom does not take a simple form. To address this,
+    in the next subsection, following \cite{gu2017spread}, we use totally anti-commuting
+    variables, which have the advantage that the Hamiltonian $\hat{H}$ takes a
+    simple form in these variables. Bilinears of these fermions are commuting variables
+    and well-suited for quantum circuit models.
+
+    \subsection{Totally anti-commuting variables}
+
+    Since we are interested in $k$-twirl map $(U\otimes U^{*})^{\otimes k}$, consider
+    $2k$ copies of SYK fermions that we label by $\chi^{(a)}_{L j}$ and $\chi^{(a)}
+    _{R j}$ with $j=1,\cdots, N$ with $N$ even, $a=1,\cdots, k$, and $L$ and $R$
+    denoting where they are evolved by $U$ or $U^{\dagger}$.
+
+    We define the total parity operator, which counts the total number of
+    complex fermions for a fixed $(a)$:
+    \begin{eqnarray}
+        Q^{(a)}_{L/R}=(-1)^{\sum_{j=1}^{N/2}n_j}=\prod_{j=1}^{N/2}Z_{j (L/R)}=(-i)^{N/2}\prod_{l=1}^{N}\chi_{l (L/R)}^{(a)}
+    \end{eqnarray}
+    For even $N$ it satisfies the following relations
+    \begin{eqnarray}
+        &&\{Q^{(a)}_{L/R},\chi^{(a)}_{l,L/R}\}=0,\qquad a\neq b: [Q^{(a)}_{L/R},\chi^{(b)}_{l,L/R}]=0,\nn\\
+        &&[Q^{(a)}_L,\chi^{(b)}_{l,R}]=0,\qquad (Q^{(a)}_{L/R})^2=1^{(a)}_{L/R}\ .
+    \end{eqnarray}
+    Then, we define new Majorana fermions \footnote{Note the asymmetry in the
+    definition between $L$ and $R$; i.e. the extra factor of $i$.}
+    \begin{eqnarray}
+        &&\psi_{l,L}^{(a)}=i \Sigma^{(a)}\chi_{l,L}^{(a)}, \qquad \psi_{l,R}^{(a)}=\Sigma^{(a)}\chi_{l,R}^{(a)},\nn\\
+        &&\Sigma^{(a)}=\lb\prod_{b=1}^{a-1} Q_L^{(h)} Q_R^{(b)}\rb Q^{(a)}_L
+    \end{eqnarray}
+    that anti-commute for all labels
+    \begin{eqnarray}
+        \{\psi^{(a)}_{l, \alpha},\psi^{(b)}_{l',\beta}\}=2\delta_{ll'}\delta_{ab}\delta_{\alpha\beta}
+    \end{eqnarray}
+    with $\alpha,\beta=L,R$. The Majorana condition follows from the (anti)-commutation
+    relations of $Q^{(a)}_{L/R}$ with $\chi$ Majorana fermions:
+    \begin{eqnarray}
+        (\psi^{(a)}_{l,L})^\dagger=\psi^{(a)}_{l,L},\qquad (\psi^{(a)}_{l,R})^\dagger=\psi^{(a)}_{l,R}\ .
+    \end{eqnarray}
+    It follows from (\ref{evector}) that $\psi_{l,L}^{(a)}$ are
+    $\psi^{(a)}_{l,R}$ are mirror operators in this vector:
+    \begin{eqnarray}
+        (\psi^{(a)}_{l,L}-\psi^{(a)}_{l,R})\ket{e}_a^{\otimes N/2}=0\ .
+    \end{eqnarray}
+    A nice feature of the new Majorana $\psi$ is that for all $i_{1}<i_{2}<\cdots
+    <i_{q}$ with $q$ even we have
+    \begin{eqnarray}
+        \chi^{(a)}_{i_1,L}\cdots \chi^{(a)}_{i_q,L}=\psi^{(a)}_{i_1,L}\cdots \psi^{(a)}_{i_q,L}\ .
+    \end{eqnarray}
+    Therefore, we have
+    \begin{eqnarray}
+        \hat{V}^{(a)}_{i_1\cdots i_q}=i^{q/2}\psi^{(a)}_{i_1,\alpha}\cdots \psi^{(a)}_{i_q,\alpha}
+    \end{eqnarray}
+    It is straightforward to check explicitly that each term $H^{(a)}_{I}$ in
+    the Hamiltoian saistifes the mirror equation:
+    \begin{eqnarray}
+        \psi^{(a)}_{i_1L}\cdots \psi^{(a)}_{i_qL}\ket{e}_a^{\otimes N/2}= \psi^{(a)}_{i_1R}\cdots
+        \psi^{(a)}_{i_qR}\ket{e}_a^{\otimes N/2}\ .
+    \end{eqnarray}
+    This means that in the case of SYK, we do not need to worry about transposes,
+    because every term in the Hamiltonian is symmetric in the basis of $\ket{e}^{\otimes
+    N/2}$. Therefore, we can define
+    \begin{eqnarray}
+        \label{VSYK} \hat{V}^{(a)}_{i_1<\cdots <i_q}= i^{q/2}(\psi^{(a)}_{i_1L}\cdots
+        \psi^{(a)}_{i_qL}- \psi^{(a)}_{i_1R}\cdots \psi^{(a)}_{i_qR})\ .
+    \end{eqnarray}
+
+    %\NL{How about the $g$-averaged higher point functions?}
+
+    % A simple trick to compute higher point functions in the (unnormalized) infinite temperature thermofield double $\ket{1}$ is to compute
+    % \begin{eqnarray}
+    %   &&\mathcal{E}_g(U^{\otimes k}\otimes (U^*)^{\otimes k})(\mathbb{Y}\otimes 1^{\otimes k})\ket{1}^{\otimes k}\nn\\
+    %   &&=\mathcal{E}_g\lb e^{-i g \hat{\mathbb{H}}}\rb(\mathbb{Y}\otimes 1^{\otimes k})\ket{1}^{\otimes k}\nn\\
+    %   &&\hat{\mathbb{H}}=\sum_I g_I \sum_a \hat{V}_I^{(a)}\nn\\
+    %   &&\hat{\mathbb{X}}_I=\sqrt{\sigma}\sum_a \hat{V}_I^{(a)}\ .
+    %   %\rb\nn\\
+    %   %&&=\tr((\mO_1\otimes \cdots \otimes\mO_k)W_{\pi_{cyc}})
+    % \end{eqnarray}
+    % where in our notation $\mathbb{Y}$, $\mathbb{X}_I$ and $\mathbb{H}_I$ acts on $\mathcal{H}^{\otimes k}$, and their hatted versions $\hat{\mathbb{H}}$, $\hat{\mathbb{X}}$ and $\hat{\mathbb{H}}$ act on $\mathcal{H}^{2k}$. Performing the Gaussian integral as before, we find
+    % \begin{eqnarray}
+    %   &&\mathcal{E}_g(U^{\otimes k}\otimes (U^*)^{\otimes k})=e^{-\hat{\mathbb{G}}_{eff}t^2}\nn \\
+    %   &&\hat{\mathbb{G}}_{eff}=\frac{1}{2}\sum_I \hat{\mathbb{X}}_I^2\ .
+    % \end{eqnarray}
+    % This GNS operator can be viewed as a superoperator acting on operators in $\mathcal{H}^{\otimes k}$:
+    % \begin{eqnarray}
+    %   &&e^{-\hat{\mathbb{G}}_{eff}^{(k)}t^2}(\mathbb{Y}\otimes 1^{\otimes k})\ket{1}^{\otimes k}=(\Phi_t^{(k)}(\mathbb{Y})\otimes 1^{\otimes k})\ket{1}^{\otimes k}\nn\\
+    %   &&\hat{\mathbb{G}}_{eff}^{(k)}(\mathbb{Y}\otimes 1)\ket{1}^{\otimes k}=(\mathcal{G}_{eff}^{(k)}(\mathbb{Y})\otimes 1^{\otimes k})\ket{1}^{\otimes k}\nn\\
+    %   &&\mathcal{G}_{eff}^{(k)}(\mathbb{Y})=\lb \mathbb{X}_I \mathbb{Y}\mathbb{X}_I^\dagger-\frac{1}{2}(\mathbb{X}_I^2\mathbb{Y}+\mathbb{Y}(\mathbb{X}_I^\dagger)^2\rb\nn\\
+    %     &&=\lb \mathbb{X}_I \mathbb{Y}\mathbb{X}_I-\frac{1}{2}\{\mathbb{X}_I^2,\mathbb{Y}\}\rb
+    %   \end{eqnarray}
+    %   where we have used the fact that each $\mathbb{X}_I$ term is self-adjoint. The result
+    %   resembles a Linbladian with self-adjoint jump operators $\mathbb{X}_I$ and decay rates $\sigma$, except that it sits next to $t^2$ instead of $t$! Of course, this is NOT a semi-group, and the $k$-fold quantum channel $\Phi_t$ can be written as
+    %   \begin{eqnarray}
+    %     \Phi_{t}^{(k)}(\mathbb{Y})=\sum_{n=0}^\infty \frac{(-t^2)^n}{n!}(\mathcal{G}_{eff}^{(k)})^n(\mathbb{Y})\ .
+    %   \end{eqnarray}
+    % where $W_{\pi_{cyc}}$ is the cyclic permutation $i\to (i+1)\mod k$ on $\mathcal{H}^{\otimes k}$.
+
+    % Note that, in general, $[V_I,V_J]\neq 0$, therefore $[G_{eff},H(g)]\neq 0$ and $[G_{eff},\rho_\beta]=0$.
+
+    % \NL{A convenient limit here is to take the infinite temperature limit $\beta\to 0$, keeping $g$ and $\sigma$ finite. This amounts to sending $\tilde{g}\to 0$, and $\tilde{\sigma}\to 0$}
+
+    %------------------------------------------------------------
+
+    \subsection{$k$-twirl map in large $N$ SYK}
+
+    The effective generator we found is
+    \begin{eqnarray}
+        \allowdisplaybreaks &&\mathbb{G}_{eff}^{(k)}=(-1)^{q/2}\sum_{i_1<\cdots <i_q}(\hat{\mathbb{X}}_{i_1<\cdots <i_q})^2\nn\\
+        &&=(-1)^{q/2}\sum_{i_1<\cdots <i_q}\sum_{a,b=1}^k(\psi_{i_1L}^{(a)}\cdots
+        \psi_{i_qL}^{(a)}-\psi_{i_1R}^{(a)}\cdots \psi_{i_qR}^{(a)})(\psi_{i_1L}^{(b)}\cdots
+        \psi_{i_qL}^{(b)}-\psi_{i_1R}^{(b)}\cdots \psi_{i_qR}^{(b)})\nn\\
+        &&=(-1)^{q/2}\sum_{i_1<\cdots <i_q}\sum_{a,b=1}^k\sum_{\alpha,\beta=L,R}(-1)^{q(q-1)/2}\lb
+        \psi^{(ab)}_{i_1;\alpha\beta}\cdots \psi^{(ab)}_{i_q;\alpha\beta}\rb\nn\\
+        &&=(-i)^q\sum_{i_1<\cdots <i_q}\sum_{a,b=1}^k\sum_{\alpha,\beta=L,R}\lb
+        \psi^{(ab)}_{i_1;\alpha\beta}\cdots \psi^{(ab)}_{i_q;\alpha\beta}\rb\label{Geffk}
+    \end{eqnarray}
+    where we have defined the local bilinears
+    \begin{eqnarray}
+        \label{bilinearpsi} &&M^{(ab)}_{l;\alpha\beta}\equiv i\psi^{(a)}_{l \alpha}\psi^{(b)}_{l\beta}\ .
+    \end{eqnarray}
+    used that for even $q$, the factor $(-1)^{q/2}(-1)^{q(q-1)/2}=1$.
+    % , and that for commutative $A_i$ we have
+    % \begin{equation}
+    % \sum_{i_1<\cdots <i_q}A_{i_1}\cdots A_{i_q}=\frac{1}{q!}\sum_{\text{distinct} \: i_1\cdots i_q}A_{i_1}\cdots A_{i_q}
+    % \end{equation}
+    Note that $M^{(aa)}_{l;\alpha\alpha}=1$, and
+
+    The bilinears at different sites $j\neq j'$ commute:
+    \begin{eqnarray}
+        [M^{(ab)}_{j;\alpha\beta},M^{(a'b')}_{j';\alpha'\beta'}]=0
+    \end{eqnarray}
+    Next, note that since $\psi_{j;LR}^{(ab)}=-\psi_{j;RL}^{(ab)}$ using the
+    fact that $q$ is even, we have
+    \begin{eqnarray}
+        &&\mathbb{G}_{eff}^{(k)}= \sum_{a,b=1}^k\lb e_{q;LL}^{(ab)}+e_{q;RR}^{(ab)}-2e_{q;LR}^{(ab)}\rb\\
+        &&e_{q;\alpha\beta}^{(ab)}=\sum_{i_1<\cdots <i_q}\prod_{m=1}^q\psi^{(ab)}_{i_m;\alpha\beta}
+    \end{eqnarray}
+
+    In the $k$-fold (twirl) construction it is often convenient to bundle the
+    replica label $a=1,\dots,k$ and the side label $\alpha\in\{L,R\}$ into a
+    single ``flavor'' index\footnote{Equivalently, fix any bijection between $(a,
+    \alpha)$ and $\{1 , \dots,2k\}$; an ordering convention then allows
+    shorthand sums such as $\sum_{A<B}$ to run over unordered pairs once.}
+    \begin{eqnarray}
+        &&A \equiv (a,\alpha)\,,\qquad A=1,\dots,2k\nn\\
+        &&s_A=
+        \begin{cases}
+             & 1\qquad A=L    \\
+             & (-1)\qquad A=R
+        \end{cases}\ .
+    \end{eqnarray}
+    Our Majorana fermions $\psi_{i}^{A}$ labeled by sites $i=1,\dots,N$ satisfy
+    \begin{equation}
+        \{\psi_{i}^{A},\psi_{j}^{B}\}=2\,\delta_{ij}\,\delta^{AB}\,, \qquad (\psi
+        _{i}^{A})^{\dagger}=\psi_{i}^{A}\,. \label{eq:majorana_CAR}
+    \end{equation}
+    Motivated by (\ref{bilinearpsi}) we define the antisymmetric bilinears (sitewise
+    generators)
+    \begin{equation}
+        M_{i}^{AB}\;\equiv\;\frac{i}{2}\,[\psi_{i}^{A},\psi_{i}^{B}]\,,\qquad M_{i}
+        ^{AB}=-M_{i}^{BA}\ . \label{eq:def_M}
+    \end{equation}
+    Using \eqref{eq:majorana_CAR}, for $A\neq B$ we have $[\psi_{i}^{A},\psi_{i}^{B}
+    ]=2\psi_{i}^{A}\psi_{i}^{B}$, so the operator $M^{AB}_{i}$ are self-adjoint:
+    \begin{equation}
+        \boxed{ M_i^{AB}= i\,\psi_i^A\psi_i^B \qquad (A\neq B)\,\qquad M_i^{AA}=0}
+        \ . \label{eq:M_as_product}
+    \end{equation}
+    For $i\neq j$, the Majoranas anticommute, $\psi_{i}^{A}\psi_{j}^{B}=-\psi_{j}
+    ^{B}\psi_{i}^{A}$. Since each $M_{i}^{AB}$ is an \emph{even} (quadratic) operator
+    at site $i$, bilinears at distinct sites commute:
+    \begin{equation}
+        [M_{i}^{AB},M_{j}^{CD}] = 0\,,\qquad i\neq j\,. \label{eq:M_commute_different_sites}
+    \end{equation}
+    A direct proof uses \eqref{eq:M_as_product} (for $A\neq B$ and $C\neq D$):
+    \begin{align}
+        M_{i}^{AB}M_{j}^{CD} & = (i\psi_{i}^{A}\psi_{i}^{B})(i\psi_{j}^{C}\psi_{j}^{D}) = -\,\psi_{i}^{A}\psi_{i}^{B}\psi_{j}^{C}\psi_{j}^{D}\nonumber \\
+                             & = -\,\psi_{j}^{C}\psi_{j}^{D}\psi_{i}^{A}\psi_{i}^{B}= M_{j}^{CD}M_{i}^{AB}\,,
+    \end{align}
+    where moving $\psi_{j}^{C}\psi_{j}^{D}$ past $\psi_{i}^{A}\psi_{i}^{B}$ produces
+    $(-1)^{2\cdot 2}=+1$. Since we also know
+    \begin{eqnarray}
+        (M^{AB}_i)^2=\delta_{AB}\,
+    \end{eqnarray}
+    for $A\neq B$, they are self-adjoint unitary operators, therefore their
+    spectrum is either $+1$ or $-1$.
+
+    For $i\neq j$ one also has
+    \begin{equation}
+        [M_{i}^{AB},\psi_{j}^{C}]=0\,,\qquad i\neq j\,, \label{eq:M_commute_fermion_other_site}
+    \end{equation}
+    since moving $\psi_{j}^{C}$ past the quadratic operator at site $i$ produces
+    $(-1)^{2}=+1$. Whereas for the same site ($i=j$), we have
+    \begin{align}
+        [\psi_{i}^{A}\psi_{i}^{B},\psi_{i}^{C}] & = \psi_{i}^{A}\{\psi_{i}^{B},\psi_{i}^{C}\}-\{\psi_{i}^{A},\psi_{i}^{C}\}\psi_{i}^{B}\nonumber                         \\
+                                                & = \psi_{i}^{A}(2\delta^{BC})-(2\delta^{AC})\psi_{i}^{B}= 2\big(\delta^{BC}\psi_{i}^{A}-\delta^{AC}\psi_{i}^{B}\big)\,.
+    \end{align}
+    Multiplying by $i$ gives the compact result
+    \begin{equation}
+        \boxed{ [M_i^{AB},\psi_j^C] \;=\; 2i\,\delta_{ij}\,\big(\delta^{BC}\psi_i^A-\delta^{AC}\psi_i^B\big)\,. }
+        \label{eq:M_comm_psi}
+    \end{equation}
+    This explicitly shows that $M_{i}^{AB}$ generates orthogonal rotations of
+    the flavor index on the Majoranas at each site.
+    %  Since $A,B=1,\cdots, 2k$, we have the Lie-algebra of $\mathfrak{so}(2k)$, corresponding to linear Bogoliubov transformations of the fermions $\psi_i^A$.
+
+    % \subsection{Bilinear--bilinear commutators (closure)}
+    % \label{subsec:M_comm_M}
+    At the same site, the $M_{i}^{AB}$ close into the $\mathfrak{so}(2k)$ Lie algebra.
+    Starting from
+    \begin{equation}
+        [\psi_{i}^{A}\psi_{i}^{B},\psi_{i}^{C}\psi_{i}^{D}] = [\psi_{i}^{A}\psi_{i}
+        ^{B},\psi_{i}^{C}]\psi_{i}^{D}+ \psi_{i}^{C}[\psi_{i}^{A}\psi_{i}^{B},\psi
+        _{i}^{D}]\,,
+    \end{equation}
+    and inserting the previously derived single-fermion commutator results in
+    \begin{equation}
+        \boxed{ [M_i^{AB},M_j^{CD}] = 2i\,\delta_{ij}\Big( \delta^{BC}M_i^{AD} -\delta^{AC}M_i^{BD} -\delta^{BD}M_i^{AC} +\delta^{AD}M_i^{BC} \Big)\,. }
+        \label{eq:so2k_commutator}
+    \end{equation}
+    Together with \eqref{eq:M_commute_different_sites}, Eq.~\eqref{eq:so2k_commutator}
+    shows that each site carries an independent copy of $\mathfrak{so}(2k)$
+    corresponding to the linear Bogoliubov transformations of fermions
+    $\psi_{i}^{A}$, while different sites commute.
+
+    % \paragraph{Remark (ordering and $\sum_{A<B}$).}
+    % Because $M_i^{AB}$ is antisymmetric in $(A,B)$ and $M_i^{AA}=0$, it is often convenient to sum
+    % only over unordered pairs once:
+    % \begin{equation}
+    % \sum_{A<B}(\cdots)\equiv \frac{1}{2}\sum_{A\neq B}(\cdots)\,,
+    % \end{equation}
+    % where the inequality $A<B$ refers to any fixed total ordering of the $2k$ flavors.
+
+    Now, we can write the expression of the effective Hamiltonian in (\ref{Geffk})
+    in terms of these bilinears:
+    \begin{eqnarray}
+        \label{GeffkM} \mathbb{G}_{eff}^{(k)}&&=i^q\sum_{i_1<\cdots <i_q}\lb \sum_A
+        1+s_As_B\sum_{AB}M_{i_1}^{AB}\cdots M_{i_q}^{AB}\rb\nn\\
+        &&=i^q\lb \sum_A 2k{N\choose q}+\sum_{i_1<\cdots <i_q}s_As_B\sum_{AB}M_{i_1}^{AB}\cdots
+        M_{i_q}^{AB}\rb
+    \end{eqnarray}
+    Note that since $M_{i}^{aL,bR}=-M_{i}^{bL,aR}$ and $q$ is even, we can write
+    \begin{eqnarray}
+        \mathbb{G}_{eff}^{(k)}=i^q\lb \sum_A 2k{N\choose q}+\sum_{i_1<\cdots <i_q}\sum_{ab}\lb
+        M_{i_1,LL}^{ab}\cdots M_{i_q,LL}^{ab}+M_{i_1,RR}^{ab}\cdots M_{i_q,RR}^{ab}-2M_{i_1,LR}^{ab}\cdots
+        M_{i_q,LR}^{ab}\rb\rb
+    \end{eqnarray}
+    We can also define new generators
+    \begin{eqnarray}
+        \tilde{M}^{AB}_i\equiv s_As_BM^{AB}_i
+    \end{eqnarray}
+    which also generate $\mathfrak{so}(2k)$ algebra because this redefition is congugation
+    by an $O(2k)$ matrix. To interpret the generator (\ref{}) it is convenient
+    to write it in terms of
+    \begin{eqnarray}
+        \label{eABq} &&\tilde{M}^{AB}=\sum_{i=1}^N \tilde{M}^{AB}_i\nn\\
+        &&e^{AB}_q=\sum_{i_1<\cdots <i_q}\tilde{M}^{AB}_{i_1}\cdots \tilde{M}^{AB}_{i_q}=\sum_{r=0}^{\floor{q/2}}c_{q,r}(N)(\tilde{M}^{AB})^{q-2r}
+    \end{eqnarray}
+    using a generating function $\sum_{q=0}^{N}z^{q}e^{AB}_{q}$. Here, the
+    coefficients $c_{q,r}(N)$ are called the Krawtchouk polynomials starting
+    with
+    \begin{eqnarray}
+        &&e_2^{AB}=\frac{(\tilde{M}^{AB})^{2}-N}{2},\nn\\
+        &&e_4^{AB}=\frac{(\tilde{M}^{AB})^{4}-2(3N-4)(\tilde{M}^{AB})^{2}+3N(N-2)}{2}\ .
+    \end{eqnarray}
+
+    Note that the operators $\tilde{M}_{i}^{AB}$ are self-adjoint and square to identity,
+    their spectrum must be $(-1,+1)$. Then, since $\tilde{M}^{AB}$ is a sum of
+    $N$ commuting $\tilde{M}_{i}^{AB}$, its spectrum follows the binomial distribution
+    \begin{eqnarray}
+        S=\{-N,-N+2,\cdots , N-2,N\}\ .
+    \end{eqnarray}
+    Plugging this in the expresison for $e^{AB}_{q}$ (\ref{eABq}) we find that it
+    has the spectrum
+    \begin{eqnarray}
+        e^{AB}_q(S)=\sum_{r=0}^{\floor{q/2}}c_{q,r}(N)S^{q-2r}
+    \end{eqnarray}
+
+    It is convenient to strip off factorials and define monic polynomials
+    $p_{q}( S)\equiv q!\,e_{q}^{AB}(S)$. Using Newton identities together with $p
+    _{2m}=\sum_{i}(\tilde M_{i}^{AB})^{2m}=N$ and $p_{2m+1}=\sum_{i}(\tilde M_{i}
+    ^{AB})^{2m+1}=S^{AB}$, one finds the three-term recursion
+    \begin{eqnarray}
+        \label{eq:krawtchouk_recursion} p_{q+1}(S)=S\,p_q(S)-q\,(N-q+1)\,p_{q-1}(S),\qquad
+        p_0(S)=1,\ \ p_1(S)=S\ .
+    \end{eqnarray}
+    This is the standard Krawtchouk (Jacobi) recursion; equivalently, $p_{q}(S)$
+    is the characteristic polynomial of the $q\times q$ tridiagonal matrix with
+    diagonal entries $S$ and off-diagonal entries $\sqrt{m(N-m+1)}$ ($m=1,\dots,q
+    -1$). Expanding $p_{q}(S)=\sum_{r=0}^{\lfloor q/2\rfloor}\tilde c_{q,r}(N)\,S
+    ^{q-2r}$ and comparing with \eqref{eq:eq_expand_monomials} gives
+    $c_{q,r}(N)=\tilde c_{q,r}(N)/q!$ and the coefficient recursion
+    \begin{eqnarray}
+        \label{eq:cqr_recursion} (q+1)\,c_{q+1,r}(N)=c_{q,r}(N)-(N-q+1)\,c_{q-1,r-1}(N),
+    \end{eqnarray}
+    with $c_{0,0}=1$, $c_{1,0}=1$, and $c_{q,r}=0$ for $r<0$ or
+    $r>\lfloor q/2\rfloor$. A fully explicit closed form (weighted matchings on
+    a path) is
+    \begin{eqnarray}
+        \label{eq:cqr_matching} c_{q,r}(N)=\frac{(-1)^{r}}{q!} \!\!\!\sum_{\substack{1\le m_1<\cdots<m_r\le q-1\\ m_{j+1}\ge m_j+2}}
+        \ \prod_{j=1}^{r} \Big(m_j\,(N-m_j+1)\Big)\ .
+    \end{eqnarray}
+    In particular,
+    \begin{eqnarray}
+        c_{q,0}(N)=\frac{1}{q!},\qquad c_{q,1}(N)=-\frac{q(q-1)(3N-2q+4)}{6\,q!},
+    \end{eqnarray}
+    and for $q=2n$ and $N$ even the constant term is
+    \begin{eqnarray}
+        c_{2n,n}(N)=(-1)^n\binom{N/2}{n}\ .
+    \end{eqnarray}
+
+    \subsection{Properties of the generator $G_{eff}^{(k)}$}
+    \subsubsection{Large-$N$ limits of $e_{q}^{AB}$}
+    Fix a pair $A<B$ and denote
+    \begin{eqnarray}
+        S^{AB}\equiv \sum_{i=1}^N \tilde M^{AB}_i,\qquad m^{AB}\equiv
+        \frac{S^{AB}}{N},\qquad e_q^{AB}\equiv \sum_{i_1<\cdots<i_q}\tilde M^{AB}_{i_1}\cdots
+        \tilde M^{AB}_{i_q}\ .
+    \end{eqnarray}
+    Throughout we assume $N$ and $q$ are even. Since for fixed $(A,B)$ we have
+    $[ \tilde M^{AB}_{i},\tilde M^{AB}_{j}]=0$ for $i\neq j$ and
+    $(\tilde M^{AB}_{i})^{2}=\mathbbm 1$, the family $\{\tilde M^{AB}_{i}\}_{i=1}
+    ^{N}$ is simultaneously diagonalizable with eigenvalues $\pm 1$, and
+    $e_{q}^{AB}$ is a polynomial in the single collective variable $S^{AB}$.
+
+    \paragraph{1) $N\to\infty$ with $q$ fixed.}
+    In this regime it is natural to normalize by the number of $q$-subsets. On
+    each joint eigenspace (so $m^{AB}\in[-1,1]$ is a number),
+    \begin{eqnarray}
+        \label{eq:eq_largeN_fixedq} \frac{e_{q}^{AB}}{\binom{N}{q}} = (m^{AB})^q-\frac{q(q-1)}{2N}\big(1-(m^{AB})^2\big)(m^{AB})^{q-2}
+        +O\!\left(\frac{1}{N^{2}}\right)\ ,
+    \end{eqnarray}
+    and in particular $e_{q}^{AB}=\binom{N}{q}(m^{AB})^{q}+O(N^{q-1})$.
+
+    \paragraph{2) $N,q\to\infty$ with $q^{2}/N$ fixed.}
+    Let $q\sim \sqrt{N}$ so that $q^{2}/N=\lambda$ is held fixed. Using the generating
+    function $\sum_{q\ge 0}z^{q}e_{q}^{AB}=(1+z)^{(N+S^{AB})/2}(1-z)^{(N-S^{AB})/2}$
+    and the fact that the coefficient saddle sits at $z\sim q/N\sim N^{-1/2}$,
+    we may expand the logarithms to quadratic order,
+    \begin{eqnarray}
+        (1+z)^{\frac{N+S^{AB}}{2}}(1-z)^{\frac{N-S^{AB}}{2}} =\exp\!\left(S^{AB}z-\frac{N}{2}z^2+o(1)\right),
+    \end{eqnarray}
+    which implies the Hermite scaling form
+    \begin{eqnarray}
+        \label{eq:eq_hermite_scaling} e_q^{AB} =\frac{N^{q/2}}{q!}\, \mathrm{He}_q\!\left(\frac{S^{AB}}{\sqrt{N}}\right)\,\big(1+o(1)\big)\ ,
+    \end{eqnarray}
+    where $\mathrm{He}_{q}$ are the probabilists' Hermite polynomials defined by
+    \begin{eqnarray}
+        e^{xt-\frac{t^{2}}{2}}=\sum_{q=0}^\infty \mathrm{He}_q(x)\,\frac{t^{q}}{q!}\ .
+    \end{eqnarray}
+
+    Then Eq.~\ref{GeffkM} can be written as
+    \begin{eqnarray}
+        \label{eq:Geff_poly_form} G^{(k)}_{eff} = i^{q}\Bigg(2k\binom{N}{q}+\sum_{A<B}
+        e_q^{AB}\Bigg), \qquad e_q^{AB}=\sum_{i_1<\cdots<i_q}\tilde M^{AB}_{i_1}\cdots
+        \tilde M^{AB}_{i_q}\ .
+    \end{eqnarray}
+    For each fixed $(A,B)$, the operators $\{\tilde M^{AB}_{i}\}_{i=1}^{N}$ are commuting
+    involutions, hence $e_{q}^{AB}$ depends only on the single collective
+    variable $\tilde M^{AB}$ and for $q$ even admits the expansion
+    \begin{eqnarray}
+        \label{eq:eq_poly_expand} e_q^{AB}(\tilde M^{AB})=\sum_{r=0}^{q/2} c_{q,r}(N)\,(\tilde
+        M^{AB})^{q-2r}\ .
+    \end{eqnarray}
+    Substituting \eqref{eq:eq_poly_expand} into \eqref{eq:Geff_poly_form} yields
+    \begin{eqnarray}
+        \label{eq:Geff_sum_over_AB} G^{(k)}_{eff} = i^{q}\Bigg(2k\binom{N}{q} +\sum_{A<B}\sum_{r=0}^{q/2}
+        c_{q,r}(N)\,(\tilde M^{AB})^{q-2r}\Bigg)\ .
+    \end{eqnarray}
+
+    \paragraph{Algebraic structure and limits.}
+    At each site $i$, the bilinears $M^{AB}_{i}$ generate a copy of $\mathfrak{so}
+    (2k)$, while different sites commute; therefore the global sums $\tilde M^{AB}
+    =\sum_{i}\tilde M^{AB}_{i}$ generate the diagonal $\mathfrak{so}(2k)$ action
+    and Eq.~\eqref{eq:Geff_sum_over_AB} exhibits $G^{(k)}_{eff}$ as an element of
+    $U(\mathfrak{so}(2k))$ built as a sum over directions $(A,B)$ of the same degree-$q$
+    polynomial in $\tilde M^{AB}$. For $N\to\infty$ with $q$ fixed, $e_{q}^{AB}=\binom
+    {N}{q}(\tilde M^{AB}/N)^{q}+O(N^{q-1})$; in the scaling limit $N,q\to\infty$
+    with $q^{2}/N$ fixed, $e_{q}^{AB}\sim \frac{N^{q/2}}{q!}\mathrm{He}_{q}(\tilde
+    M^{AB}/\sqrt{N})$.
+
+    Aa a superoperator the $k$-twirl map is a Lindbladian with self-adjoint jump
+    operators $X_{I}$ (with $I\equiv i_{1}<\cdots<i_{q}$):
+    \begin{eqnarray}
+        \mathcal{G}^{(k)}_{eff}(Y) &&=\sum_I\!\left(\mathbb{X}_I\,Y\,\mathbb{X}_I-\frac{12}{\{}\mathbb{X}_I^2,Y\}\right)
+        =-\frac{12}{\sum}_I [\mathbb{X}_I,[\mathbb{X}_I,Y]]\,,\nn\\
+        &&=\sum_{I} \sum_{a,a'=1}^k\!\left(V_I^{(a)}\,Y\,V_I^{(a')}-\frac{12}{}V_I^{(a)}V_I^{(a')},Y\}\right),
+    \end{eqnarray}
+    where $V_{I}^{(a)}$ denotes the operator $V_{I}$ acting on replica $a$ (and as
+    the identity on the others).
+
+    \section{Semi-groups from time-depenent (Brownian) dynamics}
+
+    To simplify our notation, from now on, we use dimensionless parameters and denote
+    them by $\tilde{t}\to t$, $\tilde{\sigma}\to \sigma$, $\tilde{g}_{I}\to g_{I}$,
+    and $\tilde{H}\to H$. We repeat the example above, but this time, splitting the
+    total evolution time $T$ into $T/\epsilon$ intervals $(t_{i},t_{i}+\epsilon)$,
+    and making the coupling to depend on the interval $g(t_{i})$:
+    \begin{eqnarray}
+        H_g(t_i)=\sum_I g_I(t_i)V_I\ .
+    \end{eqnarray}
+    We pick the coupling $g(t_{i})$ during this time interval by taking i.i.d.
+    samples from a Gaussian distribution so that
+    \begin{eqnarray}
+        &&\mathcal{E}_g(g_I(t_i))=0\nn\\
+        &&\mathcal{E}_g(g_I(t_i)g_J(t_j))=\frac{1}{\ep}\delta_{ij}\sigma
+    \end{eqnarray}
+    After one time interval $\ep$, we have have
+    \begin{eqnarray}
+        &&\mathcal{E}_g(dU^{\otimes k}\otimes (dU^*)^{\otimes k})=\mathcal{E}_g\lb
+        1^{\otimes 2k}-i\ep \hat{\mathbb{H}}_g-\frac{\ep^{2}}{2}\hat{\mathbb{H}}_g^2+\cdots\rb
+        \nn\\
+        &&dU=U(t_i,t_i+\ep),\qquad \hat{\mathbb{H}}_g=\sum_{a=1}^k \hat{H}_g^{(a)},\qquad\hat{H}_g^{(a)}=H_{g,L}^{(a)}-(H_{g,R}^{(a)})^T\nn\ .
+    \end{eqnarray}
+    where the index $a=1,\cdots , k$ keeps track of the $k$ copies in the twirl map.
+    Note that since different samples of $g_{I}(t_{i})$ result in operators that
+    do not commute, we cannot pick a vector $\ket{1}$ that simulatenously diagonalizes
+    them all. Therefore, for any fixed basis, we need to write
+    $(H_{g,R}^{(a)})^{T}$ as the mirror operator of $H_{g,L}^{(a)}$.
+
+    Since
+    \begin{eqnarray}
+        &&\mathcal{E}_g(\hat{\mathbb{H}_g})=\sum_{a I}\mathcal{E}(g_I)\hat{V}_I^{(a)}=0\nn\\
+        &&\mathcal{E}_g(\hat{\mathbb{H}}_g^2)=\sum_{a,a',I,J}\mathcal{E}_g(g_Ig_J)\hat{V}^{(a)}_I
+        \hat{V}_J^{(a')}=\frac{\sigma}{\ep}\sum_{a,a',I} \hat{V}_I^{(a)}\hat{V}_I^{(a')}\ .
+    \end{eqnarray}
+    We define
+    \begin{eqnarray}
+        &&\hat{\mathbb{G}}_{eff}^{(k)}\equiv \ep\: \mathcal{E}_g\lb \hat{\mathbb{H}}_g^2\rb=\sum_I
+        \hat{\mathbb{X}}_I^2\nn\\
+        &&\hat{\mathbb{X}}_I=\sqrt{\sigma}\sum_a \hat{V}_I^{(a)}=\mathbb{X}_{I,L}-\mathbb{X}_{I,R}^T\nn\\
+        &&\mathbb{X}_{I}=\sqrt{\sigma}\sum_a V_I^{(a)}\ .
+    \end{eqnarray}
+    It follows that
+    \begin{eqnarray}
+        \mathcal{E}_g(dU^{\otimes k}\otimes (dU^*)^{\otimes k})= 1^{\otimes 2k}-\frac{\ep}{2}\hat{\mathbb{G}}_{eff}^{(k)}+O(\ep^2)\ .
+    \end{eqnarray}
+    Then, we find
+    \begin{eqnarray}
+        &&\mathcal{E}_g(dU^{\otimes k}\otimes (dU^*)^{\otimes k})(\mathbb{Y}\otimes
+        1^{\otimes k})\ket{1}^{\otimes k}\nn\\
+        &&=\lb 1^{\otimes 2k}-\frac{\ep}{2}\hat{\mathbb{G}}_{eff}^{(k)}\rb(\mathbb{Y}\otimes
+        1^{\otimes k})\ket{1}^{\otimes k}\nn\\
+        &&=\lb \lb 1-\ep \:\mathcal{G}_{eff}^{(k)}\rb(\mathbb{Y})\otimes 1^{\otimes 1}\rb\ket{1}^{\otimes k}
+    \end{eqnarray}
+    where $\mathbb{Y}$ is a general operator acting on $\mathcal{H}^{\otimes k}$,
+    and the super-operator $\mathcal{G}$ generates a Lindblad evolution
+    \begin{eqnarray}
+        \mathcal{E}_g(\p_t \mathbb{Y})=-\mathcal{G}_{eff}^{(k)}(\mathbb{Y})&=&\sum_{I,a,a'}\lb
+        V_I^{(a)} \mathbb{Y} V_I^{(a')}-\frac{1}{2}\{ V_I^{(a)}V_I^{(a')},\mathbb{Y}\}\rb\nn\\
+        &=&\sum_I \lb \mathbb{X}_I Y \mathbb{X}_I-\frac{1}{2}\{\mathbb{X}_I^2,\mathbb{Y}\}\rb\nn\\
+        &=&-\frac{1}{2}\sum_I [\mathbb{X}_I,[\mathbb{X}_I,\mathbb{Y}]]\ .
+    \end{eqnarray}
+    where we have used $[V_{I}^{(a)},V_{I}^{(a')}]=0$. Here, our Lindblad jump
+    operators are the self-adjoint $\mathbb{X}_{I}$ Lindblad operators. Alternatively,
+    we can write this Lindbladian in the Schrodinger picture for the density
+    matrix by replacing $Y$ with $\rho^{\otimes k}$:
+    \begin{eqnarray}
+        \mathcal{E}_g(\p_t \rho^{\otimes k})=-\mathcal{G}_{eff}^{(k)}(\rho^{\otimes k})\ .
+    \end{eqnarray}
+
+    Integrating our Lindbladian evolution over a time-interval $(t,t+T)$ results
+    in a Markov semi-group
+    \begin{eqnarray}
+        \mathcal{E}_{g;T}(\mathbb{Y})=e^{-T\mathcal{G}_{eff}^{(k)}}(\mathbb{Y})\ .
+    \end{eqnarray}
+
+    \section{Semigroup in Brownian SYK}
+
+    The Brownian Sachdev-Ye-Kitaev (SYK) model is a variant of the standard SYK
+    model where the static quenched disorder terms in the Hamiltonian are
+    replaced by time-dependent stochastic variables \cite{saad2018semiclassical}.
+    The Hamiltonian is given by:
+    \begin{equation}
+        \label{SYKHam}H(t) = i^{q/2}\sum_{i_1<\cdots <i_q}J_{i_1\cdots i_q}(t) (\chi
+        _{i_1}\cdots \chi_{i_q})\ .
+    \end{equation}
+
+    The couplings $J_{I}(t)$ are independent Gaussian white noise processes defined
+    by:
+    \begin{align}
+        \overline{J_I(t)}            & = 0, \nonumber                      \\
+        \overline{J_I(t) J_{I'}(t')} & = \sigma\delta_{II'}\delta(t-t')\nn \\
+        \sigma                       & =\frac{2^{q-1}q!}{q^{2}N^{q-1}}J\ .
+    \end{align}
+
+    Plugging (\ref{VSYK}) into the equation for $\hat{\mathbb{G}}_{eff}^{(k)}$,
+    we obtain Lindblad operators
+    \begin{eqnarray}
+        &&\mathbb{X}_{i_1<\cdots <i_q}=\sum_a (\psi_{i_1}^{(a)}\cdots \psi_{i_q}^{(a)})=\sum_a
+        (\chi_{i_1}^{(a)}\cdots \chi_{i_q}^{(a)})
+    \end{eqnarray}
+    and
+    % The diagonal terms in the sum above, i.e. $a=b$, simplify to
+    % \begin{align}
+    % &\frac{2}{q!}\sum_{\text{distinct} \: i_1\cdots i_q}\sum_{a=1}^k\lb 1-\psi^{(aa)}_{i_1;LR}\cdots \psi^{(aa)}_{i_q;LR}\rb \nonumber\\
+    % &=2\lb {N \choose q}-\sum_{i_1<\cdots<i_q}\sum_{a=1}^k\psi^{(aa)}_{i_1;LR}\cdots \psi^{(aa)}_{i_q;LR}\rb.\label{eq:diagonal_terms}
+    % \end{align}
+    % To compute the off-diagonal terms, i.e., $a\neq b$, we first note that
+
+    % ----
+
+    % Bilinear operators $\psi^{(ab)}_{ll';\alpha\beta}$ provide an orthonormal basis for the set of all operators in the full Hilbert space of $k N$ qubits:
+    % \begin{eqnarray}
+    % &&\psi^{(ab)}_{ll';\alpha\beta}\equiv \psi^{(a)}_{l \alpha}\psi^{(b)}_{l' \beta}\ .
+    % \end{eqnarray}
+
+    % %-----
+
+    % Note that there is asymmetry between the $L$ and $R$ copies in the dictionary between the complex fermions and the qubits. Since we are ultimately interested in the Weyl fermions,
+    % Note the asymmetry between $L$ and $R$.
+    % As a result,
+    % \begin{eqnarray}
+    % &&\chi_{2k-1,L}=(-1)^{k-1}Q_{k-1}X_{kL},\qquad \chi_{2k,L}=(-1)^{k-1}Q_{k-1}Y_{kL}\nn\\
+    % &&\chi_{2k-1,R}=(-1)^{k-1}Q_{k-1}(-Z_k)Y_k,\qquad \chi_{2k,R}=(-1)^{k-1}Q_{k-1}(-Z_k)X_k\nn\\
+    % &&Z_{kL}=-i\chi_{2k-1,L}\chi_{2k,L},\qquad Z_{kR}=i\chi_{2k-1,R}\chi_{2k,R}\nn\\
+    % &&Q_k=\prod_{j=1}^{2k}
+    % \end{eqnarray}
+
+    % Written in terms of the Weyl fermions, we find
+    % \begin{eqnarray}
+    % &&(\chi_{2k-1,L}+i\chi_{2k-1,R})\ket{e}^{\otimes N/2}=0=(\chi_{2k,L}+i\chi_{2k,R})\ket{e}^{\otimes N/2}\nn\\
+    % && (\chi_{2k-1,L}-i\chi_{2k-1,R})\ket{f}^{\otimes N/2}=0=(\chi_{2k,L}+i\chi_{2k,R})\ket{f}^{\otimes N/2}\ .
+    % \end{eqnarray}
+    % Note that $(\chi_{2k,L}+i\chi_{2k-1,R})$ kills both vectors above. Notice that the vector $\ket{e}^{\otimes N/2}$ has the advantage that we do not need to distinguish between $\chi_{2k-1}$ and $\chi_{2k}$, we can simply write the mirror equation
+    % \begin{eqnarray}
+    % \chi_{j,L}\ket{e}^{\otimes N/2}=-i\chi_{j,R}\ket{e}^{\otimes N/2}\ .
+    % \end{eqnarray}
+
+    % In the GNS Hilbert space, the Hamiltonian of SYK for $q$ and $N$ both even can be written as
+    % \begin{eqnarray}
+    % \hat{H}=H_L-H_R=\sum_{i_1<\cdots<i_q}J_{i_1\cdots i_q}\lb \chi_{i_1L}\cdots \chi_{i_qL}-  \chi_{i_1R}\cdots \chi_{i_qR}\rb
+    % \end{eqnarray}
+    % Therefore, we can write $\hat{H}=H\otimes 1-1\otimes H$.
+
+    % -----
+
+    % We define the complex fermions
+    % \begin{eqnarray}
+    % \hat{\chi}_j^{(a)}=\chi^{(a),L}_j-i\chi^{(a),R}_j\ .
+    % \end{eqnarray}
+    % and we denote their corresponding vacuum with the infinite temperature TFD vector $\ket{1}$ is defined as
+    % \begin{eqnarray}
+    % \hat{\chi}^{(a)}_j\ket{1}^{(a)}=0\ .
+    % \end{eqnarray}
+
+    % Define the operators
+    % \begin{eqnarray}
+    % Q^{(a)}=\chi^{(a)}_1\cdots \chi^{(a)}_N
+    % \end{eqnarray}
+    % so that
+    % \begin{eqnarray}
+    % Q^{(a)}\chi_j^{(a)}=(-1)^{N-j}\chi^{(a)}_1\cdots \chi_{j-1}^{(a)}\chi^{(a)}_j\cdots \chi_N^{(a)}=(-1)^{N-1}\chi_j^{(a)}Q^{(a)}\ .
+    % \end{eqnarray}
+    % We assume that $N$ is even, so that
+    % \begin{eqnarray}
+    % &&Q^{(a)}\chi^{(j)}=-\chi_j^{(a)}Q^{(a)},\qquad Q^{(a)}Q^{(a)}=(-1)^{(N/2 \mod 2 )}\ .
+    % \end{eqnarray}
+    % Following \cite{}, we define
+    % \begin{eqnarray}
+    % \psi^{(a)}_j=i Q\chi^{(a)}_j
+    % \end{eqnarray}
+    % so that
+    % \begin{eqnarray}
+    % \chi^{(a)}_{i_1}\cdots \chi^{(a)}_{i_M}=(-1)^{N M}\psi^{(a)}_{i_1}\cdots \psi^{(a)}_{i_M}
+    % \end{eqnarray}
+    % where we are assuming both $N$ and $M$ are even.
+
+    % For example, for the case $q=2$, the Lindblad operators are
+    % \begin{eqnarray}
+    % \mathbb{X}
+    % \end{eqnarray}
+
+    % We will see that thanks to the Brownian time-dependent noise, the averaged dynamical evolution of the system above is exactly solvable even at finite $N$. The time-evolution operator is
+    % \begin{eqnarray}
+    %     &&U(t)=\mathcal{T}\lb e^{-i\int_0^t dt' H(t')}\rb
+    % \end{eqnarray}
+    % and we are interested in computing
+    % \begin{eqnarray}
+    %     &&\overline{U(T)\otimes U(T)^\dagger}=\overline{\mathcal{T}\lb e^{-i\int_0^t dt\: \tilde{H}(t')}\rb}\nn\\
+    %     &&\tilde{H}(t)=H_L(t)-H_R(t)=i^{q/2}\sum_I J_I(t)(\Psi_I^L-\Psi_I^R),
+    % \end{eqnarray}
+    % where $H_L$ and $H_R$ are two identical copies of $H$.
+
+    % The Brownian averages over $J(t)$ can be done using a path-integral
+    % \begin{eqnarray}
+    %     &&\int \mathcal{D}J_I\: e^{-\frac{1}{2\sigma}\sum_I\int dt' J_I(t')^2}\ .
+    % \end{eqnarray}
+    % Therefore,
+    % \begin{eqnarray}
+    %     \overline{U(T)\otimes U(T)^\dagger}&&=\int\mathcal{D}J_I \exp\lb\frac{-1}{2\sigma}\sum_I \int_0^T dt'dt J_I(t')\delta(t'-t)\lb J_I(t)+2i\sigma \mathbb{X}_I\rb\rb\nn\\
+    %     &&=e^{-\frac{\sigma T}{2}\sum_I \mathbb{X}_I^2}\int \mathcal{D}\tilde{J}_I\exp\lb \frac{-1}{2\sigma}\sum_I \tilde{J}_I^2\rb\nn\\
+    %     &&=e^{-\frac{\sigma T}{2}\sum_I \mathbb{X}_I^2}\nn\\
+    %     &&\tilde{J}=J+i\sigma \mathbb{X}_I\ .
+    % \end{eqnarray}
+    % In other words, we find
+    % \begin{eqnarray}
+    %    &&\overline{U(T)\otimes U(T)^\dagger}=e^{-T H_{eff}} \nn\\
+    %    &&H_{eff}=\frac{\sigma}{2}\tilde{H}^2=\frac{\sigma(-1)^q}{2}\sum_I (\Psi^L_I-\Psi^R_I)^2\ .
+    % \end{eqnarray}
+    % This argument can be repeated for any $H=\sum_I J_I(t) H_I$. Since
+    % \begin{eqnarray}
+    %     \tilde{H} X\ket{1}=\sum_I [H_I,\mathcal{O}]\ket{1}\nn\ .
+    % \end{eqnarray}
+    % The super-operator that corresponds to $\tilde{H}_{eff}$ is
+    % \begin{eqnarray}
+    %     \sum_I [H_I,[H_I,\mO]]\ .
+    % \end{eqnarray}
+
+    \subsection{Time-dependent correlators}
+
+    We can compute time-dependent correlators as well. The first observation is that
+    we can always order times such that $t_{1}<t_{2}<\cdots <t_{k}$. Then, it follows
+    from the calculation in the previous section that
+    \begin{eqnarray}
+        \mathcal{E}_g\lb\otimes_{i=1}^k \lb U(t_i)\otimes U(t_i)^*\rb\rb=e^{-(t_k-t_{k-1}) \mathbb{G}^{(1)}_{eff}}e^{-(t_2-t_1)\mathbb{G}^{(k-1)}_{eff}}e^{-t_1\mathbb{G}^{(k)}_{eff}}
+    \end{eqnarray}
+    where $G_{eff}^{(j)}$ is defined using (\ref{eq:Geff_sum_over_AB}) with $\alpha
+    ,\beta=L,R$ but $a,b=1,\cdots j$.
+
+    We would like to use this to compute correlation functions
+
+    % \NL{What is the $k$-fold of the semigroup? expand in small $t$: $1-t\mathcal{L}$, and construct the probability measure over unitaries in this limit.}
+
+    \section{Approaching \texorpdfstring{$k$}{k}-designs}
+
+    We are interested in studying how quickly our Brownian dynamics approaches
+    $k$-design. In other words, we would like to compare the $k$-th moment of
+    our Brownian dynamics
+    \begin{eqnarray}
+        \mathcal{E}^{(k)}_{g;T}(\mathbb{Y})=e^{-T\mathcal{G}^{(k)}}(\mathbb{Y})
+    \end{eqnarray}
+    to that of a Haar random ensemble
+    \begin{eqnarray}
+        \mathcal{T}_H^{(k)}(\mathbb{Y})=\int d\mu_{Haar}(U)\:\lb U^{\otimes k}(\mathbb{Y})(U^\dagger)^{\otimes k}\rb
+    \end{eqnarray}
+    $d\mu(U)$ denotes the Haar measure, and we have added the superscript $(k)$ to
+    keep track of the dimensionality of the space of operator $\mathbb{Y}\in \mathcal{L}
+    ((\mathbb{C}^{d})^{\otimes k})$.
+
+    \subsection{Haar Twirl}
+    \label{subsec:haar_twirl}
+
+    We start by reviewing the explicit form of the $k$-fold Haar twirl channel
+    $\mathcal{T}^{(k)}$. By Schur-Weyl duality, the action of the unitary group
+    on the tensor product space commutes with the action of the symmetric group
+    $S_{k}$ permuting the tensor factors. As a result, the image of
+    $\mathcal{T}^{(k)}$ is the algebra spanned by the permutation partial
+    isometries $\{P_{\sigma}\}_{\sigma \in S_k}$:
+    \begin{eqnarray}
+        P_{\sigma}\ket{i_1\cdots i_k}=\ket{i_{\sigma(1)}\cdots i_{\sigma(k)}}\ .
+    \end{eqnarray}
+    Assuming $d \geq k$, these operators are linearly independent, allowing us to
+    expand the twirled channel as
+    \begin{eqnarray}
+        \mathcal{T}^{(k)}(\mathbb{Y}) = \sum_{\sigma \in S_k} c_\sigma(\mathbb{Y})
+        P_\sigma\ .
+    \end{eqnarray}
+    To determine the coefficients $c_{\sigma}$, we exploit the fact that
+    $\mathcal{T}^{(k)}$ is an orthogonal projection under the Hilbert-Schmidt
+    inner product, and
+    \begin{eqnarray}
+        \Tr(P_\tau^\dagger \mathcal{T}^{(k)}(\mathbb{Y}))&&=\int d\mu_{Haar}(U)\Tr\lb
+        (U^\dagger)^{\otimes k} P_\tau^\dagger U^{\otimes k}\: \mathbb{Y}\rb\nn\\
+        &&=\int d\mu_{Haar}(U)\Tr\lb P_\tau^\dagger \: \mathbb{Y}\rb=\Tr\lb P_\tau^\dagger
+        \mathbb{Y}\rb
+    \end{eqnarray}
+    where we have used $P_{\tau}^{\dagger}U^{\otimes k}=U^{\otimes k}P_{\tau}^{\dagger}$.
+    Substituting the expansion for $\mathcal{T}^{(k)}(X)$ yields a linear system
+    involving the Gram matrix of the permutation basis, $G_{\tau, \sigma}= \Tr(P_{\tau}
+    ^{\dagger}P_{\sigma}) = d^{\#(\tau^{-1}\sigma)}$, where $\#(\pi)$ counts the
+    disjoint cycles in $\pi$. Inverting this relation requires the unitary Weingarten
+    function, defined as $Wg(\pi, d) = [G^{-1}]_{\pi}$. This yields the explicit
+    closed-form expression for the $k$-fold Haar twirl channel:
+    \begin{equation}
+        \mathcal{T}^{(k)}(\mathbb{Y}) = \sum_{\sigma, \tau \in S_k}Wg(\sigma\tau^{-1}
+        , d) \Tr(P_{\tau}^{\dagger}\mathbb{Y}) P_{\sigma}. \label{eq:general_twirl}
+    \end{equation}
+    The Weingarten functions are discussed extensively in \cite{collins2006}. As
+    a concrete example, for the $k=2$ case relevant to standard randomized
+    benchmarking, the symmetric group is $S_{2}= \{e, (12)\}$. The Weingarten
+    matrix is the inverse of the Gram matrix $\begin{pmatrix}
+        d^{2} & d     \\
+        d     & d^{2}
+    \end{pmatrix}$, given by
+    \begin{equation}
+        Wg = \frac{1}{d^{2}- 1}
+        \begin{pmatrix}
+            1       & -d^{-1} \\
+            -d^{-1} & 1
+        \end{pmatrix}.
+    \end{equation}
+    Substituting these values into Eq.~\eqref{eq:general_twirl}, we recover the
+    standard projection onto the isotropic (Werner) states:
+    \begin{equation}
+        \mathcal{T}^{(2)}(\mathbb{Y}) = \frac{\Tr(\mathbb{Y}) - d^{-1}\Tr(\mathbb{Y}S)}{d^{2}-1}
+        \mathbb{I}+ \frac{\Tr(\mathbb{Y}S) - d^{-1}\Tr(\mathbb{Y})}{d^{2}-1}S.
+    \end{equation}
+    where $S$ is the swap operator.
+
+    \subsection{Distance measures}
+
+    To compare our Brownian dynamics to the Haar averages, we use three different
+    distance measures:
+    \begin{enumerate}
+        \item {\bf Hilbert-Schmidt (Frobenius) distance:} This measure is the $(2
+            \to 2)$-norm defined of the difference of our superoperators as
+            \begin{eqnarray}
+                \delta^{HS}_k(T)\equiv \|\mathcal{E}_{g;T}^{(k)}-\mT^{(\otimes)}_H\|_{2\to 2}=\sup_{\mathbb{Y}\neq 0}
+                \frac{\|\mathcal{E}_{g;T}^{(k)}(\mathbb{Y})-\mT^{(\otimes)}_{H}(\mathbb{Y})\|_{2}}{\|\mathbb{Y}\|_{2}}
+            \end{eqnarray}
+            where $\|\mathbb{Y}\|_{2}=\sqrt{\Tr(\mathbb{Y}^{\dagger}\mathbb{Y})}$.
+            We will see that for our semigroup, the existence of a gap $\gamma>0$
+            in the spectrum of the generator implies that the Frobenius norm decays
+            exponentially in time $\gamma T$.
+
+        \item {\bf Diamond distance:} This is the most standard distance measure
+            in comparing finite dimensional quantum channels:
+            \begin{eqnarray}
+                \delta_k^{\diamond}(T)\equiv\sup_m\|(\mathcal{E}_{g;T}^{(k)}-\mT^{(\otimes)}_H)\otimes
+                1_m\|_{1\to 1}=\sup_{\mathbb{Y}>0,m}
+                \frac{\|((\mathcal{E}_{g;T}^{(k)}-\mT^{(\otimes)}_{H})\otimes 1_{m})(\mathbb{Y})\|_{1}}{\|\mathbb{Y}\|_{1}}
+            \end{eqnarray}
+
+        \item {\bf Relative entropy distance:} The relative entropy distance is defined
+            as
+            \begin{eqnarray}
+                \delta^{RE}_k(T)\equiv\sup_m\sup_\rho D((\mathcal{E}^{(k)}_{g;T}\otimes
+                1_m)(\rho)\|(\mathcal{T}^{(k)}_H\otimes 1_m)(\rho))
+            \end{eqnarray}
+            This type of distance measure is often studied using logarithmic Sobolev
+            inequalities.
+
+        \item {\bf $\ep$-Relative errors:} The strongest distance measure we consider
+            is
+            \begin{eqnarray}
+                \ep_k(T)\equiv \inf_\ep\{\ep>0:(1-\ep)(\mathcal{E}^{(k)}_{g;T}\circ
+                \mathcal{T}^{(k)}_H)\leq \mathcal{E}^{(k)}_H\leq (1+\ep)(\mathcal{E}^{(k)}_{g;T}\circ
+                \mathcal{T}^{(k)}_H)\:\}
+            \end{eqnarray}
+            If all permutations remain invariant under $\mathcal{E}^{(k)}_{g;T}$,
+            then our distance measure simplifies to
+            \begin{eqnarray}
+                \ep_k(T)\equiv \inf_\ep\{\ep>0:(1-\ep)\mathcal{T}^{(k)}_H\leq \mathcal{E}^{(k)}_H\leq
+                (1+\ep)\mathcal{T}^{(k)}_H\:\}
+            \end{eqnarray}
+    \end{enumerate}
+    Note that a priori, it is not clear that any of the distance measures above has
+    a large $T$ limit in our dynamical system of interest.
+
+    \subsection{Steady states of Brownian dynamics}
+
+    The steady states of our Brownian dynamics are those that are killed by the
+    Lindbladian generator $\mathcal{G}_{eff}^{(k)}$.
+    \begin{equation}
+        \mathcal{G}_{eff}^{(k)}(\mathbb{Y}) = -\sum_{I}\left( \mathbb{X}_{I}\mathbb{Y}
+        \mathbb{X}_{I}- \frac{1}{2}\{ \mathbb{X}_{I}^{2}, \mathbb{Y}\} \right) =
+        \frac{1}{2}\sum_{I}[\mathbb{X}_{I}, [\mathbb{X}_{I}, \mathbb{Y}]]. \label{eq:generator_form}
+    \end{equation}
+    For simplicity, we have absorbed the variance $\sigma$ (cf.\ its definition
+    in the Brownian ensemble) into the definition of $\mathbb{X}_{I}$. We define
+    the \textit{spectral gap} $\Delta_{k}$ as the smallest real part of the non-zero
+    eigenvalues of $\mathcal{G}^{(k)}$. The following theorem governs the
+    convergence of the dynamics to the Haar average.
+
+    \begin{theorem}[Convergence to steady states]
+        Let $\mathfrak{L}\subseteq \mathfrak{su}(d)$ be the Lie algebra generated
+        by the set of operators $\{ V_{I}\}_{I}$. The following three statements
+        are equivalent:
+        \begin{enumerate}
+            \item \textbf{Algebraic universality:} The algebra $\mathfrak{L}$
+                acts irreducibly on $\mathcal{H}$; i.e.
+                $\mathfrak{L}= \mathfrak{u}(d)$.
+
+            \item \textbf{Steady state space:} The kernel of the generator
+                coincides exactly with the commutant of the unitary group, i.e.,
+                $\ker(\mathcal{G}^{(k)}) = \mathrm{span}\{P_{\sigma}\mid \sigma \in
+                S_{k}\}$.
+
+            \item \textbf{Strictly Positive Gap:} The spectral gap satisfies
+                $\Delta_{k}> 0$, implying exponential convergence to the Haar twirl
+                in any norm:
+                \begin{equation}
+                    \| e^{-T\mathcal{G}^{(k)}}- \mathcal{T}^{(k)}\|_{2\to2}\leq e
+                    ^{-\Delta^{(k)} T}.
+                \end{equation}
+                Since we are working with finite-dimensional matrix algebras, this
+                implies convergence in the diamond distance and relative entropy
+                distance, as well:
+                \begin{eqnarray}
+                    \lim_{T\to \infty}\delta^{\diamond}_k(T)=0=\lim_{T\to \infty}\delta^{RE}_k(T)
+                \end{eqnarray}
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        We proceed by establishing the chain of implications $(1) \implies (2) \implies
+        (3) \implies (1)$.
+
+        \paragraph{$(1) \implies (2)$:}
+        Viewing $\mathcal{L}(\mathcal{H}^{\otimes k})$ as a Hilbert space with
+        the Hilbert-Schmidt inner product
+        $\langle A, B \rangle = \Tr(A^{\dagger}B)$, we have
+        \begin{equation}
+            \langle \mathbb{Y}, \mathcal{G}^{(k)}(\mathbb{Y}) \rangle = -\frac{1}{2}
+            \sum_{I}\| [\mathbb{X}_{I}, \mathbb{Y}] \|_{2}^{2}.
+        \end{equation}
+        Since norms are non-negative, $\mathcal{G}^{(k)}(\mathbb{Y}) = 0$ if and
+        only if $[\mathbb{X}_{I}, \mathbb{Y}] = 0$ for all $I$. This implies that
+        $\mathbb{Y}$ must commute with the entire Lie algebra generated by the global
+        operators $\{\mathbb{X}_{I}\}$. Since
+        $\mathbb{X}_{I}=\sqrt{\sigma}\sum_{a=1}^{k}V_{I}^{(a)}$, this condition is
+        equivalent to commuting with the group $G^{\otimes k}$ generated by exponentiating
+        the algebra $\mathfrak{L}$. If $\mathfrak{L}= \mathfrak{su}(d)$, then $G
+        = SU(d)$. By Schur-Weyl duality, the operators acting on $(\mathbb{C}^{d}
+        )^{\otimes k}$ that commute with $U^{\otimes k}$ for all $U \in SU(d)$ are
+        precisely the linear combinations of permutation operators $P_{\sigma}$.
+        Thus, $\ker(\mathcal{G}^{(k)}) = \text{span}(S_{k})$.
+
+        \paragraph{$(2) \implies (3)$:}
+        The superoperator $\mathcal{G}^{(k)}$ viewed as an operator on the GNS
+        Hilbert space is $\hat{\mathbb{G}}^{(k)}$
+        \begin{eqnarray}
+            &&\mathcal{G}^{(k)}(\mathbb{Y})\ket{1}^{\otimes k}=\hat{\mathbb{G}}^{(k)}(\mathbb{Y}\otimes
+            1^{\otimes k})\ket{1}^{\otimes k}\nn\\
+            &&\hat{\mathbb{G}}^{(k)}=\sum_I \hat{\mathbb{X}}_I^2
+        \end{eqnarray}
+        which is manifestly positive semi-definite. Therefore, the spectrum of
+        the superoperator $\mathcal{G}^{(k)}$ is comprised of non-negative
+        eigenvalues $\lambda$'s. Statement (2) implies that the zero eigenspace ($\lambda
+        =0$) corresponds exactly to the image of the Haar twirl $\mathcal{T}^{(k)}$.
+        Since the dimension is finite, the spectrum is discrete. Therefore, the smallest
+        non-zero eigenvalue, defined as the gap
+        $\Delta^{(k)}= \min \{ \lambda_{j}\mid \lambda_{j}> 0 \}$, is strictly positive.
+        Standard spectral theory implies that the evolution on the orthogonal
+        complement of the kernel decays as
+        $\| e^{-T\mathcal{G}^{(k)}}|_{\ker^\perp}\| \le e^{-\Delta^{(k)} T}$.
+
+        \paragraph{$(3) \implies (1)$:}
+        We prove by contradiction. Suppose (3) statement holds but (1) does not
+        hold; i.e., the generated Lie algebra $\mathfrak{L}$ is a proper subalgebra
+        of $\mathfrak{su}(d)$. The dynamical group $G = e^{\mathfrak{L}}$ is
+        then a proper subgroup of $SU(d)$. The commutant of a subgroup is strictly
+        larger than the commutant of the full group (except in trivial cases, which
+        are excluded by the assumption of proper subalgebra). That is,
+        $\dim(\ker(\mathcal{G}^{(k)})) = \dim(\text{Comm}(G)) > \dim(\text{span}(
+        S_{k}))$. This implies there exists at least one operator $O \in \ker(\mathcal{G}
+        ^{(k)})$ such that $O \notin \text{span}(S_{k})$. Consequently, the steady
+        state of the evolution includes $O$. The distance to the Haar twirl
+        $\mathcal{T}^{(k)}$ (which projects out $O$) will never decay to zero, implying
+        the effective gap for convergence to $\mathcal{T}^{(k)}$ is zero.
+    \end{proof}
+    If the Lie algebra generated by $\mathbb{X}_{I}$ is a proper subalgebra of $\mathfrak{su}
+    (d)$, the missing generators generate constants of motion, and should be physically
+    interpreted as conserved charges.
+
+    \section{Conserved charges in Brownian SYK}
+
+    We would like compute the commutant of the Brownian $k$-twirl generators. Let
+    \[
+        \mathrm{Comm}\{\mathbb{X}_{I}\}\;:=\;\Big\{Y\in\mathrm{End}(\mathcal{H}^{\otimes
+        k})\;:\;[\mathbb{X}_{I},Y]=0\ \ \forall I\Big\}, \qquad \mathbb{X}_{I}=\sqrt{\sigma}
+        \sum_{a=1}^{k}V_{I}^{(a)}.
+    \]
+    Since different replicas commute, the Lie algebra generated by
+    $\{\mathbb{X}_{I}\}$ is the diagonal action of the single-copy dynamical
+    group $G:=\langle e^{itV_I}\rangle$, i.e.
+    \[
+        \mathrm{Comm}\{\mathbb{X}_{I}\}=\{Y:\ [Y,U^{\otimes k}]=0\ \forall U\in G
+        \},
+    \]
+    the centralizer algebra of the diagonal representation.
+
+    \paragraph{Explicit form for Brownian SYK (even $q$).}
+    For SYK with even $q$, each
+    $V_{I}^{(a)}=i^{q/2}\chi^{(a)}_{i_1}\cdots\chi^{(a)}_{i_q}$ (equivalently with
+    $\psi$ in place of $\chi$) is an even fermion operator and commutes with the
+    parity on that replica,
+    \[
+        Q^{(a)}:=(-i)^{N/2}\prod_{j=1}^{N}\chi^{(a)}_{j}\quad (\text{or }(-i)^{N/2}
+        \prod_{j}\psi^{(a)}_{j}),\qquad [Q^{(a)},\mathbb{X}_{I}]=0\ \ \forall a,
+        I.
+    \]
+    Moreover replica permutations $P_{\sigma}$ commute with $\mathbb{X}_{I}$ because
+    they relabel the replica sum:
+    $P_{\sigma}\mathbb{X}_{I}P_{\sigma}^{-1}=\mathbb{X}_{I}$. Hence always
+    \[
+        \mathrm{Alg}\langle\,P_{\sigma},\ Q^{(1)},\dots,Q^{(k)}\,\rangle\ \subseteq
+        \ \mathrm{Comm}\{\mathbb{X}_{I}\}.
+    \]
+    If the SYK generators $\{V_{I}\}$ act irreducibly on each fixed-parity sector
+    (equivalently, generate the full even operator algebra on one copy), then this
+    inclusion is an equality and a convenient linear basis is
+    \[
+        \boxed{\quad \mathrm{Comm}\{\mathbb{X_I}\} =\mathrm{span}\Big\{\,P_\sigma\,\prod_{a=1}^k (Q^{(a)})^{\epsilon_a}\ :\ \sigma\in S_k,\ \epsilon_a\in\{0,1\}\Big\}. \quad}
+    \]
+    Equivalently, using parity projectors
+    $\Pi_{\vec s}:=\prod_{a=1}^{k}\frac{1+s_{a}Q^{(a)}}{2}$ with $s_{a}=\pm1$, one
+    may take the basis $\{\Pi_{\vec s}P_{\sigma}\}$. In the common setting where
+    each copy is restricted to a fixed parity sector, $Q^{(a)}=\pm1$ is scalar and
+    the commutant reduces to $\mathrm{span}\{P_{\sigma}\}$.
+
+    \subsection{Old text}
+
+    \NL{Use path-integrals to write down the time-evolved operator above as a Euclidean path-integral}
+    To start, consider the quantum mechanics of a single particle, where the position
+    of a particle $q_{I}(t)$ in $\mathbb{R}^{n}$ with $I=1,\cdots, n$ is an operator\footnote{In
+    QFT language, $q_{I}(t)$ is $n$ copies of $0+1$-dimensional quantum fields.}.
+    For a particular history of couplings $g(t)$, we can represent the
+    correlator above using a path-integral
+
+    \NL{Nick: we would like to do the whole analysis directly in the continuum, and not bring up brickworks.}
+
+    \NL{Is there an ergodicity statement in the $k$-fold establishing that the $k$-fold semigroup generates the whole unitary ensemble. This is equivalent to the absence of other charges}
+
+    \NL{For actual SYK, we expect a semi-group to emerge at very low frequency $(\beta\omega)\ll (\beta g)$. is there something related to this that we can say? for example, can we replace the Brownian noise with time-independent noise, and use a low-pass filter to project to low frequencies...}
+
+    \section{To do}
+
+    The form of the generators of the Lindbladian is a sum over a hypergraph with hyperedges indexed by $\{i_1,\cdots ,i_q\}$ distinct. go to eq 9 of Nick's notes, and generalize to hypergraphs, with a fermion on each site. 
+
+    Work to bring eq 9 closer to the SYK case by putting fermions on each vertex. 
+
+    Does the gluing lemma hold when you put fermionic degrees of freedom on vertices?
+
+    
+    
+    
+    Then, write the term inside in terms of $k$ qubits (by Jordan Wigner) and compare to eq 9 of Nick.
+
+    \bibliographystyle{unsrt}
+    \bibliography{ref}
+\end{document}
