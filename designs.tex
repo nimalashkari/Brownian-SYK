@@ -166,19 +166,20 @@ If $\epsilon \leq 1/10$, then $\beta_{\epsilon, \epsilon} \geq 1/2$.
 \begin{definition} \label{def:quasifactorization}
     Let $\{\E_j\}_{j=1}^m$ be a set of conditional expectations with the common invariant state $\sigma$ and $\sigma$-weighted intersection subalgebra projection $\E$. We say that the set $(\alpha_j)$-quasi-factorizes (in other texts, has $\alpha$-approximate tensorization) if
     \begin{equation}
-        \sum_j \alpha_j D(\cdot \| \E_j(\cdot)) \geq D(\cdot \| \E(\cdot)) \pl.
+        \sum_j \alpha_j D(\cdot \| \E_j(\cdot)) \geq D(\cdot \| \E(\cdot))
     \end{equation}
+    and that it $\alpha$-quasi-factorizes if it suffices to set each $\alpha_j = \alpha$.
 \end{definition}
-Inspired by quasi-factorization and by the methods of \cite{schuster_random_2025, laracuente_approximate_2026} is an the following condition:
-\begin{assump}[Entropic Gluing] \label{assump:glue} \normalfont
-    Let $\E_{A}$ and $\E_B$ be subspace projections and $\E$ project to their intersection subspace. For a situation-dependent $\epsilon > 0$,
-    \begin{itemize}
-        \item (Immediate) $D(\rho \| \E_{A} \E_B (\rho)) \geq (1-\epsilon) D(\rho \| \E(\rho))$;
-        \item ($r$-Repeated) $D(\rho \| (\E_{A}\E_B)^r (\rho)) \geq (1-\epsilon) D(\rho \| \E(\rho))$ for $\rho$-independent $r \in \NN$.
-    \end{itemize}
-    
-\end{assump}
-A relative error analog of the gluing assumption was proven to hold for $k$-fold unitary twirls in \cite[Lemma 8]{schuster_random_2025} and a weaker version shown concurrently in \cite{laracuente_approximate_2026}. In that setting of $k$-fold random unitaries, $\E_{A} \circ \E_B \precsucc{5 k^2 / q^m}{} \E$, where $q$ is the local qudit dimension, and $A$ and $B$ are subsystems that overlap on $m$ elementary qudits ($k \times m$ taken $k$-fold). Combined with Lemma \ref{lem:revconv}, the relative error gluing Lemma implies the immediate case of Assumption \ref{assump:glue} with $\epsilon \leq 60 k^2 / q^m$. Assumption \ref{assump:glue} and Equation \eqref{eq:chain-iter} together yield quasi-factorization.
+%\begin{assump}[Entropic Gluing] \label{assump:glue} \normalfont
+%    Let $\E_{A}$ and $\E_B$ be subspace projections and $\E$ project to their intersection subspace. For a situation-dependent $\epsilon > 0$,
+%    \begin{itemize}
+%        \item (Immediate) $D(\rho \| \E_{A} \E_B (\rho)) \geq (1-\epsilon) D(\rho \| \E(\rho))$;
+%        \item ($r$-Repeated) $D(\rho \| (\E_{A}\E_B)^r (\rho)) \geq (1-\epsilon) D(\rho \| \E(\rho))$ for $\rho$-independent $r \in \NN$.
+%    \end{itemize}   
+%\end{assump}
+\begin{rem} \normalfont \label{rem:glue}
+    A relative error analog of the gluing assumption was proven to hold for $k$-fold unitary twirls in \cite[Lemma 8]{schuster_random_2025} and a weaker version shown concurrently in \cite{laracuente_approximate_2026}. In that setting of $k$-fold random unitaries, $\E_{A} \circ \E_B \precsucc{5 k^2 / q^m}{} \E$, where $q$ is the local qudit dimension, and $A$ and $B$ are subsystems that overlap on $m$ elementary qudits ($k \times m$ taken $k$-fold). Combined with Lemma \ref{lem:revconv}, the relative error gluing Lemma implies that $D(\rho \| \E_A \E_B (\rho)) \geq \beta D(\rho \| \E(\rho)) $ with $\beta \geq 1 - 60 k^2 / q^m$. Hence with Equation \eqref{eq:chain-iter}, quasi-factorization holds with every $\alpha_j \leq \beta^{-1}$.
+\end{rem}
 
 Recall the tightened Fannes-Alicki inequality on relative entropy with respect to a subspace projection \cite[Lemma 7]{winter_tight_2016}:
 \begin{lemma}[] \label{lem:wsb}
@@ -190,14 +191,14 @@ Recall the tightened Fannes-Alicki inequality on relative entropy with respect t
 \end{lemma}
 
 \section{General: Tree Decomposition}
-Consider a Lindbladian $\L = \sum_{j=1}^m \L_j$. The overarching goal of this section is to derive as general as possible a way to obtain a decay constant for $\L$ in terms of (1) the decay constants of its constituents (2) how closely compositions of respective fixed point projections approximate their intersection subspaces. In particular, by recursively applying Assumption \ref{assump:glue}, one may often obtain efficient decay estimates for the whole in terms of sums of their parts.
+Consider a Lindbladian $\L = \sum_{j=1}^m \L_j$. The overarching goal of this section is to derive as general as possible a way to obtain a decay constant for $\L$ in terms of (1) the decay constants of its constituents (2) how closely compositions of respective fixed point projections approximate their intersection subspaces. In particular, by recursively applying quasi-factorization, one may often obtain efficient decay estimates for the whole in terms of sums of their parts.
 
-We decompose $\Phi$ or $\L$ via an ordered tree $T$, where the root of $T$ holds $\Phi$ or $\L$, and each parent node holds the composition of channels or Lindbladians included in its children. The leaves of the tree correspond to smaller sub-Lindbladians for which we need an a priora decay constant estimate. %  for which we have some a priori estimate of decay constants. The tree can be redundant - the children of a node need not hold disjoint subsets or subsequences. For Lindbladians, redundancy is almost trivial via the identity $\L_j = \sum_r \kappa_r \L_j / (\sum_r \kappa_r)$ for any positive family $(\kappa_r)$. For sequential channels, overlaps must be restricted to neighboring siblings such that sequential order is preserved up to the overlapping portion. The ability to insert redundancy is used in \cite[Unpublished Revision]{laracuente_quantum_2025} to increase the overlaps between fixed point conditional expectations. We assume compatible entropy decay in that each $\Phi_j$ or $\L_j$ has a non-zero decay constant, and any subsequence (resp subset sum) has a well-defined decoherence-free subspace projection.
+We decompose $\L$ via an ordered tree $T$, where the root of $T$ holds $\Phi$ or $\L$, and each parent node holds the composition of channels or Lindbladians included in its children. The leaves of the tree correspond to smaller sub-Lindbladians for which we need a prior decay constant estimate. %  for which we have some a priori estimate of decay constants. The tree can be redundant - the children of a node need not hold disjoint subsets or subsequences. For Lindbladians, redundancy is almost trivial via the identity $\L_j = \sum_r \kappa_r \L_j / (\sum_r \kappa_r)$ for any positive family $(\kappa_r)$. For sequential channels, overlaps must be restricted to neighboring siblings such that sequential order is preserved up to the overlapping portion. The ability to insert redundancy is used in \cite[Unpublished Revision]{laracuente_quantum_2025} to increase the overlaps between fixed point conditional expectations. We assume compatible entropy decay in that each $\Phi_j$ or $\L_j$ has a non-zero decay constant, and any subsequence (resp subset sum) has a well-defined decoherence-free subspace projection.
 By $\L[x]$ we respectively denote the sub-Lindbladian corresponding to node $x$, by $\E[x]$ its conditional expectation, and by $\lambda[x]$ its decay constant. By $\E[x_1, \dots, x_\ell]$ we denote the intersection subspace projection of all nodes listed (assuming it is indeed well-defined). The key is the following observation:
 \begin{lemma} \normalfont \label{lem:lindblad-tree}
-    For each node $x \in T$, let $y_1, \dots, y_\ell$ be its children.
+    For each node $x \in T$, let $y_1, \dots, y_m$ be its children.
     %For each index $i$ in the original subsequence, let $(p_{i,j} : j = 1 \dots \ell)$ be any probability distribution supported on all children in which it appears.
-    If the family$(\E[y_j])_{j=1}^\ell$ has $(\alpha_j)_{j=1}^{\ell}$-quasi-factorization, and each $\L[y_j]$ has $\lambda \times \alpha_j$-CMLSI, then $\L[x]$ has $\lambda$-CMLSI.
+    If the family$(\E[y_j])_{j=1}^m$ has $(\alpha_j)_{j=1}^{m}$-quasi-factorization, and each $\L[y_j]$ has $\lambda \times \alpha_j$-CMLSI, then $\L[x]$ has $\lambda$-CMLSI.
     %If the immediate case of Assumption \ref{assump:glue} holds for each $\E[y_{j+1}]$ and $\E[y_1, \dots, y_j]$ with contant $\epsilon_j$ for each $j \in 1, \dots, \ell-1$, then $\Phi[x]$ or $\L[x]$ has decay constant at least
     %\begin{equation}
     %    \left ( \prod_{j=1}^{\ell-1} (1 - \epsilon_j) \right )
@@ -210,58 +211,179 @@ Lemma \ref{lem:linblad-tree} follows almost immediately from \ref{prop:decay-mer
     \item For the leaf subsequences, there is an a priori decay rate estimate.
 \end{itemize}
 We may think of Lemma \ref{lem:tree} as reducing the size of a problem efficiently. The cost of converting from spectral gaps on the leaf subsequences and then building up relative entropy decay through the tree is often much smaller than that of converting spectral gaps globally.
-\begin{prop}
+\begin{prop} \label{prop:tree-whole}
     Let $\L = \sum_{j=1}^m \L_m$ be a Lindbladian with tree decomposition $T$. Assume each $\L_j$ has decay constant at least $\lambda$.
     %and Assumption \ref{assump:glue} holds with constant $\epsilon_{\ell}$
     For each non-leaf node $x$ at level $\ell$, assume for the children $y_1, \dots, y_{r}$ that $\E[y_1], \dots, \E[y_r]$ $\alpha_\ell$-quasi-factorize. % $\E[y_1, \dots, y_r]$ and $\E[y_{r+1}]$ when $y_1, \dots, y_{r+1}$ are siblings at level $\ell$.
-    Then $\L$ has decay constant at least $\lambda \times \prod_{\ell=1}^{h_T} \alpha_{\ell}$, where $h_T$ is the height of the tree.
+    Then $\L$ has decay constant at least $\lambda / \prod_{\ell=1}^{h_T} \alpha_{\ell}$, where $h_T$ is the height of the tree.
 \end{prop}
 \begin{proof}
-    Assume that the $\ell$th level of $T$ contains nodes $x_1, \dots, x_{m[\ell]}$. By Lemma \ref{lem:tree}, the next level up will have minimum decay constant at least $\min_{j = 1 \dots m[\ell]} \beta(\epsilon_j)^{d_T} \lambda[x_j]$. Applying iteratively completes the Proposition.
+    Assume that the $\ell$th level of $T$ contains nodes $x_1, \dots, x_{m[\ell]}$. By Lemma \ref{lem:lindblad-tree}, the Lindbladian corresponding to each node in the next level up will have minimum decay constant at least $\min_{j = 1 \dots m[\ell]} \lambda[x_j] / \alpha_\ell$. Applying iteratively completes the Proposition.
 \end{proof}
 \begin{theorem} \label{thm:regular-tree}
-    Let $\L = \sum_{j=1}^m \L_m$ be a Lindbladian with tree decomposition $T$. Assume that Assumption \ref{assump:glue} holds with constant $c / q^r \geq 2$ when $r$ elementary units are shared between adjacent siblings, and at the $\ell$th level starting from the bottom, at least $\log_q (c) + a + \ell - 1$ elementary units are shared for some constant $a \in \NN$.
-    Assume each $\L_j$ (resp $\Phi_j$) has decay constant at least $\lambda$. Then $\L$ (resp $\Phi$) has decay constant at least $(1 - 12 / q^a) \lambda$.
+    Let $\L = \sum_{j=1}^m \L_m$ be a Lindbladian with tree decomposition $T$. Assume quasi-factorization with constant at most $\exp(c / q^r)$ when $r \geq 2$ nodes are shared between adjacent siblings, and at the $\ell$th level starting from the bottom, at least $\log_q (c) + \log_q a + \ell - 1$ elementary units are shared for some constant $a \in \RR^+$.
+    Assume each $\L_j$ has decay constant at least $\lambda$. Then $\L$ has decay constant at least $\exp(- 1 / a(q-1)) \lambda$.
 \end{theorem}
 \begin{proof}
-    ...
+    By Proposition \ref{prop:tree-whole} and the summation of geometric series, if $T$ has height $h$, then $\L$ has decay constant at least
+    \begin{equation}
+        \lambda \times \exp \bigg ( - \sum_{\ell=1}^h c / q^{ \log_q c + a + \ell } \bigg )
+            \leq \lambda \times \exp \bigg ( - \frac{1}{a} \frac{1}{q-1} \bigg ) \pl,
+    \end{equation}
+    which is the desired bound.
 \end{proof}
 
 \subsection{Lindbladians for Random Circuits}
 Consider a system of $n$ qubits and associated connectivity hypergraph $G$. Let $|G|$ denote the number of edges in $G$. We start with the model
 \begin{equation} \label{eq:circuit-hypergraph-lind}
-    \L^{(k)}_G = \sum_{e \in G} \frac{|e|}{d_e} \L_e^{(k)},
-    \pl \L_e^{(k)}(\rho) = \rho - \int U^{\otimes k} \rho U^{\dagger \otimes k} d \Haar_e(U) \pl,
+    \L^{(k)}_G := \sum_{e \in G} \frac{|e|}{d_e} \L_e^{(k)},
+    \pl \L_e^{(k)}(\rho) := \rho - \Phi_e(\rho) ,
+    \pl \Phi_e(\rho) := \int U^{\otimes k} \rho U^{\dagger \otimes k} d \nu_e(U) \pl,
 \end{equation}
-where $d \Haar_e$ denotes the \textit{local} Haar measure on unitaries on the qudits indexed by edge $e$ (acting as identity on the rest of the system), $|e|$ is the number of nodes connected by $e$, and $d_e$ is the sum of degrees of nodes connected by $e$. Since each $\L_e^{(k)}$ generates state replacement, convexity of relative entropy implies that it has CMLSI constant 1. If $G$ is a graph, then we may think of each $U_e$ as acting on a 2-qudit subsystem. For example, the Lindbladian analog of 1-D brickwork on $n$ qudits of unspecified local dimension would have $G = \{(1,2), (2,3), \dots, (n-1, n)\}$. However, we are primarily interested in much more connected graphs, for which we will obtain more efficient estimates. \todo{Question for Nima: is this equivalent to the ``Brownian circuit'' model? The answer might give some guidance on how to convert Brownian SYK to a similar form.}
+where each $d \nu_e$ denotes a \textit{local} measure on unitaries acting on the qudits indexed by edge $e$ (acting as identity on the rest of the system), $|e|$ is the number of nodes joined by $e$, and $d_e$ is the sum of degrees of nodes connected by $e$. We will assume that each $\nu_e$ induces $\lambda_e$-decay toward the local $k$-fold twirl on its constituent qudits. Since each $\L_e^{(k)}$ generates state replacement, convexity of relative entropy implies that it has CMLSI constant 1. If $G$ is a graph, then we may think of each $U_e$ as acting on a 2-qudit subsystem. For example, the Lindbladian analog of 1-D brickwork on $n$ qudits of unspecified local dimension would have $G = \{(1,2), (2,3), \dots, (n-1, n)\}$. However, we are primarily interested in more connected hypergraphs that support $\Omega(1)$ decay rates in $n$.
 
-\begin{exam}[Random Circuit Lindbladian on a Graph] \normalfont
-Assume that $D \geq 2$, and $n = 2^{x D}$ for some $x \in \N$. Let
+The ``random circuit Lindbladian'' $\L^{(k)}_G$ is named because at a given time $t$,
 \begin{equation}
-    \L_{\nu}^{(k)} = \int \L_{G}^{(k)} d\nu(G) \pl,
+    e^{- t \L}(\rho) = \sum_{\ell=0}^\infty \frac{e^{-t|G|} t^{\ell}}{\ell!} \sum_{e_1, \dots, e_\ell \in G} \Phi_{e_\ell} \circ \dots \circ \Phi_{e_1} \pl.
 \end{equation}
-where $\nu$ is a probability measure on graphs, and each $G$ in its support is a $D$-dimensional lattice hypercube. This $\L_{\nu}$ describes any graph Lindbladian can be thought of as the convex combination of Lindbladians on lattice hypercubes. For example, this scenario includes the complete graph, as well as any connectivity that is already on a $D$-dimensional lattice.
+Each sequence $\Phi_{e_\ell} \circ \dots \circ \Phi_{e_1}$ can be thought of as a random circuit that applies $\ell$ gates, each given by a randomly chosen sequence of hypergraph edges. The Lindbladian effectively applies random circuits with Poisson-distributed length. Since $|G|$, the number of edges in $G$, multiplies the probability of an event in each time interval, factors of $|G|^{\ell}$ in the numerator and denominator cancel. \todo{Check that the distribution is truly Poisson, currently this is merely assumed.} \todo{Question for Nima: is this Lindbladian equivalent to the ``Brownian circuit'' model? The answer might give some guidance on how to convert Brownian SYK to a similar form.}
 
-The lattice hypercube structure enables recursively splitting the graph in half, obtaining subgraphs of size $2^{x D - 1}$, then $2^{x D - 2}$, and so on until reaching size $m$ for some $m \in \NN$ we will set later. Successive splits will iterate through axes, so every $D$ splits, we again obtain (smaller) hypercubes. This way, we also see that at each split, the number of edges crossing the split is divided by 2 (conversely if building up, each join involves doubly many edges as its children). These edges can be assigned somewhat arbitrarily to one side of the split or the other. The full recursive splitting requires exactly $\log_2 (n/m)$ layers of recursion. The face size of an $m$-length hyper-rectangle is at least $m^{(D-1)/D}$. In Theorem \ref{thm:regular-tree}, we use the SHH gluing Lemma \ref{schuster_random_2025} for Assumption \ref{assump:glue} to set $c = 5 k^2$, $q$ to the local qudit dimension, and $a = m^{(D-1)/D} - \log_q(5 k^2)$.
+First, we show that the usual ``base estimate'' $O(n)$ time for relative error convergence holds for qubit hypergraph quantum circuits as well as graphs. Subsequent steps will convert this estimate into an $n$-independent rate via recursive merging.
+\begin{lemma} \label{lem:hypergraph-to-graph}
+    Let $\L$ be as in Equation \eqref{eq:circuit-hypergraph-lind} with hypergraph $G$. Let $G'$ be a graph constructed by adding for each edge in $G$ an arbitrary, connected subgraph in $G'$ with at most $m_e$ edges. Then the quasi-factorization constant corresponding to $G$ is at most that of $G'$ times $m_e$.
+\end{lemma}
+\begin{proof}
+    Let $e \in G$ be any edge, and let $G_e'$ denote the subgraph of $G'$ corresponding to that edge. Recall Lemma \ref{lem:chainexp}, and note that
+    \begin{equation}
+        D(\rho \| \E_{G'_e}(\rho)) = D(\rho \| \E_f(\rho)) + D(\E_f(\rho) \| \E_{G'_e}(\rho))
+            \geq D(\rho \| \E_f(\rho))
+    \end{equation}
+    for any $f \in G'_e$, where $\E_{G'_e}$ denotes the twirl over qudits in $G'_e$, and each $G_f$ denotes the twirl corresponding to a single edge. Therefore
+    \begin{equation}
+        m_e D(\rho \| \E_{G'_e}(\rho)) \geq \sum_{f \in G_e'} D(\rho \| \E_f(\rho)) \pl,
+    \end{equation}
+    finishing the Lemma.
+\end{proof}
+\begin{lemma} \label{lem:hypergraph-base}
+    Let $\L$ be a Lindbladian as in Equation \eqref{eq:circuit-hypergraph-lind} with hypergraph $G$ on $n$ qubits having maximum edge degree $d_E = O(1)$ in $n$ and $k$. Assume that $\lambda_e \geq \lambda_0$ for every $e \in G$. Further assume a random circuit of depth at most $\ell$ on $n$ qubits is constructed by applying a random unitary to the qubits indexed by each edge in $G$, where edges that share any nodes are always applied at different layers. Then $\L$ has $\lambda$-CMLSI with
+    \begin{equation}
+        \lambda \geq \lambda_0 /O(n k \mathrm{polylog}(k)) \pl.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    First, assume that $G$ is a graph. Recall \cite[Equation (51)]{belkin_approximate_2024}, so the spectral gap $s_*$ of any $\ell$-layer parallel random circuit made of 2-qubit gates is bounded as
+    \begin{equation}
+        s_* \leq 1 - (1 - e^{-1/2 C(q,k)})^{\ell - 1} \pl,
+    \end{equation}
+    where $C(q,k)$ depends on the convergence of 1-D brickwork and is calculated for several cases therein.  Via \cite{chen_incompressibility_2024}, it is known that $C(q,k)$ can be taken $O(\mathrm{polylog}(k))$.
+    %If $d_E > 2$, consider the random unitary projection $\E_e$ corresponding to a single edge $e$. Let $v_1, \dots, v_{|e|}$ denote the nodes corresponding to $e$, indexing $|e| \leq d_E$ qubits, where $|e|$ is the number of qubits joined by $e$.
+    %Via the Solovay-Kitaev theorem and known circuit approximation bounds, every unitary on $|e|$ qubits is $\delta$-approximated in operator norm by a sequence of $O(\mathrm{polylog}(1/\delta)) \times \exp(O(|e|))$ 2-qubit gates, independently from $n$ or $k$. By \cite[Theorem 1]{yada_non-haar_2025} ...
+    When $C(q,k)$ is large enough (which we may ensure by enlarging it by a constant),
+    \begin{equation}
+        \log s_* \geq \frac{1}{4 C(q,k)^{\ell - 1}} \pl.
+    \end{equation}
+    By \cite[Lemma 3]{brandao_local_2016}, such a circuit is an $\epsilon'$-approximate relative error $k$-design when $\epsilon' \leq q^{2 k n} s_*^m$ after $m$ sequential applications. Therefore, for a given $\epsilon > 0$, it suffices to take
+    \begin{equation} \label{eq:circuit-depth-base}
+        m = \log_{s_*} (\epsilon q^{- 2 k n}) = \frac{\log_q \epsilon - 2 k n}{\log_q s_*} \leq 4 C(q,k)^{\ell - 1} (\log_q (1/\epsilon) + 2 k n) \pl.
+    \end{equation}
+   Consider the sum $\sum_{e \in G} D(\rho \| \E_e^{(k)}(\rho))$, where each $\E_e^{(k)}$ denotes the $k$-fold twirl over the associated graph edge. Repeatedly using Equation \eqref{eq:chain-iter},
+   \begin{equation} \label{eq:quasifac-graph}
+       m \sum_{e \in G} D(\rho \| \E_e^{(k)}(\rho)) \geq D \bigg ( \rho \bigg \| \bigg ( \prod_{e \in G} \E_e^{(k)} \bigg )^m (\rho) \bigg ) \pl ,
+   \end{equation}
+   where the product may be taken in an arbitrary order. Therefore, the family of conditional expectations $(\E_e^{(k)})_{e \in G}$ has $m/\beta_{\delta}$-quasi-factorization as in Lemma \ref{lem:revconv}. As long as each constituent in $\L$ has $\lambda_0$-decay, Proposition \ref{prop:decay-merge} therefore shows that $\L$ has $\lambda_0 \beta_{\delta}/m$-decay. Recall, however, that this stage of the proof assumed that $G$ was a graph.
+    
+   Now assume $G$ is a hypergraph with $d_E > 2$. Given an edge $e$, let $|e|$ denote the edge degree. If $v_1, \dots, v_{|e|}$ denote the nodes joined by $e$ in arbitrary order, let $f[1], \dots, f[|e|-1]$ denote edges in a graph connecting them and $\E^{(k)}_{f[1]}, \dots, \E^{(k)}_{f[|e|-1]}$ denote respective $k$-fold twirls on those adjacent qubit pairs. Using Lemma \ref{lem:hypergraph-to-graph},
+   \begin{equation}
+       (d_E-1) D \Big (\rho \Big  \| \E_e^{(k)}(\rho) \Big )
+        \geq \sum_j D \Big (\rho \Big \| \E_{f[j]}^{(k)}(\rho) \Big ) \pl.
+   \end{equation}
+    Recalling Equations \eqref{eq:quasifac-graph} and \eqref{eq:circuit-depth-base}, the family of conditional expectations $(\
+    E_e^{(k)})_{e \in G}$ has $d_E m / \beta_\delta$-quasi-factorization with $m$ as estimated previously. Therefore, $\L$ has $\lambda_0 \beta_{\delta}/m d_E$-CMLSI, and we may set $\delta$ to $1/n$ to complete the Lemma.
+\end{proof}
 
-To estimate the decay constants of the $m$-size sublattice Lindbladians, we apply Proposition \ref{prop:decay-merge}. Since each $\L_e$ has $1$-CMLSI, each $m$-size sublattice Lindbladian has decay constant proportional to the smallest value of $2/d_e$ times the complete quasi-factorization constant $\alpha$ (recall Definition \ref{def:quasifactorization}). To calculate $\alpha$, note using Equation \eqref{eq:chain-iter} that
-\begin{equation}
-    \sum_e D(\rho \| \E_e(\rho)) \geq
-        \frac{1}{w} D \bigg ( \rho \bigg \| \bigg (\prod_{e \in G} \E_e 
-    \bigg )^w (\rho) \bigg )
-\end{equation}
-for any $w \in \NN$, where the product is ordered arbitrarily. The composition $(\prod_{e \in G} \E_e )^w$ is itself a composition of local random gates. Currently, we might apply \cite[Theorem ??]{belkin_?} along a Hamiltonian path to obtain $\alpha = 1 / m k C(k)$ for some function $C(k)$. In the qubit case, $C(k) = O(\mathrm{polylog}(k))$. Combined with Equation \eqref{eq:circuit-hypergraph-lind}, we obtain that each $m$-size sub-Lindbladian has $2 / m C(k) d_E$-CMLSI. \todo{Can we eliminate the $2 / d_E$ factor, leading to a uniform bound in the spatial dimension or enhancement with higher connectivity?}
+\begin{prop} \label{prop:lindbladian-recur}
+    Let $\L$ be a Lindbladian as in Equation \eqref{eq:circuit-hypergraph-lind} with hypergraph $G$ on $n$ qubits, assuming $\lambda_e \geq \lambda_0$ for every $e \in G$. Assume a recursive splitting of $G$ into two sub-hypergraphs at each level such that at the $\ell$th level, each joining involves at least $\ell + \Omega(\log k)$ qubits, and each of the base constituents acts on a system of size at most $O(\mathrm{polylog}(k))$. Then $\L$ has CMLSI constant at least $\lambda_0 / O(k \mathrm{polylog}(k))$ that is $\Omega(1)$ in $n$.
+\end{prop}
+\begin{proof}
+    The Proposition will follow from Theorem \ref{thm:regular-tree} after choosing an appropriate leaf size $m$. From Remark \ref{rem:glue}, we obtain a quasi-factorization constant of $(1 - 60 k^2 / 2^{m + \ell})^{-1}$ assuming that at the lowest level, at least $m$ qubits are shared across any split. Let $m := \log_2 (240 k^2)$ so that the quasi-factorization constant is at most $(1 - 1/2^{\ell+2})^{-1} \leq \exp(- 1 / 2^{\ell+1})$. If the number of joining qubits is at first two small by a constant factor, replace the leaf level by a higher level for which the additional $\ell$ yields a sufficiently large leaf size. First lower-bound the leaf CMLSI constants via Lemma \ref{lem:hypergraph-base}, then apply Theorem \ref{thm:regular-tree}.
+\end{proof}
 
-Finally, we should choose a good value of $m$. We need that $a = m^{(D-1)/D} - \log_q(5 k^2) > 0$, and ideally it should be large enough that $q^a$ is small. In contrast, the ``leaf-level'' value of $\lambda$ is divided by $m$, so it should not be too large. Set $m$ to the smallest power of $2^D$ that is at least $(\log_q(5 k^2))^{D/(D-1)} + \log_q 24$, so $q^a \geq 24$. Note that $d_e \leq 2^{D+1}$ on lattices. Again recalling Theorem \ref{thm:regular-tree}, $\L_{\nu}$ has
-\begin{equation}
-    \frac{1}{k \times C(k)\times \max_D 2^{D+1} ((\log_q(5 k^2))^{D/(D-1)} + \log_q 24) } \text{-CMLSI}
-\end{equation}
-if ``$\max_D$'' is with respect to all edges in all graphs in $\nu$'s support. The important aspects are that (1) the estimate is independent of $n$ (2) as long as $C(k) = O(\text{polylog(k)})$, $\L_{\nu}$ has $1/k \times O(\mathrm{polylog(k)})$-CMLSI.
+\begin{rem} \normalfont \label{rem:convex-graph}
+    The Lindbladians of Equation \eqref{eq:circuit-hypergraph-lind} can be extended to Lindbladians of the form $\L = \int \L_x d \mu(x)$, where each $x$ is a label chosen according to probability measure $\mu$, and every $\L_x$ is a Lindbladian as in Equation \eqref{eq:circuit-hypergraph-lind} with uniformly upper-bounded hypergraph degree and lower-bounded CMLSI constant.
+\end{rem}
+
+\begin{exam}[Random Circuit Lindbladian on Grid] \normalfont \label{exam:grid}
+Assume that $D \geq 2$, and $n = 2^{x D}$ for some $x \in \N$. Let $G$ be a $D$-dimensional lattice hypercube graph. The lattice hypercube structure enables recursively splitting the graph in half, obtaining subgraphs of size $2^{x D - 1}$, then $2^{x D - 2}$, and so on until reaching size $m$ for some $m \in \NN$ we will set later. Successive splits will iterate through axes, so every $D$ splits, we again obtain (smaller) hypercubes. This way, we also see that at each split, the number of edges crossing the split is divided by 2 (conversely if building up, each join involves doubly many edges as its children). These edges can be assigned somewhat arbitrarily to one side of the split or the other. The full recursive splitting requires exactly $\log_2 (n/m)$ layers of recursion. The face size of an $m$-length hyper-rectangle is at least $m^{(D-1)/D}$, which lower-bounds the number of qubits at each interface. By Proposition \ref{prop:lindbladian-recur}, $\L$ has $1/O(k \mathrm{polylog}(k))$-CMLSI.
+
+By Remark \ref{rem:convex-graph}, the example extends to convex combinations of grids such as the $n$-vertex complete graph.
 \end{exam}
 
-\todo{Next step: study hypergraph decomposition in this model. Can we decompose complete or other hypergraphs into convex combinations of lattice-like objects?}
+\begin{exam}[Complete Hypergraph] \normalfont \label{exam:complete-hyper}
+    Consider the complete hypergraph $G$ of edge degree $d_E$ inducing $n$-qubit Lindbladian $\L$ as in Equation \eqref{eq:circuit-hypergraph-lind}. Via Remark \ref{rem:convex-graph} and the symmetry of this configuration, it suffices to show an equivalent estimate for an essentially arbitrary $d_E$-regular hypergraph. For any $n \in \NN$, one may naturally extend an $n \times n$ 2-D grid to a $d_E$-regular hypergraph by adding $d_E - 2$ vertices to each hypergraph edge, each of which does not directly connect to any other vertex. This produces a grid-like graph, where each would-be edge is instead replaced by a $d_E$-length nearest-neighbor line. Using a similar recursive division as in \ref{exam:grid}, the number of gates crossing each partition is similar. Therefore, we again obtain $1/O(\mathrm{polylog}(k))$-CMLSI for this extended grid, and by symmetry, for the complete hypergraph.
+\end{exam}
+Currently, both Examples \ref{exam:grid} and \ref{exam:complete-hyper} require some extra constraints on the number of qubits involved, since the graphs must fit certain grid symmetries. This is almost certainly an artifact of the method that can be removed with some painstaking but straightforward analysis. Whether that analysis is worth undertaking depends on whether we ultimately use these examples.
 
-Idea: \cite{laracuente_quantum_2025} has a natural notion of hypergraph lattices. Could we decompose a Lindbladian as a convex combo of hypergraph lattice Lindbladians?
+
+
+\subsubsection{Pauli Basis for Qubit Random Unitaries}
+
+Recall the Pauli basis of qubit matrices, $(Z_j)_{j=1}^4 = (I, X, Y, Z)$. Every unitary on $n$ qubits has the form
+\begin{equation}
+    U = \sum_{j_1, \dots, j_n = 1}^4 c_{j_1, \dots, j_n} Z_{j_1} \otimes \dots \otimes Z_{j_n} \pl.
+\end{equation}
+Therefore, each $k$-fold unitary has the form
+\begin{equation}
+    U^{\otimes k} = \sum_{j^1_1, \dots, j^1_n = 1}^4 \dots \sum_{j^k_1, \dots, j^k_n = 1}^4 \prod_{a=1}^k c_{j^a_1, \dots, j^a_n} Z_{j^a_1} \otimes \dots \otimes Z_{j^a_n} \pl.
+\end{equation}
+One question is whether the integral
+\begin{equation}
+    \int U^{\otimes k} \rho U^{\otimes k \dagger} d\mathrm{Haar}(U)
+\end{equation}
+has any special Pauli form for general $k$ and $\rho$. For example, when $k=1$, it is equivalent to the sum
+\begin{equation}
+    \frac{1}{4^n} \sum_{j^1_1, \dots, j^1_n = 1}^4 Z_{j_1} \otimes \dots \otimes Z_{j_n} \rho Z_{j_1} \otimes \dots \otimes Z_{j_n}
+\end{equation}
+via the self-adjointness of the Pauli matrices and known form of qubit depolarizing noise. Some results for $k=2$ might exist in \cite[Supplemental Material]{angrisani_classically_2025}.
+
+\section{Spin-SYK}
+Consider: \url{https://arxiv.org/pdf/2509.04075}, \url{https://journals.aps.org/prb/abstract/10.1103/PhysRevB.109.094206}, \url{https://link.springer.com/article/10.1007/JHEP05(2024)280#Ack1}, \url{https://journals.aps.org/pre/abstract/10.1103/3gry-qtl3}
+
+\section{Fermions}
+\begin{con}
+    The $n$-fermion Brownian SYK Lindbladian has CMLSI rate $O(1)$ in $n$.
+\end{con}
+The Brownian SYK model is equivalent to a Linbdladian given by
+\begin{equation}
+\begin{split}
+     G_{eff}(\rho) = &  - \frac{1}{2} \sum_I [X_I, [X_I, \rho]] 
+    = - \frac{1}{2} \sum_{i_1, \dots, i_q } \sum_{a,b}
+        [\psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)}, [\psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)}, \rho] ]
+    \\ = & - \frac{1}{2} \sum_{i_1, \dots, i_q } \sum_{a,b} \Big ( 
+        \psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)} \psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)} \rho
+            + \rho \psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)} \psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)}
+    \\ & - \psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)} \rho  \psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)}
+        -  \psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)} \rho \psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)}
+    \Big ) \pl,
+\end{split}
+\end{equation}
+where $a, b = 1 \dots k$ and index the copy to which each fermion operator applies. Equivalently,
+\begin{equation}
+\begin{split}
+    G_{eff} = \sum_{i_1, \dots, i_q} \L[i_1, \dots, i_q] \pl,
+\end{split}
+\end{equation}
+where each
+\begin{equation}
+\begin{split}
+    \L[i_1, \dots, i_q](\rho) = & - \frac{1}{2} \sum_{a,b} \Big ( 
+        \psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)} \psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)} \rho
+            + \rho \psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)} \psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)}
+    \\ & - \psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)} \rho  \psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)}
+        -  \psi_{i_1}^{(b)} \dots \psi_{i_q}^{(b)} \rho \psi_{i_1}^{(a)} \dots \psi_{i_q}^{(a)}
+    \Big ) \pl.
+\end{split}
+\end{equation}
+
 
 \section{Local Subalgebras and Observables}
 A key consequence of relative entropy contraction is that it controls diamond norm distance, an operational measure of distinguishability, through Pinsker's inequality. The usual relation that $2 \| \rho - \sigma \|_1^2 \leq D(\rho \| \sigma)$ becomes potentially weak for large $n$ and trivial as $n \rightarrow \infty$, since the initial relative entropy could be arbitrarily large. This limitation is physical - existing analyses have shown that the depth required for additive error convergence of random quantum circuits is lower bounded as $\Omega(\log n)$ \cite{dalzell_random_2022, deshpande_tight_2022}. Therefore, even $\Omega(1)$ entropy contraction cannot yield general, constant-depth additive error convergence. Instead, entropy contraction bounds the \textit{average} trace on local subalgebras via the superadditivity of relative entropy on tensor splits and Pinsker's inequality:
@@ -273,7 +395,7 @@ A key consequence of relative entropy contraction is that it controls diamond no
     \begin{equation}
         D((\Id \otimes \Phi_{\mathrm{Haar},k}) (\mathrm{BP}) \| (\Id \otimes \E_{dep})('')) = O(k \log k)
     \end{equation}
-    with no $n$-dependence, where $\Id$ is the identity channel acting on an auxiliary system $A^{'k} B^{'k}$ of the same type as the input, and $\E_{dep}$ is a completely depolarizing channel on system $A^k B^k$. Note that $(\Id \otimes (\E_{dep} \circ \Phi_{\mu,k}))(\mathrm{BP}) = (\Id \otimes \E_{dep})(\mathrm{BP}) = \id / |A A' B B'|^k$ is a product stateon all subsystem divisions. By superadditivity of the relative entropy with respect to tensor products, letting $A_j^k$ denote the $k$-fold system corresponding to the $j$th of $n$ copies of $A^k$,
+    with no $n$-dependence, where $\Id$ is the identity channel acting on an auxiliary system $A^{'k} B^{'k}$ of the same type as the input, and $\E_{dep}$ is a completely depolarizing channel on system $A^k B^k$. Note that $(\Id \otimes (\E_{dep} \circ \Phi_{\mu,k}))(\mathrm{BP}) = (\Id \otimes \E_{dep})(\mathrm{BP}) = \id / |A A' B B'|^k$ is a product state on all subsystem divisions. By superadditivity of the relative entropy with respect to tensor products, letting $A_j^k$ denote the $k$-fold system corresponding to the $j$th of $n$ copies of $A^k$,
     \begin{equation}
         \sum_j D((\Id \otimes (\E_{A_j} \circ \Phi_{\mathrm{Haar},k})) (\mathrm{BP}) \| (\Id \otimes \E_{dep})('')) 
             \leq D((\Id \otimes \Phi_{\mathrm{Haar},k}) (\mathrm{BP}) \| (\Id \otimes \E_{dep})('')) \pl.
@@ -310,7 +432,7 @@ A key consequence of relative entropy contraction is that it controls diamond no
     \end{equation}
     completing the Lemma.
 \end{proof}
-\todo{We need a version of this (and underlying it, the gluing Lemma) for fermions.}
+\todo{We could use a version of this (and underlying it, the gluing Lemma) for fermions. However, in large-$N$, it's possible that much weaker/slower convergence could hold without the gluing Lemma.}
 \begin{theorem}[Average Subsystem Convergence] \label{prop:avg}
     On $n$ qudits $A_1, \dots, A_n$ of local dimension $q$, for any input state $\rho$,
     \begin{equation*}
@@ -387,6 +509,12 @@ With these, we should be able to show that \textit{each individual} local observ
         \leq \frac{4 \alpha \exp(-\lambda / 2) \log |A|}{n (1 - \log_q (24 n k^2) / n)(1 - 1/n)} \pl.
     \end{equation}
 \end{cor}
+
+\section{Other Considerations}
+\begin{itemize}
+    \item If we consider 2605.22909, would our results show that all-to-all Brownian and conventional random circuit ensembles converge to approximately the same thing, thereby confirming that nonlinear XEB suffices more generally (and also without the all-to-all assumption)?
+    \item According to Max West, even a single `bit' symmetry might support the no-go argument if it leads to an observable, positive operator. The idea is to use an observable to replace the pure state. Apparently West tried this, and the bound was vacuous, so designs are not ruled out. Might relate to getting a symmetry already in the 1-design case.
+\end{itemize}
 
 \bibliographystyle{unsrt}
 \bibliography{ref}

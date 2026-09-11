@@ -446,820 +446,432 @@ ordering in the Wick expansion.
     and $\Omega_{n\ge 2}(t)$ are built from nested commutators and begin at
     order $t^{2n}$.
 
+\subsection{Gaussian decay from large $N$ limit}
 
-
-    \subsection{Gaussian decay from large $N$ limit}
-
-    Now, consider the system to be comprised of $N$ degrees of freedom, $i=1,\cdots
-    , N$, and $V_{I}$ is an interaction term that couples different sites. For instance,
-    if the sites sit on a lattice, it is natural to consider nearest neighbor two-body
-    interactions $V_{I}$ with $I=\{i,j\}$ that are adjacent on the lattice. More
-    generally, we can consider the interaction to be non-local and $q$-body as in
-    the case of hypergraphs such that the label $I$ is a set of $q$ distinct sites
-    $I=\{i_{1},i_{2},\cdots i_{q}\}$. Assuming that the order of labels does not
-    matter have the interaction
-    \begin{eqnarray}
-        &&H=q!\sum_{i_1<\cdots <i_q}g_{i_1\cdots i_q} V_{i_1\cdots i_q}\nn\\
-        &&V_{i_1\cdots i_q}=\mathcal{O}_{i_1}\cdots \mathcal{O}_{i_q}\ .
-    \end{eqnarray}
-    If the operators $[\mathcal{O}_{i},\mathcal{O}_{j}]\propto \delta_{ij}$, then
-    $[V_{I},V_{J}]=0$ for all $I,J$, and we obtain
-    \begin{eqnarray}
-        \int d\mu(g)e^{i t \sum_I g_I \hat{V}_I}=e^{-\sigma t^2\sum_I \hat{V}_I^2/2}\ .
-    \end{eqnarray}
-    If there are Majorana fermions sitting at each site, i.e.
-    $\{\psi_{i},\psi_{j}\}=2\delta_{ij}$, there are certain non-vanishing $[V_{I}
-    ,V_{J}]$. If the two sets of indices $I$ and $J$ have no overlaps, i.e.
-    $I\cap J=\emptyset$, we have $[V_{I},V_{J}]=0$. We will assume that $q$ is
-    even, then if the number of overlaps between the two sets $m=|I\cap J|$ is even,
-    the potential terms commute, and if it is odd, they anticommute:
-    \begin{eqnarray}
-        [V_I,V_J]=(1-(-1)^{|I\cap J|})V_IV_J\ .
-    \end{eqnarray}
-    The case with a Majorana fermion at each siste is the SYK model that we will
-    discuss in the next section. Here, we simply make the following observation.
-    Choosing random sets $I,J$ the probability of having at least one index in
-    common is
-    \begin{eqnarray}
-        P(\text{overlap})=1-\frac{{N-q\choose q}}{{N \choose q}}
-    \end{eqnarray}
-    which in the limit of fixed $q$ and large $N$ scales as $q^{2}/N\to 0$. Therefore,
-    we can ignore the commutators and obtain the Gaussian decay map
-    \begin{eqnarray}
-        \int d\mu(g) e^{-t\sum_I g_I \hat{V}_I}=e^{-\sigma t^2\sum_I \hat{V}_I^2/2}\ .
-    \end{eqnarray}
-    Below, we will see that this large-$N$ behavior generalizes to the $k$-twirl
-    map, as well.
-
-    \subsection{Gaussian decay for the $k$-twirl at large $N$}
-    \label{subsec:quenched_syk_gaussian_regulator}
-    %------------------------------------------------------------
-    \NL{Decide whether to use $g_{I}$ or $J_{I}$ as coupling}
-
-    Let $H(J)$ be a (quenched) SYK Hamiltonian written as a Gaussian linear combination
-    \begin{equation}
-        H(J)\;=\; i^{q/2}\sum_{I}J_{I}\,V_{I},
-        %  \qquad
-        % V_{i_1<\cdots<i_q} \;=\; \chi_{i_1}\chi_{i_2}\cdots \chi_{i_q},
-    \end{equation}
-    with independent centered Gaussian couplings
-    \begin{equation}
-        \mathbb{E}[J_{I}]=0, \qquad \mathbb{E}[J_{I}J_{J}]=\sigma\,\delta_{IJ},
-    \end{equation}
-    and we take $q$ fixed, $N\to\infty$ (with the usual SYK scaling $\sigma\sim N
-    ^{-(q-1)}$ understood).
-
-    %------------------------------------------------------------
-
-    In models in which the operators $V_{I}$ are (approximately) commuting at large
-    system size---e.g., because most pairs $V_{I},V_{J}$ have disjoint support and
-    hence commute while commutators require rare overlaps---the commutator corrections
-    are suppressed. In the diffusive scaling regime
-    \begin{equation}
-        \tau \;:=\;\sigma t^{2}\binom{N}{q}\sim N t^{2}= O(1),
-    \end{equation}
-    the leading contribution $\Omega_{1}=O(1)$ survives while $\Omega_{n\ge2}$
-    are parametrically smaller, so to leading order
-    \begin{equation}
-        M_{t}^{(k)}\;\simeq\; \exp\!\left[-\frac{\sigma t^{2}}{2}\sum_{I}\big(\widehat
-        V_{I}^{(k)}\big)^{2}\right]. \label{eq:quenched_gaussian_regulator}
-    \end{equation}
-
-    %------------------------------------------------------------
-    \paragraph{Identification of the effective generator.}
-    Define
-    \begin{equation}
-        \widehat X_{I}\;:=\;\sqrt{\sigma}\,\widehat V_{I}^{(k)}=\sqrt{\sigma}\sum
-        _{a=1}^{k}\!\left(V_{I,L}^{(a)}-\big(V_{I,R}^{(a)}\big)^{T}\right), \qquad
-        \widehat G_{eff}^{(k)}\;:=\;\frac{1}{2}\sum_{I}\widehat X_{I}^{\,2}. \label{eq:hatGeff_quenched}
-    \end{equation}
-    Then~\eqref{eq:quenched_gaussian_regulator} becomes the Gaussian decay
-    \begin{equation}
-        M_{t}^{(k)}\simeq e^{-\tau^2\hat{G}_{eff}^{(k)}}. \label{eq:Mt_exp_hatGeff}
-    \end{equation}
-
-    On the physical $k$-replica space define Hermitian operators
-    \begin{equation}
-        X_{I}\;:=\;\sqrt{\sigma}\sum_{a=1}^{k}V_{I}^{(a)}, \qquad \widehat X_{I}=
-        (X_{I})_{L}- (X_{I})_{R}^{T}.
-    \end{equation}
-    Using
-    \begin{equation}
-        \big((X)_{L}-(X)_{R}^{T}\big)^{2}|Y\rangle\rangle = |X^{2}Y+Y X^{2}-2XYX\rangle
-        \rangle,
-    \end{equation}
-    we obtain the corresponding superoperator $G_{eff}^{(k)}$ on $Y$ via
-    \begin{equation}
-        \widehat G_{eff}^{(k)}|Y\rangle\rangle = |G_{eff}^{(k)}(Y)\rangle\rangle,
-    \end{equation}
-    namely
-    \begin{align}
-        G_{eff}^{(k)}(Y) & =\frac{1}{2}\sum_{I}\Big(X_{I}^{2}Y+Y X_{I}^{2}-2X_{I}Y X_{I}\Big) \nonumber                                                 \\
-                         & =\frac{1}{2}\sum_{I}[X_{I},[X_{I},Y]] \;=\;-\sum_{I}\Big(X_{I}Y X_{I}-\tfrac12\{X_{I}^{2},Y\}\Big). \label{eq:Geff_quenched}
-    \end{align}
-    Therefore, in the same large-$N$ regime in which~\eqref{eq:Mt_exp_hatGeff} holds,
-    \begin{equation}
-        \boxed{\mathcal{E}_t^{(k)} \;\simeq\; e^{-\tau^2\,G_{eff}^{(k)}}}
-    \end{equation}
-
-    \NL{Compute the thermal 2pt function, 4pt function and the multi-point OTOCs starting from the k-twirl map, at large N and various limits of $\beta J$.}
-
-    \section{Gaussian decay in large $N$ SYK}
-
-    The SYK model is comprised of $N$ Majorana fermions $\chi_{i}$ with
-    $i=1,\cdots , N$ and the Hamiltonian
-    \begin{eqnarray}
-        H=i^{q/2}\sum_{i_1<\cdots <i_q}J_{i_1<\cdots<i_q} (\chi_1\cdots \chi_q)\ .
-    \end{eqnarray}
-    In comparing to the notation of the previous section, $I$ is all ordered $q$-tuples
-    $I = \{i_{1}< \dots < i_{q}\}$, and
-    \begin{eqnarray}
-        V_{i_1<\cdots <i_q}=\chi_{i_1}\chi_{i_2}\cdots \chi_{i_q}
-    \end{eqnarray}
-    is the product of $q$ Majorana fermions. It follows from $\{\chi_{i},\chi_{j}
-    \}=2\delta_{ij}$ that
-    \begin{eqnarray}
-        (V_{i_1<\cdots <i_q})^2=i^q(\chi_{i_1}\cdots \chi_{i_q})^2=i^q(-1)^{q(q-1)/2}
-    \end{eqnarray}
-    which explains the origin of $i^{q/2}$ in (\ref{SYKHam}). In this note, we will
-    restrict to the case where both $N$ and $q$ are even, and
-    $(V_{i_1<\cdots <i_q})^{2}=1$.
-
-    The time-independent noise is
-    \begin{eqnarray}
-        &&\overline{J_I}=0\nn\\
-        &&\overline{J_I J_J}=\sigma \delta_{IJ}\nn\\
-        &&\sigma=\frac{2^{q-1}q!}{q^{2}N^{q-1}}J\ .
-    \end{eqnarray}
-    Note that we are using the normalization in
-    \cite{jian2021note,jian2023linear}. Note that there are $\binom{N}{q}$ terms
-    in the Hamiltonian which in the limit of $q\ll N$ grows like $N^{q}/q!$. The
-    factor $q!/N^{q-1}$ is designed to make sure that the fluctuations of the
-    Hamiltonian are order $N$. For $q=2$ and $q=4$, we have, respectively $\sigma
-    =J/N$ and $\sigma=12\,J/N^{3}$.
-
-    \subsection{Jordan-Wigner transform}
-
-    Assuming that $N$ is even, we pair Weyl fermions of each copy $\psi^{(a)}_{2j-1}$
-    and $\psi^{(a)}_{2j}$ into $N/2$ complex fermions
-    \begin{eqnarray}
-        &&c_j^{(a)}\equiv \frac{1}{2}(\chi_{2j-1}^{(a)}+i \chi_{2j}^{(a)})\nn\\
-        &&\{c_l,c_j^\dagger\}=\delta_{l j},\qquad \{c_l,c_j\}=\{c_l^\dagger,c_j^\dagger\}=0\ .
-    \end{eqnarray}
-    For a fixed $j$, the algebra generated by $c_{k},c_{k}^{\dagger}$ is
-    isomorphic to the algebra of a qubit generated with
-    $c_{j}=\ket{0}\bra{1}_{j}$ and we can identify $\chi_{2j-1}=X_{j}$ and
-    $\chi_{2j}=Y_{j}$, where $X_{j}$ and $Y_{j}$ are Pauli matrices. The fermion
-    number operator is
-    \begin{eqnarray}
-        N_j=c_j^\dagger c_j=\ket{1}\bra{1}_j=(1+Z_j)/2\ .
-    \end{eqnarray}
-    However, the problem is that $[X_{l},Y_{j}]=0$, whereas the Weyl fermions
-    anticommute. To fix this, we define the operators
-    \begin{eqnarray}
-        &&\sigma^-_j\equiv \frac{1}{2}(X_j+i Y_j)=(-1)^{\sum_{l=1}^{j-1}c_l^\dagger c_l}c_j\nn\\
-        &&Z_j=2c_j^\dagger c_j-1
-    \end{eqnarray}
-    by attaching to $c_{j}$ a string of parity operators
-    \begin{eqnarray}
-        (-1)^{N_j}=\ket{0}\bra{0}_j-\ket{1}\bra{1}_j\ .
-    \end{eqnarray}
-    It can now be checked explicitly that Paul matrices with different $j$
-    commute. In terms of the Weyl fermions, we have the identification
-    \begin{eqnarray}
-        &&Z_j=-i \chi_{2j-1}\chi_{2j}=(-1)^{c_j^\dagger c_j+1}\nn\\
-        &&X_j=\lb \prod_{l=1}^{j-1}(i \chi_{2l-1}\chi_{2l})\rb \chi_{2j-1}=(-1)^{\sum_{j=1}^{k-1}c_j^\dagger c_j}(c_k+c_k^\dagger)\nn\\
-        &&Y_j=\lb \prod_{l=1}^{j-1}(i \chi_{2l-1}\chi_{2l})\rb \chi_{2j}=-i (-1)^{\sum_{l=1}^{j-1}c_l^\dagger c_l}(c_j-c_j^\dagger)
-    \end{eqnarray}
-    Equivalently, we can write
-    \begin{eqnarray}
-        &&c_j=(-1)^{j-1}(Z_1\cdots Z_{j-1})\sigma_j^-\nn\\
-        &&\chi_{2j-1}=(-1)^{j-1}(Z_1\cdots Z_{j-1})X_j\nn\\
-        &&\chi_{2j}=(-1)^{j-1}(Z_1\cdots Z_{j-1})Y_j\ .
-    \end{eqnarray}
-
-    Now, consider the following two purifications of a maximally mixed state of a
-    single qubit (a single complex fermion) in a two-qubit (a pair of
-    {\it commuting} complex fermions) system:
-    \begin{eqnarray}
-        &&\ket{e}=\frac{1}{\sqrt{2}}(\ket{00}+\ket{11})\nn\\
-        &&\ket{f}=\frac{1}{\sqrt{2}}(\ket{01}+\ket{10})\nn\\
-        &&c_{1L}=\sigma_{1L}^-,\qquad c_{2R}=\sigma_{1R}^-
-    \end{eqnarray}
-    which can be identified as the unique vector that satisfies the following
-    relations
-    \begin{eqnarray}
-        &&(c_{1L}-c_{1R}^\dagger)\ket{e}=0=(c_{1L}^\dagger-c_{1R})\ket{e}\nn\\
-        &&(c_{1L}-c_{1R})\ket{f}=0=(c_{1L}^\dagger-c_{1R}^\dagger)\ket{f}
-    \end{eqnarray}
-    Next, consider $N/2$ ($N$ even) pairs of Weyl fermions, and the maximally
-    mixed vectors
-    \begin{eqnarray}
-        &&\ket{e}^{\otimes N/2},\qquad \ket{f}^{\otimes N/2}\nn\\
-        &&c_{k,L/R}=(-1)^{k-1}Q_{k-1,L/R}\sigma_{k,L/R}^-,\nn\\
-        &&Q_{k,L/R}\equiv (Z_{1L/R}\cdots Z_{k,L/R})\ .
-    \end{eqnarray}
-    Note that even though we are labeling the fermions using $L$ and $R$ they
-    are commuting variables
-    \begin{eqnarray}
-        [c_{jL},c^\dagger_{l,R}]=0,\qquad \{c_{jL},c^\dagger_{lL}\}=\delta_{jl},\qquad
-        \{c_{jR},c^\dagger_{lR}\}=\delta_{jl}
-    \end{eqnarray}
-    Since
-    \begin{eqnarray}
-        (Q_{j,L}-Q_{j,R})\ket{e}^{\otimes j}=0,\qquad (Q_{j,L}+(-1)^jQ_{j,R})\ket{f}^{\otimes k}=0
-    \end{eqnarray}
-    we find that for the following equations for all $l=1,\cdots, N/2$ for $N$
-    even define the vectors $\ket{f}^{\otimes N/2}$ and $\ket{f}^{\otimes N/2}$:
-    \begin{eqnarray}
-        &&(c_{jL}-c_{jR}^\dagger)\ket{e}^{\otimes N/2}=0=(c_{jL}^\dagger-c_{jR})\ket{e}^{\otimes N/2}\nn\\
-        &&(c_{jL}-c_{jR})\ket{f}^{\otimes N/2}=0=(c_{j L}^\dagger-c_{j R}^\dagger)\ket{f}^{\otimes N/2}\ .
-    \end{eqnarray}
-    A convenient way to relate the complex fermions to Majoranas is the following
-    definitions\footnote{Note the difference compared to \cite{gu2017spread}. See
-    their equation 2.12.}:
-    \begin{eqnarray}
-        c_{kL}=\frac{1}{2}(\chi_{2k-1,L}+i \chi_{2k,L}),\qquad c_{kR}=\frac{1}{2}(\chi_{2k,R}+i\chi_{2k-1,R})
-    \end{eqnarray}
-    This ensures that for all $j$ we have\footnote{Alternatively, we could use the
-    convention in eq 2.12 of \cite{gu2017spread}
-    \begin{eqnarray}
-        c_{kL}=\frac{1}{2}(\chi_{2k-1,L}+i \chi_{2k,L}),\qquad c_{kR}=\frac{1}{2}(\chi_{2k,R}-i\chi_{2k-1,R})
-    \end{eqnarray}
-    that results in $(\chi_{j,L}+i\chi_{j,R})\ket{f}^{\otimes N/2}=0$.}
-    \begin{eqnarray}
-        \label{evector} (\chi_{j,L}+i\chi_{j,R})\ket{e}^{\otimes N/2}=0\ .
-    \end{eqnarray}
-    This is a very convenient choice, because the terms in the Hamiltonian involve
-    all $\chi_{j}$, and without the need to distinguish the even and odd labels,
-    for even $q$ we can write
-    \begin{eqnarray}
-        &&(H\otimes 1)\ket{e}^{\otimes N/2}=i^{q/2}\sum_{i_1<\cdots i_q}J_{i_1\cdots i_q}\chi_{i_1L}\cdots
-        \chi_{i_qL}\ket{e}^{\otimes N/2}\nn\\
-        &&=i^{q/2}\sum_{i_1<\cdots i_q}J_{i_1\cdots i_q}\chi_{i_1R}\cdots \chi_{i_qR}\ket{e}^{\otimes N/2}=(1\otimes
-        H)\ket{e}^{\otimes N/2}\ .
-    \end{eqnarray}
-    For a general operator $\mO_{L}$, the mirror operator in the vector
-    $\ket{e}^{\otimes N/2}$ is $\mO^{T}_{R}$
-    \begin{eqnarray}
-        (\mO\otimes 1_R)\ket{e}^{\otimes k}=(1_L\otimes \mathcal{O}^T) \ket{e}^{\otimes k}\ .
-    \end{eqnarray}
-    This means in the qubit basis, $H$ is symmetric in the qubit basis. The
-    advantage of the qubit basis is that it is totally commuting, which is convenient
-    for applying quantum circuit models. However, the Hamiltonian expressed in terms
-    of the qubit degrees of freedom does not take a simple form. To address this,
-    in the next subsection, following \cite{gu2017spread}, we use totally anti-commuting
-    variables, which have the advantage that the Hamiltonian $\hat{H}$ takes a
-    simple form in these variables. Bilinears of these fermions are commuting variables
-    and well-suited for quantum circuit models.
-
-    \subsection{Totally anti-commuting variables}
-
-    Since we are interested in $k$-twirl map $(U\otimes U^{*})^{\otimes k}$, consider
-    $2k$ copies of SYK fermions that we label by $\chi^{(a)}_{L j}$ and $\chi^{(a)}
-    _{R j}$ with $j=1,\cdots, N$ with $N$ even, $a=1,\cdots, k$, and $L$ and $R$
-    denoting where they are evolved by $U$ or $U^{\dagger}$.
-
-    We define the total parity operator, which counts the total number of
-    complex fermions for a fixed $(a)$:
-    \begin{eqnarray}
-        Q^{(a)}_{L/R}=(-1)^{\sum_{j=1}^{N/2}n_j}=\prod_{j=1}^{N/2}Z_{j (L/R)}=(-i)^{N/2}\prod_{l=1}^{N}\chi_{l (L/R)}^{(a)}
-    \end{eqnarray}
-    For even $N$ it satisfies the following relations
-    \begin{eqnarray}
-        &&\{Q^{(a)}_{L/R},\chi^{(a)}_{l,L/R}\}=0,\qquad a\neq b: [Q^{(a)}_{L/R},\chi^{(b)}_{l,L/R}]=0,\nn\\
-        &&[Q^{(a)}_L,\chi^{(b)}_{l,R}]=0,\qquad (Q^{(a)}_{L/R})^2=1^{(a)}_{L/R}\ .
-    \end{eqnarray}
-    Then, we define new Majorana fermions \footnote{Note the asymmetry in the
-    definition between $L$ and $R$; i.e. the extra factor of $i$.}
-    \begin{eqnarray}
-        &&\psi_{l,L}^{(a)}=i \Sigma^{(a)}\chi_{l,L}^{(a)}, \qquad \psi_{l,R}^{(a)}=\Sigma^{(a)}\chi_{l,R}^{(a)},\nn\\
-        &&\Sigma^{(a)}=\lb\prod_{b=1}^{a-1} Q_L^{(h)} Q_R^{(b)}\rb Q^{(a)}_L
-    \end{eqnarray}
-    that anti-commute for all labels
-    \begin{eqnarray}
-        \{\psi^{(a)}_{l, \alpha},\psi^{(b)}_{l',\beta}\}=2\delta_{ll'}\delta_{ab}\delta_{\alpha\beta}
-    \end{eqnarray}
-    with $\alpha,\beta=L,R$. The Majorana condition follows from the (anti)-commutation
-    relations of $Q^{(a)}_{L/R}$ with $\chi$ Majorana fermions:
-    \begin{eqnarray}
-        (\psi^{(a)}_{l,L})^\dagger=\psi^{(a)}_{l,L},\qquad (\psi^{(a)}_{l,R})^\dagger=\psi^{(a)}_{l,R}\ .
-    \end{eqnarray}
-    It follows from (\ref{evector}) that $\psi_{l,L}^{(a)}$ are
-    $\psi^{(a)}_{l,R}$ are mirror operators in this vector:
-    \begin{eqnarray}
-        (\psi^{(a)}_{l,L}-\psi^{(a)}_{l,R})\ket{e}_a^{\otimes N/2}=0\ .
-    \end{eqnarray}
-    A nice feature of the new Majorana $\psi$ is that for all $i_{1}<i_{2}<\cdots
-    <i_{q}$ with $q$ even we have
-    \begin{eqnarray}
-        \chi^{(a)}_{i_1,L}\cdots \chi^{(a)}_{i_q,L}=\psi^{(a)}_{i_1,L}\cdots \psi^{(a)}_{i_q,L}\ .
-    \end{eqnarray}
-    Therefore, we have
-    \begin{eqnarray}
-        \hat{V}^{(a)}_{i_1\cdots i_q}=i^{q/2}\psi^{(a)}_{i_1,\alpha}\cdots \psi^{(a)}_{i_q,\alpha}
-    \end{eqnarray}
-    It is straightforward to check explicitly that each term $H^{(a)}_{I}$ in
-    the Hamiltoian saistifes the mirror equation:
-    \begin{eqnarray}
-        \psi^{(a)}_{i_1L}\cdots \psi^{(a)}_{i_qL}\ket{e}_a^{\otimes N/2}= \psi^{(a)}_{i_1R}\cdots
-        \psi^{(a)}_{i_qR}\ket{e}_a^{\otimes N/2}\ .
-    \end{eqnarray}
-    This means that in the case of SYK, we do not need to worry about transposes,
-    because every term in the Hamiltonian is symmetric in the basis of $\ket{e}^{\otimes
-    N/2}$. Therefore, we can define
-    \begin{eqnarray}
-        \label{VSYK} \hat{V}^{(a)}_{i_1<\cdots <i_q}= i^{q/2}(\psi^{(a)}_{i_1L}\cdots
-        \psi^{(a)}_{i_qL}- \psi^{(a)}_{i_1R}\cdots \psi^{(a)}_{i_qR})\ .
-    \end{eqnarray}
-
-    %\NL{How about the $g$-averaged higher point functions?}
-
-    % A simple trick to compute higher point functions in the (unnormalized) infinite temperature thermofield double $\ket{1}$ is to compute
-    % \begin{eqnarray}
-    %   &&\mathcal{E}_g(U^{\otimes k}\otimes (U^*)^{\otimes k})(\mathbb{Y}\otimes 1^{\otimes k})\ket{1}^{\otimes k}\nn\\
-    %   &&=\mathcal{E}_g\lb e^{-i g \hat{\mathbb{H}}}\rb(\mathbb{Y}\otimes 1^{\otimes k})\ket{1}^{\otimes k}\nn\\
-    %   &&\hat{\mathbb{H}}=\sum_I g_I \sum_a \hat{V}_I^{(a)}\nn\\
-    %   &&\hat{\mathbb{X}}_I=\sqrt{\sigma}\sum_a \hat{V}_I^{(a)}\ .
-    %   %\rb\nn\\
-    %   %&&=\tr((\mO_1\otimes \cdots \otimes\mO_k)W_{\pi_{cyc}})
-    % \end{eqnarray}
-    % where in our notation $\mathbb{Y}$, $\mathbb{X}_I$ and $\mathbb{H}_I$ acts on $\mathcal{H}^{\otimes k}$, and their hatted versions $\hat{\mathbb{H}}$, $\hat{\mathbb{X}}$ and $\hat{\mathbb{H}}$ act on $\mathcal{H}^{2k}$. Performing the Gaussian integral as before, we find
-    % \begin{eqnarray}
-    %   &&\mathcal{E}_g(U^{\otimes k}\otimes (U^*)^{\otimes k})=e^{-\hat{\mathbb{G}}_{eff}t^2}\nn \\
-    %   &&\hat{\mathbb{G}}_{eff}=\frac{1}{2}\sum_I \hat{\mathbb{X}}_I^2\ .
-    % \end{eqnarray}
-    % This GNS operator can be viewed as a superoperator acting on operators in $\mathcal{H}^{\otimes k}$:
-    % \begin{eqnarray}
-    %   &&e^{-\hat{\mathbb{G}}_{eff}^{(k)}t^2}(\mathbb{Y}\otimes 1^{\otimes k})\ket{1}^{\otimes k}=(\Phi_t^{(k)}(\mathbb{Y})\otimes 1^{\otimes k})\ket{1}^{\otimes k}\nn\\
-    %   &&\hat{\mathbb{G}}_{eff}^{(k)}(\mathbb{Y}\otimes 1)\ket{1}^{\otimes k}=(\mathcal{G}_{eff}^{(k)}(\mathbb{Y})\otimes 1^{\otimes k})\ket{1}^{\otimes k}\nn\\
-    %   &&\mathcal{G}_{eff}^{(k)}(\mathbb{Y})=\lb \mathbb{X}_I \mathbb{Y}\mathbb{X}_I^\dagger-\frac{1}{2}(\mathbb{X}_I^2\mathbb{Y}+\mathbb{Y}(\mathbb{X}_I^\dagger)^2\rb\nn\\
-    %     &&=\lb \mathbb{X}_I \mathbb{Y}\mathbb{X}_I-\frac{1}{2}\{\mathbb{X}_I^2,\mathbb{Y}\}\rb
-    %   \end{eqnarray}
-    %   where we have used the fact that each $\mathbb{X}_I$ term is self-adjoint. The result
-    %   resembles a Linbladian with self-adjoint jump operators $\mathbb{X}_I$ and decay rates $\sigma$, except that it sits next to $t^2$ instead of $t$! Of course, this is NOT a semi-group, and the $k$-fold quantum channel $\Phi_t$ can be written as
-    %   \begin{eqnarray}
-    %     \Phi_{t}^{(k)}(\mathbb{Y})=\sum_{n=0}^\infty \frac{(-t^2)^n}{n!}(\mathcal{G}_{eff}^{(k)})^n(\mathbb{Y})\ .
-    %   \end{eqnarray}
-    % where $W_{\pi_{cyc}}$ is the cyclic permutation $i\to (i+1)\mod k$ on $\mathcal{H}^{\otimes k}$.
-
-    % Note that, in general, $[V_I,V_J]\neq 0$, therefore $[G_{eff},H(g)]\neq 0$ and $[G_{eff},\rho_\beta]=0$.
-
-    % \NL{A convenient limit here is to take the infinite temperature limit $\beta\to 0$, keeping $g$ and $\sigma$ finite. This amounts to sending $\tilde{g}\to 0$, and $\tilde{\sigma}\to 0$}
-
-    %------------------------------------------------------------
-
-    \subsection{$k$-twirl map in large $N$ SYK}
-
-    The effective generator we found is
-    \begin{eqnarray}
-        \allowdisplaybreaks &&\mathbb{G}_{eff}^{(k)}=(-1)^{q/2}\sum_{i_1<\cdots <i_q}(\hat{\mathbb{X}}_{i_1<\cdots <i_q})^2\nn\\
-        &&=(-1)^{q/2}\sum_{i_1<\cdots <i_q}\sum_{a,b=1}^k(\psi_{i_1L}^{(a)}\cdots
-        \psi_{i_qL}^{(a)}-\psi_{i_1R}^{(a)}\cdots \psi_{i_qR}^{(a)})(\psi_{i_1L}^{(b)}\cdots
-        \psi_{i_qL}^{(b)}-\psi_{i_1R}^{(b)}\cdots \psi_{i_qR}^{(b)})\nn\\
-        &&=(-1)^{q/2}\sum_{i_1<\cdots <i_q}\sum_{a,b=1}^k\sum_{\alpha,\beta=L,R}(-1)^{q(q-1)/2}\lb
-        \psi^{(ab)}_{i_1;\alpha\beta}\cdots \psi^{(ab)}_{i_q;\alpha\beta}\rb\nn\\
-        &&=(-i)^q\sum_{i_1<\cdots <i_q}\sum_{a,b=1}^k\sum_{\alpha,\beta=L,R}\lb
-        \psi^{(ab)}_{i_1;\alpha\beta}\cdots \psi^{(ab)}_{i_q;\alpha\beta}\rb\label{Geffk}
-    \end{eqnarray}
-    where we have defined the local bilinears
-    \begin{eqnarray}
-        \label{bilinearpsi} &&M^{(ab)}_{l;\alpha\beta}\equiv i\psi^{(a)}_{l \alpha}\psi^{(b)}_{l\beta}\ .
-    \end{eqnarray}
-    used that for even $q$, the factor $(-1)^{q/2}(-1)^{q(q-1)/2}=1$.
-    % , and that for commutative $A_i$ we have
-    % \begin{equation}
-    % \sum_{i_1<\cdots <i_q}A_{i_1}\cdots A_{i_q}=\frac{1}{q!}\sum_{\text{distinct} \: i_1\cdots i_q}A_{i_1}\cdots A_{i_q}
-    % \end{equation}
-    Note that $M^{(aa)}_{l;\alpha\alpha}=1$, and
-
-    The bilinears at different sites $j\neq j'$ commute:
-    \begin{eqnarray}
-        [M^{(ab)}_{j;\alpha\beta},M^{(a'b')}_{j';\alpha'\beta'}]=0
-    \end{eqnarray}
-    Next, note that since $\psi_{j;LR}^{(ab)}=-\psi_{j;RL}^{(ab)}$ using the
-    fact that $q$ is even, we have
-    \begin{eqnarray}
-        &&\mathbb{G}_{eff}^{(k)}= \sum_{a,b=1}^k\lb e_{q;LL}^{(ab)}+e_{q;RR}^{(ab)}-2e_{q;LR}^{(ab)}\rb\\
-        &&e_{q;\alpha\beta}^{(ab)}=\sum_{i_1<\cdots <i_q}\prod_{m=1}^q\psi^{(ab)}_{i_m;\alpha\beta}
-    \end{eqnarray}
-
-    In the $k$-fold (twirl) construction it is often convenient to bundle the
-    replica label $a=1,\dots,k$ and the side label $\alpha\in\{L,R\}$ into a
-    single ``flavor'' index\footnote{Equivalently, fix any bijection between $(a,
-    \alpha)$ and $\{1 , \dots,2k\}$; an ordering convention then allows
-    shorthand sums such as $\sum_{A<B}$ to run over unordered pairs once.}
-    \begin{eqnarray}
-        &&A \equiv (a,\alpha)\,,\qquad A=1,\dots,2k\nn\\
-        &&s_A=
-        \begin{cases}
-             & 1\qquad A=L    \\
-             & (-1)\qquad A=R
-        \end{cases}\ .
-    \end{eqnarray}
-    Our Majorana fermions $\psi_{i}^{A}$ labeled by sites $i=1,\dots,N$ satisfy
-    \begin{equation}
-        \{\psi_{i}^{A},\psi_{j}^{B}\}=2\,\delta_{ij}\,\delta^{AB}\,, \qquad (\psi
-        _{i}^{A})^{\dagger}=\psi_{i}^{A}\,. \label{eq:majorana_CAR}
-    \end{equation}
-    Motivated by (\ref{bilinearpsi}) we define the antisymmetric bilinears (sitewise
-    generators)
-    \begin{equation}
-        M_{i}^{AB}\;\equiv\;\frac{i}{2}\,[\psi_{i}^{A},\psi_{i}^{B}]\,,\qquad M_{i}
-        ^{AB}=-M_{i}^{BA}\ . \label{eq:def_M}
-    \end{equation}
-    Using \eqref{eq:majorana_CAR}, for $A\neq B$ we have $[\psi_{i}^{A},\psi_{i}^{B}
-    ]=2\psi_{i}^{A}\psi_{i}^{B}$, so the operator $M^{AB}_{i}$ are self-adjoint:
-    \begin{equation}
-        \boxed{ M_i^{AB}= i\,\psi_i^A\psi_i^B \qquad (A\neq B)\,\qquad M_i^{AA}=0}
-        \ . \label{eq:M_as_product}
-    \end{equation}
-    For $i\neq j$, the Majoranas anticommute, $\psi_{i}^{A}\psi_{j}^{B}=-\psi_{j}
-    ^{B}\psi_{i}^{A}$. Since each $M_{i}^{AB}$ is an \emph{even} (quadratic) operator
-    at site $i$, bilinears at distinct sites commute:
-    \begin{equation}
-        [M_{i}^{AB},M_{j}^{CD}] = 0\,,\qquad i\neq j\,. \label{eq:M_commute_different_sites}
-    \end{equation}
-    A direct proof uses \eqref{eq:M_as_product} (for $A\neq B$ and $C\neq D$):
-    \begin{align}
-        M_{i}^{AB}M_{j}^{CD} & = (i\psi_{i}^{A}\psi_{i}^{B})(i\psi_{j}^{C}\psi_{j}^{D}) = -\,\psi_{i}^{A}\psi_{i}^{B}\psi_{j}^{C}\psi_{j}^{D}\nonumber \\
-                             & = -\,\psi_{j}^{C}\psi_{j}^{D}\psi_{i}^{A}\psi_{i}^{B}= M_{j}^{CD}M_{i}^{AB}\,,
-    \end{align}
-    where moving $\psi_{j}^{C}\psi_{j}^{D}$ past $\psi_{i}^{A}\psi_{i}^{B}$ produces
-    $(-1)^{2\cdot 2}=+1$. Since we also know
-    \begin{eqnarray}
-        (M^{AB}_i)^2=\delta_{AB}\,
-    \end{eqnarray}
-    for $A\neq B$, they are self-adjoint unitary operators, therefore their
-    spectrum is either $+1$ or $-1$.
-
-    For $i\neq j$ one also has
-    \begin{equation}
-        [M_{i}^{AB},\psi_{j}^{C}]=0\,,\qquad i\neq j\,, \label{eq:M_commute_fermion_other_site}
-    \end{equation}
-    since moving $\psi_{j}^{C}$ past the quadratic operator at site $i$ produces
-    $(-1)^{2}=+1$. Whereas for the same site ($i=j$), we have
-    \begin{align}
-        [\psi_{i}^{A}\psi_{i}^{B},\psi_{i}^{C}] & = \psi_{i}^{A}\{\psi_{i}^{B},\psi_{i}^{C}\}-\{\psi_{i}^{A},\psi_{i}^{C}\}\psi_{i}^{B}\nonumber                         \\
-                                                & = \psi_{i}^{A}(2\delta^{BC})-(2\delta^{AC})\psi_{i}^{B}= 2\big(\delta^{BC}\psi_{i}^{A}-\delta^{AC}\psi_{i}^{B}\big)\,.
-    \end{align}
-    Multiplying by $i$ gives the compact result
-    \begin{equation}
-        \boxed{ [M_i^{AB},\psi_j^C] \;=\; 2i\,\delta_{ij}\,\big(\delta^{BC}\psi_i^A-\delta^{AC}\psi_i^B\big)\,. }
-        \label{eq:M_comm_psi}
-    \end{equation}
-    This explicitly shows that $M_{i}^{AB}$ generates orthogonal rotations of
-    the flavor index on the Majoranas at each site.
-    %  Since $A,B=1,\cdots, 2k$, we have the Lie-algebra of $\mathfrak{so}(2k)$, corresponding to linear Bogoliubov transformations of the fermions $\psi_i^A$.
-
-    % \subsection{Bilinear--bilinear commutators (closure)}
-    % \label{subsec:M_comm_M}
-    At the same site, the $M_{i}^{AB}$ close into the $\mathfrak{so}(2k)$ Lie algebra.
-    Starting from
-    \begin{equation}
-        [\psi_{i}^{A}\psi_{i}^{B},\psi_{i}^{C}\psi_{i}^{D}] = [\psi_{i}^{A}\psi_{i}
-        ^{B},\psi_{i}^{C}]\psi_{i}^{D}+ \psi_{i}^{C}[\psi_{i}^{A}\psi_{i}^{B},\psi
-        _{i}^{D}]\,,
-    \end{equation}
-    and inserting the previously derived single-fermion commutator results in
-    \begin{equation}
-        \boxed{ [M_i^{AB},M_j^{CD}] = 2i\,\delta_{ij}\Big( \delta^{BC}M_i^{AD} -\delta^{AC}M_i^{BD} -\delta^{BD}M_i^{AC} +\delta^{AD}M_i^{BC} \Big)\,. }
-        \label{eq:so2k_commutator}
-    \end{equation}
-    Together with \eqref{eq:M_commute_different_sites}, Eq.~\eqref{eq:so2k_commutator}
-    shows that each site carries an independent copy of $\mathfrak{so}(2k)$
-    corresponding to the linear Bogoliubov transformations of fermions
-    $\psi_{i}^{A}$, while different sites commute.
-
-    % \paragraph{Remark (ordering and $\sum_{A<B}$).}
-    % Because $M_i^{AB}$ is antisymmetric in $(A,B)$ and $M_i^{AA}=0$, it is often convenient to sum
-    % only over unordered pairs once:
-    % \begin{equation}
-    % \sum_{A<B}(\cdots)\equiv \frac{1}{2}\sum_{A\neq B}(\cdots)\,,
-    % \end{equation}
-    % where the inequality $A<B$ refers to any fixed total ordering of the $2k$ flavors.
-
-    Now, we can write the expression of the effective Hamiltonian in (\ref{Geffk})
-    in terms of these bilinears:
-    \begin{eqnarray}
-        \label{GeffkM} \mathbb{G}_{eff}^{(k)}&&=i^q\sum_{i_1<\cdots <i_q}\lb \sum_A
-        1+s_As_B\sum_{AB}M_{i_1}^{AB}\cdots M_{i_q}^{AB}\rb\nn\\
-        &&=i^q\lb \sum_A 2k{N\choose q}+\sum_{i_1<\cdots <i_q}s_As_B\sum_{AB}M_{i_1}^{AB}\cdots
-        M_{i_q}^{AB}\rb
-    \end{eqnarray}
-    Note that since $M_{i}^{aL,bR}=-M_{i}^{bL,aR}$ and $q$ is even, we can write
-    \begin{eqnarray}
-        \mathbb{G}_{eff}^{(k)}=i^q\lb \sum_A 2k{N\choose q}+\sum_{i_1<\cdots <i_q}\sum_{ab}\lb
-        M_{i_1,LL}^{ab}\cdots M_{i_q,LL}^{ab}+M_{i_1,RR}^{ab}\cdots M_{i_q,RR}^{ab}-2M_{i_1,LR}^{ab}\cdots
-        M_{i_q,LR}^{ab}\rb\rb
-    \end{eqnarray}
-    We can also define new generators
-    \begin{eqnarray}
-        \tilde{M}^{AB}_i\equiv s_As_BM^{AB}_i
-    \end{eqnarray}
-    which also generate $\mathfrak{so}(2k)$ algebra because this redefition is congugation
-    by an $O(2k)$ matrix. To interpret the generator (\ref{}) it is convenient
-    to write it in terms of
-    \begin{eqnarray}
-        \label{eABq} &&\tilde{M}^{AB}=\sum_{i=1}^N \tilde{M}^{AB}_i\nn\\
-        &&e^{AB}_q=\sum_{i_1<\cdots <i_q}\tilde{M}^{AB}_{i_1}\cdots \tilde{M}^{AB}_{i_q}=\sum_{r=0}^{\lfloor q/2\rfloor}c_{q,r}(N)(\tilde{M}^{AB})^{q-2r}
-    \end{eqnarray}
-    using a generating function $\sum_{q=0}^{N}z^{q}e^{AB}_{q}$. Here, the
-    coefficients $c_{q,r}(N)$ are called the Krawtchouk polynomials starting
-    with
-    \begin{eqnarray}
-        &&e_2^{AB}=\frac{(\tilde{M}^{AB})^{2}-N}{2},\nn\\
-        &&e_4^{AB}=\frac{(\tilde{M}^{AB})^{4}-2(3N-4)(\tilde{M}^{AB})^{2}+3N(N-2)}{2}\ .
-    \end{eqnarray}
-
-    Note that the operators $\tilde{M}_{i}^{AB}$ are self-adjoint and square to identity,
-    their spectrum must be $(-1,+1)$. Then, since $\tilde{M}^{AB}$ is a sum of
-    $N$ commuting $\tilde{M}_{i}^{AB}$, its spectrum follows the binomial distribution
-    \begin{eqnarray}
-        S=\{-N,-N+2,\cdots , N-2,N\}\ .
-    \end{eqnarray}
-    Plugging this in the expresison for $e^{AB}_{q}$ (\ref{eABq}) we find that it
-    has the spectrum
-    \begin{eqnarray}
-        e^{AB}_q(S)=\sum_{r=0}^{\lfloor q/2\rfloor}c_{q,r}(N)S^{q-2r}
-    \end{eqnarray}
-
-    It is convenient to strip off factorials and define monic polynomials
-    $p_{q}( S)\equiv q!\,e_{q}^{AB}(S)$. Using Newton identities together with $p
-    _{2m}=\sum_{i}(\tilde M_{i}^{AB})^{2m}=N$ and $p_{2m+1}=\sum_{i}(\tilde M_{i}
-    ^{AB})^{2m+1}=S^{AB}$, one finds the three-term recursion
-    \begin{eqnarray}
-        \label{eq:krawtchouk_recursion} p_{q+1}(S)=S\,p_q(S)-q\,(N-q+1)\,p_{q-1}(S),\qquad
-        p_0(S)=1,\ \ p_1(S)=S\ .
-    \end{eqnarray}
-    This is the standard Krawtchouk (Jacobi) recursion; equivalently, $p_{q}(S)$
-    is the characteristic polynomial of the $q\times q$ tridiagonal matrix with
-    diagonal entries $S$ and off-diagonal entries $\sqrt{m(N-m+1)}$ ($m=1,\dots,q
-    -1$). Expanding $p_{q}(S)=\sum_{r=0}^{\lfloor q/2\rfloor}\tilde c_{q,r}(N)\,S
-    ^{q-2r}$ and comparing with \eqref{eq:eq_expand_monomials} gives
-    $c_{q,r}(N)=\tilde c_{q,r}(N)/q!$ and the coefficient recursion
-    \begin{eqnarray}
-        \label{eq:cqr_recursion} (q+1)\,c_{q+1,r}(N)=c_{q,r}(N)-(N-q+1)\,c_{q-1,r-1}(N),
-    \end{eqnarray}
-    with $c_{0,0}=1$, $c_{1,0}=1$, and $c_{q,r}=0$ for $r<0$ or
-    $r>\lfloor q/2\rfloor$. A fully explicit closed form (weighted matchings on
-    a path) is
-    \begin{eqnarray}
-        \label{eq:cqr_matching} c_{q,r}(N)=\frac{(-1)^{r}}{q!} \!\!\!\sum_{\substack{1\le m_1<\cdots<m_r\le q-1\\ m_{j+1}\ge m_j+2}}
-        \ \prod_{j=1}^{r} \Big(m_j\,(N-m_j+1)\Big)\ .
-    \end{eqnarray}
-    In particular,
-    \begin{eqnarray}
-        c_{q,0}(N)=\frac{1}{q!},\qquad c_{q,1}(N)=-\frac{q(q-1)(3N-2q+4)}{6\,q!},
-    \end{eqnarray}
-    and for $q=2n$ and $N$ even the constant term is
-    \begin{eqnarray}
-        c_{2n,n}(N)=(-1)^n\binom{N/2}{n}\ .
-    \end{eqnarray}
-
-    \subsection{Properties of the generator $G_{eff}^{(k)}$}
-    \subsubsection{Large-$N$ limits of $e_{q}^{AB}$}
-    Fix a pair $A<B$ and denote
-    \begin{eqnarray}
-        S^{AB}\equiv \sum_{i=1}^N \tilde M^{AB}_i,\qquad m^{AB}\equiv
-        \frac{S^{AB}}{N},\qquad e_q^{AB}\equiv \sum_{i_1<\cdots<i_q}\tilde M^{AB}_{i_1}\cdots
-        \tilde M^{AB}_{i_q}\ .
-    \end{eqnarray}
-    Throughout we assume $N$ and $q$ are even. Since for fixed $(A,B)$ we have
-    $[ \tilde M^{AB}_{i},\tilde M^{AB}_{j}]=0$ for $i\neq j$ and
-    $(\tilde M^{AB}_{i})^{2}=\mathbbm 1$, the family $\{\tilde M^{AB}_{i}\}_{i=1}
-    ^{N}$ is simultaneously diagonalizable with eigenvalues $\pm 1$, and
-    $e_{q}^{AB}$ is a polynomial in the single collective variable $S^{AB}$.
-
-    \paragraph{1) $N\to\infty$ with $q$ fixed.}
-    In this regime it is natural to normalize by the number of $q$-subsets. On
-    each joint eigenspace (so $m^{AB}\in[-1,1]$ is a number),
-    \begin{eqnarray}
-        \label{eq:eq_largeN_fixedq} \frac{e_{q}^{AB}}{\binom{N}{q}} = (m^{AB})^q-\frac{q(q-1)}{2N}\big(1-(m^{AB})^2\big)(m^{AB})^{q-2}
-        +O\!\left(\frac{1}{N^{2}}\right)\ ,
-    \end{eqnarray}
-    and in particular $e_{q}^{AB}=\binom{N}{q}(m^{AB})^{q}+O(N^{q-1})$.
-
-    \paragraph{2) $N,q\to\infty$ with $q^{2}/N$ fixed.}
-    Let $q\sim \sqrt{N}$ so that $q^{2}/N=\lambda$ is held fixed. Using the generating
-    function $\sum_{q\ge 0}z^{q}e_{q}^{AB}=(1+z)^{(N+S^{AB})/2}(1-z)^{(N-S^{AB})/2}$
-    and the fact that the coefficient saddle sits at $z\sim q/N\sim N^{-1/2}$,
-    we may expand the logarithms to quadratic order,
-    \begin{eqnarray}
-        (1+z)^{\frac{N+S^{AB}}{2}}(1-z)^{\frac{N-S^{AB}}{2}} =\exp\!\left(S^{AB}z-\frac{N}{2}z^2+o(1)\right),
-    \end{eqnarray}
-    which implies the Hermite scaling form
-    \begin{eqnarray}
-        \label{eq:eq_hermite_scaling} e_q^{AB} =\frac{N^{q/2}}{q!}\, \mathrm{He}_q\!\left(\frac{S^{AB}}{\sqrt{N}}\right)\,\big(1+o(1)\big)\ ,
-    \end{eqnarray}
-    where $\mathrm{He}_{q}$ are the probabilists' Hermite polynomials defined by
-    \begin{eqnarray}
-        e^{xt-\frac{t^{2}}{2}}=\sum_{q=0}^\infty \mathrm{He}_q(x)\,\frac{t^{q}}{q!}\ .
-    \end{eqnarray}
-
-    Then Eq.~\ref{GeffkM} can be written as
-    \begin{eqnarray}
-        \label{eq:Geff_poly_form} G^{(k)}_{eff} = i^{q}\Bigg(2k\binom{N}{q}+\sum_{A<B}
-        e_q^{AB}\Bigg), \qquad e_q^{AB}=\sum_{i_1<\cdots<i_q}\tilde M^{AB}_{i_1}\cdots
-        \tilde M^{AB}_{i_q}\ .
-    \end{eqnarray}
-    For each fixed $(A,B)$, the operators $\{\tilde M^{AB}_{i}\}_{i=1}^{N}$ are commuting
-    involutions, hence $e_{q}^{AB}$ depends only on the single collective
-    variable $\tilde M^{AB}$ and for $q$ even admits the expansion
-    \begin{eqnarray}
-        \label{eq:eq_poly_expand} e_q^{AB}(\tilde M^{AB})=\sum_{r=0}^{q/2} c_{q,r}(N)\,(\tilde
-        M^{AB})^{q-2r}\ .
-    \end{eqnarray}
-    Substituting \eqref{eq:eq_poly_expand} into \eqref{eq:Geff_poly_form} yields
-    \begin{eqnarray}
-        \label{eq:Geff_sum_over_AB} G^{(k)}_{eff} = i^{q}\Bigg(2k\binom{N}{q} +\sum_{A<B}\sum_{r=0}^{q/2}
-        c_{q,r}(N)\,(\tilde M^{AB})^{q-2r}\Bigg)\ .
-    \end{eqnarray}
-
-    \paragraph{Algebraic structure and limits.}
-    At each site $i$, the bilinears $M^{AB}_{i}$ generate a copy of $\mathfrak{so}
-    (2k)$, while different sites commute; therefore the global sums $\tilde M^{AB}
-    =\sum_{i}\tilde M^{AB}_{i}$ generate the diagonal $\mathfrak{so}(2k)$ action
-    and Eq.~\eqref{eq:Geff_sum_over_AB} exhibits $G^{(k)}_{eff}$ as an element of
-    $U(\mathfrak{so}(2k))$ built as a sum over directions $(A,B)$ of the same degree-$q$
-    polynomial in $\tilde M^{AB}$. For $N\to\infty$ with $q$ fixed, $e_{q}^{AB}=\binom
-    {N}{q}(\tilde M^{AB}/N)^{q}+O(N^{q-1})$; in the scaling limit $N,q\to\infty$
-    with $q^{2}/N$ fixed, $e_{q}^{AB}\sim \frac{N^{q/2}}{q!}\mathrm{He}_{q}(\tilde
-    M^{AB}/\sqrt{N})$.
-
-    Aa a superoperator the $k$-twirl map is a Lindbladian with self-adjoint jump
-    operators $X_{I}$ (with $I\equiv i_{1}<\cdots<i_{q}$):
-    \begin{eqnarray}
-        \mathcal{G}^{(k)}_{eff}(Y) &&=\sum_I\!\left(\mathbb{X}_I\,Y\,\mathbb{X}_I-\frac{12}{\{}\mathbb{X}_I^2,Y\}\right)
-        =-\frac{12}{\sum}_I [\mathbb{X}_I,[\mathbb{X}_I,Y]]\,,\nn\\
-        &&=\sum_{I} \sum_{a,a'=1}^k\!\left(V_I^{(a)}\,Y\,V_I^{(a')}-\frac{12}{}V_I^{(a)}V_I^{(a')},Y\}\right),
-    \end{eqnarray}
-    where $V_{I}^{(a)}$ denotes the operator $V_{I}$ acting on replica $a$ (and as
-    the identity on the others).
-
-    \section{Gaussian decay in large $N$ bosonic and Spin SYK}
-\label{sec:bosonic_spin_syk_gaussian_regulator}
-
-In Sec.~\ref{subsec:quenched_syk_gaussian_regulator} we argued that the
-quenched $k$-twirl of SYK becomes a Gaussian decay at large $N$ because
-commutators between distinct interaction terms require rare overlaps of their
-supports.  In this section we repeat the same analysis for the bosonic Spin SYK
-models of \cite{SwingleWiner2024} and the two-component Spin SYK models of
-\cite{BasuDasNandy2026}.  The argument is particularly simple in these models
-because operators acting on different physical sites commute exactly.
-
-We first isolate the general large-$N$ counting that will be used below.
-Consider
+Now, consider the system to be comprised of $N$ degrees of freedom,
+$i=1,\cdots,N$, and $V_I$ is an interaction term that couples different
+sites. For instance, if the sites sit on a lattice, it is natural to consider
+nearest-neighbor two-body interactions $V_I$ with $I=\{i,j\}$ that are
+adjacent on the lattice. More generally, we can consider the interaction to
+be non-local and $q$-body as in the case of hypergraphs such that the label
+$I$ is a set of $q$ distinct sites,
 \begin{equation}
-    H(J)=\sum_{I\in {\cal A}_N} J_I V_I,
-    \qquad
-    \mathbb{E}(J_I)=0,
-    \qquad
-    \mathbb{E}(J_IJ_J)=\sigma_N\delta_{IJ},
-    \label{eq:spin_syk_general_H}
+    I=\{i_1,i_2,\cdots,i_q\}.
 \end{equation}
-where $V_I=V_I^\dagger$, $\|V_I\|=O(1)$, and the interaction label $I$
-contains a fixed number $q$ of physical sites.  We keep $q$ and the number
-of replicas $k$ fixed as $N\rightarrow\infty$.  For the models considered
-below,
+Assuming that the order of labels does not matter, we have the interaction
 \begin{equation}
-    M_N:=|{\cal A}_N|=\Theta(N^q),
+    H
+    =
+    \sum_{i_1<\cdots<i_q}
+    g_{i_1\cdots i_q}V_{i_1\cdots i_q},
     \qquad
-    \sigma_N=\Theta(N^{-(q-1)}).
-    \label{eq:spin_syk_M_sigma_scaling}
+    V_{i_1\cdots i_q}
+    =
+    O_{i_1}\cdots O_{i_q}.
+    \label{eq:qbody_general}
 \end{equation}
-Thus
+If the operators satisfy $[O_i,O_j]\propto\delta_{ij}$, then
+$[V_I,V_J]=0$ for all $I,J$, and we obtain
 \begin{equation}
-    \sigma_N M_N=\Theta(N).
-    \label{eq:spin_syk_extensive_variance}
+    \int d\mu(g)\,
+    e^{-it\sum_I g_I\widehat V_I}
+    =
+    e^{-\frac{\sigma t^2}{2}
+    \sum_I\widehat V_I^2}.
+    \label{eq:qbody_commuting_gaussian}
 \end{equation}
 
-For each replica $a=1,\ldots,k$, define as in
-Eq.~\eqref{eq:Mt_as_gaussian_integral}
+If there are Majorana fermions sitting at each site, i.e.
 \begin{equation}
-    \widehat V_I^{(a)}
+    \{\psi_i,\psi_j\}=2\delta_{ij},
+\end{equation}
+there are certain non-vanishing $[V_I,V_J]$. If the two sets of indices
+$I$ and $J$ have no overlaps, i.e. $I\cap J=\varnothing$, we have
+$[V_I,V_J]=0$. We will assume that $q$ is even. Then, if the number of
+overlaps between the two sets,
+\begin{equation}
+    m=|I\cap J|,
+\end{equation}
+is even, the interaction terms commute, and if it is odd they anticommute:
+\begin{equation}
+    [V_I,V_J]
+    =
+    \left(1-(-1)^{|I\cap J|}\right)V_IV_J.
+    \label{eq:majorana_overlap_commutator}
+\end{equation}
+The case with a Majorana fermion at each site is the SYK model that we will
+discuss in the next section.
+
+Here, we simply make the following observation. Choosing random $q$-element
+sets $I,J$, the probability of having at least one index in common is
+\begin{equation}
+    P(\mathrm{overlap})
+    =
+    1-
+    \frac{\binom{N-q}{q}}{\binom Nq}.
+    \label{eq:overlap_probability}
+\end{equation}
+In the limit of fixed $q$ and large $N$,
+\begin{equation}
+    P(\mathrm{overlap})
+    =
+    \frac{q^2}{N}
+    +
+    O(N^{-2})
+    \longrightarrow0.
+    \label{eq:overlap_largeN}
+\end{equation}
+Therefore almost all pairs of interaction terms commute at large $N$.
+This observation suggests that the Gaussian decay
+\begin{equation}
+    \int d\mu(g)\,
+    e^{-it\sum_I g_I\widehat V_I}
+    \simeq
+    e^{-\frac{\sigma t^2}{2}
+    \sum_I\widehat V_I^2}
+    \label{eq:largeN_gaussian_schematic}
+\end{equation}
+should emerge at large $N$.  The fact that the number of interaction terms
+also grows with $N$ means that the vanishing overlap probability by itself
+is not sufficient to establish this result. Below, we combine the overlap
+counting with the connected cumulant expansion and show that the
+non-commuting corrections are parametrically suppressed in the appropriate
+large-$N$ scaling regime.
+
+
+\subsection{Gaussian decay for the $k$-twirl at large $N$}
+\label{subsec:quenched_syk_gaussian_regulator}
+
+Let $H(J)$ be a quenched SYK Hamiltonian written as a Gaussian linear
+combination
+\begin{equation}
+    H(J)
+    =
+    \sum_I J_I W_I,
+    \qquad
+    W_I:=i^{q/2}V_I=W_I^\dagger,
+    \label{eq:quenched_syk_H_general}
+\end{equation}
+with independent centered Gaussian couplings
+\begin{equation}
+    \mathbb E[J_I]=0,
+    \qquad
+    \mathbb E[J_IJ_J]
+    =
+    \sigma\delta_{IJ},
+    \label{eq:quenched_syk_variance}
+\end{equation}
+and we take $q$ fixed and $N\rightarrow\infty$, with the usual SYK scaling
+\begin{equation}
+    \sigma\sim N^{-(q-1)}
+\end{equation}
+understood.
+
+For each replica define
+\begin{equation}
+    \widehat W_I^{(a)}
     :=
-    V_{I,L}^{(a)}-\left(V_{I,R}^{(a)}\right)^T,
+    W_{I,L}^{(a)}
+    -
+    \left(W_{I,R}^{(a)}\right)^T,
     \qquad
-    \widehat V_I^{(k)}
+    \widehat W_I^{(k)}
     :=
-    \sum_{a=1}^k\widehat V_I^{(a)}.
-    \label{eq:spin_syk_hatV}
+    \sum_{a=1}^k\widehat W_I^{(a)}.
 \end{equation}
-Then the moment operator is
+Then the moment operator of the $k$-twirl is
 \begin{equation}
     M_t^{(k)}
     =
-    \mathbb{E}_J
+    \mathbb E_J
     \left[
-        e^{-it\sum_IJ_I\widehat V_I^{(k)}}
+       e^{-it\sum_IJ_I\widehat W_I^{(k)}}
     \right].
-    \label{eq:spin_syk_Mt}
-\end{equation}
-The expansion through fourth order is
-\begin{align}
-    M_t^{(k)}
-    =&\,
-    1-\frac{\sigma_Nt^2}{2}
-    \sum_I\left(\widehat V_I^{(k)}\right)^2
-    \nonumber\\
-    &+
-    \frac{\sigma_N^2t^4}{24}
-    \sum_{I,J}
-    \bigg[
-       \left(\widehat V_I^{(k)}\right)^2
-       \left(\widehat V_J^{(k)}\right)^2
-       +
-       \widehat V_I^{(k)}\widehat V_J^{(k)}
-       \widehat V_I^{(k)}\widehat V_J^{(k)}
-       \nonumber\\
-    &\hspace{42mm}
-       +
-       \widehat V_I^{(k)}
-       \left(\widehat V_J^{(k)}\right)^2
-       \widehat V_I^{(k)}
-    \bigg]
-    +O(t^6).
-    \label{eq:spin_syk_wick_t4}
-\end{align}
-The coefficient $1/24$ follows directly from the $1/4!$ in the exponential
-and the three Gaussian Wick contractions.  In particular, when all the
-$\widehat V_I^{(k)}$ commute, Eq.~\eqref{eq:spin_syk_wick_t4} reduces to the
-fourth-order expansion of
-\begin{equation}
-    \exp\left[
-       -\frac{\sigma_Nt^2}{2}
-       \sum_I\left(\widehat V_I^{(k)}\right)^2
-    \right].
-    \label{eq:spin_syk_commuting_check}
+    \label{eq:quenched_Mk}
 \end{equation}
 
-Writing
+In models in which the operators $W_I$ are approximately commuting at
+large system size---e.g. because most pairs $W_I,W_J$ have disjoint support
+and hence commute while commutators require rare overlaps---the
+non-commuting corrections in the ordered Wick expansion are suppressed.
+To make this statement precise, write
 \begin{equation}
-    M_t^{(k)}=e^{\Omega(t)},
+    M_t^{(k)}
+    =
+    e^{\Omega(t)},
     \qquad
-    \Omega(t)=\Omega_1(t)+\Omega_2(t)+\cdots,
-    \label{eq:spin_syk_cumulant}
+    \Omega(t)
+    =
+    \Omega_1(t)+\Omega_2(t)+\cdots .
 \end{equation}
-where $\Omega_n$ starts at order $t^{2n}$, we obtain
+The leading contribution is
 \begin{equation}
     \Omega_1(t)
     =
-    -\frac{\sigma_Nt^2}{2}
-    \sum_I\left(\widehat V_I^{(k)}\right)^2,
-    \label{eq:spin_syk_Omega1}
+    -\frac{\sigma t^2}{2}
+    \sum_I
+    \left(\widehat W_I^{(k)}\right)^2.
+    \label{eq:quenched_Omega1}
 \end{equation}
-and
+
+At fourth order, using the Wick expansion of Sec.~2.1, one finds
 \begin{align}
     \Omega_2(t)
     =
-    \frac{\sigma_N^2t^4}{24}
+    \frac{\sigma^2t^4}{24}
     \sum_{I,J}
     \bigg[
-       &\widehat V_I^{(k)}\widehat V_J^{(k)}
-        \widehat V_I^{(k)}\widehat V_J^{(k)}
+       &
+       \widehat W_I^{(k)}
+       \widehat W_J^{(k)}
+       \widehat W_I^{(k)}
+       \widehat W_J^{(k)}
        +
-       \widehat V_I^{(k)}
-       \left(\widehat V_J^{(k)}\right)^2
-       \widehat V_I^{(k)}
+       \widehat W_I^{(k)}
+       \left(\widehat W_J^{(k)}\right)^2
+       \widehat W_I^{(k)}
        \nonumber\\
-       &-
-       2\left(\widehat V_I^{(k)}\right)^2
-        \left(\widehat V_J^{(k)}\right)^2
+       &
+       -
+       2
+       \left(\widehat W_I^{(k)}\right)^2
+       \left(\widehat W_J^{(k)}\right)^2
     \bigg].
-    \label{eq:spin_syk_Omega2}
+    \label{eq:quenched_Omega2}
 \end{align}
 The expression in square brackets vanishes whenever
 \begin{equation}
-    [\widehat V_I^{(k)},\widehat V_J^{(k)}]=0.
-    \label{eq:spin_syk_commuting_pair}
+    [\widehat W_I^{(k)},\widehat W_J^{(k)}]=0.
 \end{equation}
-Hence the first correction to the Gaussian decay is supported only on
-pairs of interaction terms that fail to commute.
+Thus $\Omega_2$ receives contributions only from the $O(1/N)$ fraction of
+pairs whose supports overlap in such a way that the corresponding
+interaction terms fail to commute.
 
-For the bosonic models below, disjoint supports commute.  If $I$ and $J$
-are independently chosen $q$-site interactions, then
+There are
 \begin{equation}
-    {\mathbb P}(I\cap J\neq\varnothing)
-    =
-    1-\frac{\binom{N-q}{q}}{\binom{N}{q}}
-    =
-    \frac{q^2}{N}+O(N^{-2}).
-    \label{eq:spin_syk_overlap_general}
+    M_N=\binom Nq
 \end{equation}
-The probability of a nonzero commutator is therefore at most $O(1/N)$.
-Since $\|\widehat V_I^{(k)}\|=O(k)$ for fixed $k$, Eq.~\eqref{eq:spin_syk_Omega2}
-gives
+interaction terms in SYK.  We consider the diffusive scaling regime
+\begin{equation}
+    \tau
+    :=
+    \sigma t^2\binom Nq
+    \sim Nt^2
+    =
+    O(1).
+    \label{eq:quenched_diffusive_tau}
+\end{equation}
+Then
+\begin{equation}
+    \Omega_1=O(1),
+\end{equation}
+whereas
 \begin{equation}
     \Omega_2
     =
     O\left(
-       \sigma_N^2t^4M_N^2\frac{1}{N}
-    \right).
-    \label{eq:spin_syk_Omega2_counting}
+       \sigma^2t^4
+       \binom Nq^2
+       \frac1N
+    \right)
+    =
+    O(N^{-1}).
+    \label{eq:quenched_Omega2_scaling}
 \end{equation}
-We take the same diffusive scaling limit as in
-Sec.~\ref{subsec:quenched_syk_gaussian_regulator},
+
+The same counting extends order by order in the logarithm of the moment
+operator.  Consider a contribution to $\Omega_n$ containing $r\leq n$
+distinct interaction labels.  Construct a graph whose vertices are the
+distinct interaction terms and join two vertices when the corresponding
+operators fail to commute.  If this graph is disconnected, the corresponding
+sets of operators commute with one another and the Gaussian average
+factorizes between the connected components.  Such a disconnected
+contribution therefore does not appear in the logarithm.
+
+A contribution to $\Omega_n$ must consequently have a connected
+non-commutation graph.  For fixed $q$ and fixed $r$, after choosing the
+first interaction freely, every additional vertex of a spanning tree must
+overlap one of the previously chosen interactions.  Each such overlap costs
+a factor $O(1/N)$.  Hence the number of connected $r$-tuples scales as
+\begin{equation}
+    O\left(
+       \frac{M_N^r}{N^{r-1}}
+    \right).
+\end{equation}
+It follows that, at fixed order $n$,
+\begin{align}
+    \Omega_n
+    &=
+    O\left[
+       (\sigma t^2)^n
+       \frac{M_N^r}{N^{r-1}}
+    \right]
+    \nonumber\\
+    &=
+    O(N^{-(n-1)}),
+    \qquad
+    n\geq2,
+    \label{eq:quenched_Omegan_scaling}
+\end{align}
+where we have used $M_N=\Theta(N^q)$ and
+$\sigma=\Theta(N^{-(q-1)})$ together with
+$\tau=\sigma M_Nt^2=O(1)$.
+
+Therefore, order by order in the fixed-$q$, fixed-$k$ large-$N$ expansion,
+\begin{equation}
+    M_t^{(k)}
+    \simeq
+    \exp\left[
+       -\frac{\sigma t^2}{2}
+       \sum_I
+       \left(\widehat W_I^{(k)}\right)^2
+    \right].
+    \label{eq:quenched_gaussian_regulator}
+\end{equation}
+Here $\simeq$ denotes equality to leading order at large $N$.  The argument
+above establishes the suppression of the non-Gaussian terms at every fixed
+order in $\tau$.  A uniform estimate on the fully resummed series at
+arbitrary finite $\tau$ would require an additional summability bound.
+
+\paragraph{Identification of the effective generator.}
+Define
+\begin{equation}
+    \widehat X_I
+    :=
+    \sqrt{\sigma}\,
+    \widehat W_I^{(k)}
+    =
+    \sqrt{\sigma}
+    \sum_{a=1}^k
+    \left(
+       W_{I,L}^{(a)}
+       -
+       (W_{I,R}^{(a)})^T
+    \right),
+    \qquad
+    \widehat G_{\rm eff}^{(k)}
+    :=
+    \frac12\sum_I\widehat X_I^2.
+    \label{eq:hatGeff_quenched}
+\end{equation}
+Then Eq.~\eqref{eq:quenched_gaussian_regulator} becomes
+\begin{equation}
+    \boxed{
+    M_t^{(k)}
+    \simeq
+    e^{-t^2\widehat G_{\rm eff}^{(k)}}.
+    }
+    \label{eq:Mt_exp_hatGeff}
+\end{equation}
+
+On the physical $k$-replica space define Hermitian operators
+\begin{equation}
+    X_I
+    :=
+    \sqrt{\sigma}
+    \sum_{a=1}^kW_I^{(a)},
+    \qquad
+    \widehat X_I
+    =
+    (X_I)_L-(X_I)_R^T.
+\end{equation}
+Using
+\begin{equation}
+    \left((X)_L-(X)_R^T\right)^2|Y\rangle\rangle
+    =
+    |X^2Y+YX^2-2XYX\rangle\rangle,
+\end{equation}
+we obtain the corresponding superoperator $G_{\rm eff}^{(k)}$ on $Y$ via
+\begin{equation}
+    \widehat G_{\rm eff}^{(k)}|Y\rangle\rangle
+    =
+    |G_{\rm eff}^{(k)}(Y)\rangle\rangle,
+\end{equation}
+namely
+\begin{align}
+    G_{\rm eff}^{(k)}(Y)
+    &=
+    \frac12\sum_I
+    \left(
+       X_I^2Y+YX_I^2-2X_IYX_I
+    \right)
+    \nonumber\\
+    &=
+    \frac12\sum_I[X_I,[X_I,Y]]
+    \nonumber\\
+    &=
+    -\sum_I
+    \left(
+       X_IYX_I
+       -
+       \frac12\{X_I^2,Y\}
+    \right).
+    \label{eq:Geff_quenched}
+\end{align}
+Therefore, in the same large-$N$ regime in which
+Eq.~\eqref{eq:Mt_exp_hatGeff} holds,
+\begin{equation}
+    \boxed{
+    {\cal E}_t^{(k)}
+    \simeq
+    e^{-t^2G_{\rm eff}^{(k)}}.
+    }
+    \label{eq:quenched_channel_final}
+\end{equation}
+\section{Gaussian decay in large $N$ bosonic and Spin SYK}
+\label{sec:bosonic_spin_syk_gaussian_regulator}
+
+In Sec.~\ref{subsec:quenched_syk_gaussian_regulator} we argued that the
+quenched $k$-twirl becomes a Gaussian decay at large $N$ when the
+non-commuting interaction terms require rare overlaps of their supports.
+The argument applies more generally to fixed-$q$ all-to-all models for
+which
+\begin{equation}
+    M_N=\Theta(N^q),
+    \qquad
+    \sigma_N=\Theta(N^{-(q-1)}),
+\end{equation}
+and the probability that two randomly chosen interaction terms fail to
+commute is $O(N^{-1})$.  In this section we apply this result to the
+bosonic Spin SYK models of \cite{SwingleWiner} and the two-component
+Spin SYK models of \cite{BasuDasNandy}.  The overlap counting is
+particularly simple in these models because operators acting on different
+physical sites commute exactly.
+
+For a Hamiltonian
+\begin{equation}
+    H(J)=\sum_{I\in{\cal A}_N}J_IV_I,
+    \qquad
+    \mathbb E[J_I]=0,
+    \qquad
+    \mathbb E[J_IJ_J]=\sigma_N\delta_{IJ},
+    \label{eq:spin_syk_general_H}
+\end{equation}
+define
+\begin{equation}
+    W_I
+    :=
+    \sum_{a=1}^kV_I^{(a)}.
+\end{equation}
+Whenever the conditions above hold, the result of
+Sec.~\ref{subsec:quenched_syk_gaussian_regulator} gives, order by order
+in the fixed-$q$, fixed-$k$ large-$N$ expansion,
+\begin{equation}
+    {\cal E}_t^{(k)}
+    \simeq
+    e^{-t^2G_{\rm eff}^{(k)}},
+    \label{eq:spin_syk_general_regulator}
+\end{equation}
+where
+\begin{equation}
+    G_{\rm eff}^{(k)}(Y)
+    =
+    \frac{\sigma_N}{2}
+    \sum_{I\in{\cal A}_N}
+    [W_I,[W_I,Y]].
+    \label{eq:spin_syk_Geff_general}
+\end{equation}
+The natural large-$N$ scaling variable is
 \begin{equation}
     \tau_N
     :=
@@ -1270,153 +882,15 @@ Sec.~\ref{subsec:quenched_syk_gaussian_regulator},
     t^2=O(N^{-1}).
     \label{eq:spin_syk_diffusive_scaling}
 \end{equation}
-It follows that
-\begin{equation}
-    \Omega_1=O(1),
-    \qquad
-    \Omega_2=O(N^{-1}).
-    \label{eq:spin_syk_Omega12_scaling}
-\end{equation}
-
-The same counting extends order by order in the cumulant expansion.  To see
-this, consider a term in $\Omega_n$ containing $r\leq n$ distinct interaction
-labels.  Construct a graph whose vertices are the distinct labels and join
-$I$ and $J$ when
-$[\widehat V_I^{(k)},\widehat V_J^{(k)}]\neq0$.  If this graph is
-disconnected, the corresponding sets of generators commute with one another.
-The exponential and the Gaussian average then factorize between the
-components, so such a contribution cannot occur in the logarithm.  A
-contribution to $\Omega_n$ must therefore have a connected noncommutation
-graph.
-
-For fixed $q$ and $r$, the number of $r$-tuples with connected overlap graph
-is
-\begin{equation}
-    O\left(
-       \frac{M_N^r}{N^{r-1}}
-    \right).
-    \label{eq:spin_syk_connected_tuple_count}
-\end{equation}
-Indeed, after choosing the first interaction freely, every additional vertex
-of a spanning tree must overlap one of the previously chosen interactions,
-which costs a factor $O(1/N)$.  Repetitions of interaction labels only reduce
-the number of independent sums.  Therefore, at fixed order $n$,
-\begin{align}
-    \Omega_n
-    &=
-    O\left[
-       (\sigma_Nt^2)^n
-       \frac{M_N^r}{N^{r-1}}
-    \right]
-    \nonumber\\
-    &=
-    O\left[
-       \tau_N^n
-       M_N^{r-n}N^{-(r-1)}
-    \right]
-    =
-    O(N^{-(n-1)}),
-    \qquad n\geq2,
-    \label{eq:spin_syk_Omegan_scaling}
-\end{align}
-where in the last step we used $M_N=\Theta(N^q)$ and
-\begin{equation}
-    q(n-r)+(r-1)\geq n-1.
-\end{equation}
-Thus, order by order in the connected expansion,
-\begin{equation}
-    M_t^{(k)}
-    \simeq
-    \exp\left[
-       -\frac{\sigma_Nt^2}{2}
-       \sum_I\left(\widehat V_I^{(k)}\right)^2
-    \right].
-    \label{eq:spin_syk_general_regulator}
-\end{equation}
-Here and below $\simeq$ means equality to leading order in the fixed-$q$,
-fixed-$k$ large $N$ expansion.  The counting above establishes the
-suppression at every fixed order in $\tau_N$.  A uniform estimate for the
-resummed cumulant series at arbitrary finite $\tau_N$ would require an
-additional summability bound, which we will not attempt here.
-
-It is convenient to define
-\begin{equation}
-    \widehat X_I
-    :=
-    \sqrt{\sigma_N}\widehat V_I^{(k)},
-    \qquad
-    \widehat G_{\rm eff}^{(k)}
-    :=
-    \frac12\sum_I\widehat X_I^2
-    =
-    \frac{\sigma_N}{2}
-    \sum_I\left(\widehat V_I^{(k)}\right)^2.
-    \label{eq:spin_syk_Geff_hat}
-\end{equation}
-Then
-\begin{equation}
-    M_t^{(k)}
-    \simeq
-    e^{-t^2\widehat G_{\rm eff}^{(k)}}.
-    \label{eq:spin_syk_Mt_Geff}
-\end{equation}
-Equivalently, defining the $O(1)$ normalized generator
-\begin{equation}
-    \overline G_{\rm eff}^{(k)}
-    :=
-    \frac{\widehat G_{\rm eff}^{(k)}}{\sigma_NM_N},
-    \label{eq:spin_syk_Gbar}
-\end{equation}
-we can write
-\begin{equation}
-    M_t^{(k)}
-    \simeq
-    e^{-\tau_N\overline G_{\rm eff}^{(k)}}.
-    \label{eq:spin_syk_Mt_tau}
-\end{equation}
-This form makes explicit that the finite large $N$ variable is
-$\tau_N=\sigma_NM_Nt^2$, rather than $t$ itself.
-
-On the physical $k$-replica Hilbert space let
-\begin{equation}
-    X_I
-    :=
-    \sqrt{\sigma_N}
-    \sum_{a=1}^kV_I^{(a)}.
-    \label{eq:spin_syk_XI}
-\end{equation}
-Using Eq.~\eqref{eq:Geff_quenched}, the corresponding superoperator is
-\begin{equation}
-    G_{\rm eff}^{(k)}(Y)
-    =
-    \frac12\sum_I[X_I,[X_I,Y]]
-    =
-    \frac{\sigma_N}{2}
-    \sum_I
-    \left[
-       \sum_{a=1}^kV_I^{(a)},
-       \left[
-          \sum_{b=1}^kV_I^{(b)},Y
-       \right]
-    \right].
-    \label{eq:spin_syk_Geff_physical}
-\end{equation}
-Therefore
-\begin{equation}
-    {\cal E}_t^{(k)}
-    \simeq
-    e^{-t^2G_{\rm eff}^{(k)}}.
-    \label{eq:spin_syk_Et_general}
-\end{equation}
 
 
 \subsection{Three-component bosonic Spin SYK}
 \label{subsec:three_component_spin_syk_regulator}
 
-We first consider the Spin SYK model of \cite{SwingleWiner2024}.  There are
+We first consider the Spin SYK model of \cite{SwingleWiner}.  There are
 $N$ qubits and a generic interaction is
 \begin{equation}
-    V_{I}
+    V_I
     =
     \sigma_{r_1}^{\mu_1}\cdots\sigma_{r_q}^{\mu_q},
     \qquad
@@ -1437,9 +911,9 @@ The Hamiltonian is
 \end{equation}
 with
 \begin{equation}
-    \mathbb{E}(J_I)=0,
+    \mathbb E[J_I]=0,
     \qquad
-    \mathbb{E}(J_IJ_J)
+    \mathbb E[J_IJ_J]
     =
     \sigma_q^{(3)}\delta_{IJ},
     \qquad
@@ -1452,22 +926,28 @@ There are
 \begin{equation}
     M_q^{(3)}
     =
-    3^q\binom{N}{q}
+    3^q\binom Nq
     \label{eq:SW_number_terms}
 \end{equation}
 interaction terms.
 
-The overlap counting can be sharpened because two overlapping Pauli strings
-need not anticommute.  Suppose two interaction terms overlap on $m$ sites.
-At each shared site the two Pauli matrices disagree with probability $2/3$.
-If $d$ is the number of shared sites with different Pauli components, then
+The overlap counting can be sharpened because two overlapping Pauli
+strings need not anticommute.  Suppose two interaction terms overlap on
+$m$ sites.  At each shared site the two Pauli matrices disagree with
+probability $2/3$.  If $d$ is the number of shared sites with different
+Pauli components, then
 \begin{equation}
     V_IV_J=(-1)^dV_JV_I.
     \label{eq:SW_commutation_sign}
 \end{equation}
 Conditioned on an overlap of size $m$,
 \begin{equation}
-    {\mathbb P}\left([V_I,V_J]\neq0\,\middle|\,m\right)
+    {\mathbb P}
+    \left(
+       [V_I,V_J]\neq0
+       \,\middle|\,
+       |I\cap J|=m
+    \right)
     =
     {\mathbb P}(d\ {\rm odd})
     =
@@ -1481,9 +961,9 @@ strings fail to commute is
     =
     \sum_{m=1}^q
     \frac{
-       \binom{q}{m}\binom{N-q}{q-m}
+       \binom qm\binom{N-q}{q-m}
     }{
-       \binom{N}{q}
+       \binom Nq
     }
     \frac{1-(-1/3)^m}{2}.
     \label{eq:SW_pnc_exact}
@@ -1493,11 +973,13 @@ At fixed $q$ and large $N$, the $m=1$ term dominates, giving
     p_{\rm nc}^{(3)}
     =
     \frac{2q^2}{3N}
-    +O(N^{-2}).
+    +
+    O(N^{-2}).
     \label{eq:SW_pnc_largeN}
 \end{equation}
-Thus the extra spin-component labels change only the numerical coefficient
-of the rare-overlap probability; the $1/N$ suppression is unchanged.
+Thus the additional spin-component labels change only the numerical
+coefficient of the rare-overlap probability; the $1/N$ suppression is
+unchanged.
 
 The effective $k$-twirl generator is
 \begin{equation}
@@ -1515,7 +997,8 @@ where
     :=
     \sum_{a=1}^k
     \left(
-       \sigma_{r_1}^{\mu_1}\cdots
+       \sigma_{r_1}^{\mu_1}
+       \cdots
        \sigma_{r_q}^{\mu_q}
     \right)^{(a)}.
     \label{eq:SW_WI}
@@ -1528,19 +1011,23 @@ The diffusive variable is
     \nonumber\\
     &=
     \frac{(q-1)!J^2}{N^{q-1}}
-    3^q\binom{N}{q}t^2
-    =
+    3^q\binom Nq t^2
+    \nonumber\\
+    &=
     \frac{3^q}{q}J^2Nt^2
-    \left[1+O(N^{-1})\right].
+    \left[
+       1+O(N^{-1})
+    \right].
     \label{eq:SW_tau_general}
 \end{align}
+
 For the quadratic model,
 \begin{equation}
     q=2:
     \qquad
     \sigma_2^{(3)}=\frac{J^2}{N},
     \qquad
-    M_2^{(3)}=9\binom{N}{2},
+    M_2^{(3)}=9\binom N2,
     \qquad
     p_{\rm nc}^{(3)}
     =
@@ -1552,7 +1039,9 @@ and
     \tau_2^{(3)}
     =
     \frac92J^2Nt^2
-    \left[1+O(N^{-1})\right].
+    \left[
+       1+O(N^{-1})
+    \right].
     \label{eq:SW_q2_tau}
 \end{equation}
 The generator is
@@ -1571,20 +1060,26 @@ where
     W_{rs}^{\mu\nu}
     :=
     \sum_{a=1}^k
-    \left(\sigma_r^\mu\sigma_s^\nu\right)^{(a)}.
+    (\sigma_r^\mu\sigma_s^\nu)^{(a)}.
 \end{equation}
 
 For the quartic model,
 \begin{equation}
     q=4:
     \qquad
-    \sigma_4^{(3)}=\frac{6J^2}{N^3},
+    \sigma_4^{(3)}
+    =
+    \frac{6J^2}{N^3},
     \qquad
-    M_4^{(3)}=81\binom{N}{4},
+    M_4^{(3)}
+    =
+    81\binom N4,
     \qquad
     p_{\rm nc}^{(3)}
     =
-    \frac{32}{3N}+O(N^{-2}),
+    \frac{32}{3N}
+    +
+    O(N^{-2}),
     \label{eq:SW_q4_data}
 \end{equation}
 and
@@ -1592,11 +1087,13 @@ and
     \tau_4^{(3)}
     =
     \frac{81}{4}J^2Nt^2
-    \left[1+O(N^{-1})\right].
+    \left[
+       1+O(N^{-1})
+    \right].
     \label{eq:SW_q4_tau}
 \end{equation}
 The generator is
-\begin{align}
+\begin{equation}
     G_{{\rm eff},4}^{(k,3)}(Y)
     =
     \frac{3J^2}{N^3}
@@ -1604,8 +1101,8 @@ The generator is
     \sum_{\mu_1,\ldots,\mu_4=x,y,z}
     [W_I,[W_I,Y]].
     \label{eq:SW_q4_Geff}
-\end{align}
-Both $q=2$ and $q=4$ therefore have
+\end{equation}
+Thus, for $q=2$ and $q=4$,
 \begin{equation}
     {\cal E}_{t,q}^{(k)}
     \simeq
@@ -1616,18 +1113,18 @@ Both $q=2$ and $q=4$ therefore have
 \end{equation}
 
 This statement concerns the quenched disorder average of the real-time
-$k$-twirl in the diffusive large $N$ limit.  It should not be confused with
-the low-temperature saddle-point question studied in
-\cite{SwingleWiner2024}; in particular, the Gaussian-decay counting does
-not by itself determine whether the low-energy phase is glassy or SYK-like.
+$k$-twirl in the diffusive large-$N$ limit.  It should not be confused
+with the low-temperature saddle-point question studied in
+\cite{SwingleWiner}; in particular, the Gaussian-decay counting does not
+by itself determine whether the low-energy phase is glassy or SYK-like.
 
 
 \subsection{Two-component Spin SYK}
 \label{subsec:two_component_spin_syk_regulator}
 
-We next consider the Spin SYK models of \cite{BasuDasNandy2026}.  We denote
-the number of physical spin sites by $N_{\rm Spin}$.  The $2N_{\rm Spin}$
-constituent operators are
+We next consider the Spin SYK models of \cite{BasuDasNandy}.  We denote
+the number of physical spin sites by $N_{\rm Spin}$.  The
+$2N_{\rm Spin}$ constituent operators are
 \begin{equation}
     O_{2r-1}=\sigma_r^x,
     \qquad
@@ -1660,44 +1157,46 @@ with
     V_{i_1\cdots i_q}^\dagger,
     \label{eq:BDN_VI}
 \end{equation}
-and the $J_{i_1\cdots i_q}$ are independent unit-variance Gaussian random
-variables.  Equivalently, after absorbing the deterministic prefactor into
-the random coupling, Eq.~\eqref{eq:spin_syk_general_H} applies with
+and the $J_{i_1\cdots i_q}$ are independent unit-variance Gaussian
+random variables.  Equivalently, after absorbing the deterministic
+prefactor into the random coupling,
 \begin{equation}
     \sigma_q^{(2)}
     =
-    \frac{(q-1)!}{(2N_{\rm Spin})^{q-1}}.
+    \frac{(q-1)!}
+         {(2N_{\rm Spin})^{q-1}}.
     \label{eq:BDN_sigma}
 \end{equation}
 
 It is useful first to consider the genuine model, denoted gSpin-SYK in
-\cite{BasuDasNandy2026}, in which no interaction contains two constituent
-operators from the same physical spin site.  A genuine interaction can be
-written
+\cite{BasuDasNandy}, in which no interaction contains two constituent
+operators from the same physical spin site.  Since all factors then act
+on distinct sites, a genuine interaction is simply
 \begin{equation}
-    V_{S,\boldsymbol{\alpha}}
+    V_{S,\boldsymbol\alpha}
     =
     \prod_{r\in S}\sigma_r^{\alpha_r},
     \qquad
     |S|=q,
     \qquad
-    \alpha_r\in\{x,y\},
+    \alpha_r\in\{x,y\}.
     \label{eq:BDN_genuine_V}
 \end{equation}
-up to the harmless overall sign needed to make the original
-$O_{i_1}\cdots O_{i_q}$ convention Hermitian.  There are
+There are
 \begin{equation}
     M_{q,g}^{(2)}
     =
-    2^q\binom{N_{\rm Spin}}{q}
+    2^q
+    \binom{N_{\rm Spin}}q
     \label{eq:BDN_genuine_number}
 \end{equation}
 such terms.
 
-Suppose two genuine interactions overlap on $m\geq1$ physical sites.  On
-each shared site the two Pauli components disagree with probability $1/2$.
-The number of mismatches is therefore binomially distributed with parameter
-$1/2$, and for every $m\geq1$ its parity is exactly uniform.  Hence
+Suppose two genuine interactions overlap on $m\geq1$ physical sites.
+On each shared site the two Pauli components disagree with probability
+$1/2$.  The number of mismatches is therefore binomially distributed
+with parameter $1/2$, and for every $m\geq1$ its parity is exactly
+uniform.  Hence
 \begin{equation}
     {\mathbb P}
     \left(
@@ -1719,12 +1218,13 @@ It follows that
        \frac{
           \binom{N_{\rm Spin}-q}{q}
        }{
-          \binom{N_{\rm Spin}}{q}
+          \binom{N_{\rm Spin}}q
        }
     \right]
     =
     \frac{q^2}{2N_{\rm Spin}}
-    +O(N_{\rm Spin}^{-2}).
+    +
+    O(N_{\rm Spin}^{-2}).
     \label{eq:BDN_pnc}
 \end{equation}
 
@@ -1735,14 +1235,14 @@ The effective generator of the genuine model is
     \frac{(q-1)!}
          {2(2N_{\rm Spin})^{q-1}}
     \sum_{\substack{|S|=q\\
-                    \boldsymbol{\alpha}\in\{x,y\}^q}}
-    [W_{S,\boldsymbol{\alpha}},
-     [W_{S,\boldsymbol{\alpha}},Y]],
+                    \boldsymbol\alpha\in\{x,y\}^q}}
+    [W_{S,\boldsymbol\alpha},
+     [W_{S,\boldsymbol\alpha},Y]],
     \label{eq:BDN_genuine_Geff}
 \end{equation}
 where
 \begin{equation}
-    W_{S,\boldsymbol{\alpha}}
+    W_{S,\boldsymbol\alpha}
     :=
     \sum_{a=1}^k
     \left(
@@ -1757,12 +1257,18 @@ Its diffusive variable is
     \sigma_q^{(2)}M_{q,g}^{(2)}t^2
     \nonumber\\
     &=
-    \frac{(q-1)!}{(2N_{\rm Spin})^{q-1}}
-    2^q\binom{N_{\rm Spin}}{q}t^2
+    \frac{(q-1)!}
+         {(2N_{\rm Spin})^{q-1}}
+    2^q
+    \binom{N_{\rm Spin}}q
+    t^2
     \nonumber\\
     &=
-    \frac{2}{q}N_{\rm Spin}t^2
-    \left[1+O(N_{\rm Spin}^{-1})\right].
+    \frac{2}{q}
+    N_{\rm Spin}t^2
+    \left[
+       1+O(N_{\rm Spin}^{-1})
+    \right].
     \label{eq:BDN_tau_general}
 \end{align}
 
@@ -1774,12 +1280,13 @@ For $q=2$,
     \qquad
     M_{2,g}^{(2)}
     =
-    4\binom{N_{\rm Spin}}{2},
+    4\binom{N_{\rm Spin}}2,
     \qquad
     p_{{\rm nc},g}^{(2)}
     =
     \frac{2}{N_{\rm Spin}}
-    +O(N_{\rm Spin}^{-2}),
+    +
+    O(N_{\rm Spin}^{-2}),
     \label{eq:BDN_q2_data}
 \end{equation}
 and
@@ -1787,7 +1294,9 @@ and
     \tau_{2,g}^{(2)}
     =
     N_{\rm Spin}t^2
-    \left[1+O(N_{\rm Spin}^{-1})\right].
+    \left[
+       1+O(N_{\rm Spin}^{-1})
+    \right].
     \label{eq:BDN_q2_tau}
 \end{equation}
 The generator is
@@ -1806,9 +1315,7 @@ where
     W_{rs}^{\alpha\beta}
     =
     \sum_{a=1}^k
-    \left(
-       \sigma_r^\alpha\sigma_s^\beta
-    \right)^{(a)}.
+    (\sigma_r^\alpha\sigma_s^\beta)^{(a)}.
 \end{equation}
 
 For $q=4$,
@@ -1819,12 +1326,13 @@ For $q=4$,
     \qquad
     M_{4,g}^{(2)}
     =
-    16\binom{N_{\rm Spin}}{4},
+    16\binom{N_{\rm Spin}}4,
     \qquad
     p_{{\rm nc},g}^{(2)}
     =
     \frac{8}{N_{\rm Spin}}
-    +O(N_{\rm Spin}^{-2}),
+    +
+    O(N_{\rm Spin}^{-2}),
     \label{eq:BDN_q4_data}
 \end{equation}
 and
@@ -1832,11 +1340,13 @@ and
     \tau_{4,g}^{(2)}
     =
     \frac12N_{\rm Spin}t^2
-    \left[1+O(N_{\rm Spin}^{-1})\right].
+    \left[
+       1+O(N_{\rm Spin}^{-1})
+    \right].
     \label{eq:BDN_q4_tau}
 \end{equation}
 The corresponding generator is
-\begin{align}
+\begin{equation}
     G_{{\rm eff},4,g}^{(k,2)}(Y)
     =
     \frac{3}{8N_{\rm Spin}^3}
@@ -1844,7 +1354,7 @@ The corresponding generator is
     \sum_{\alpha_1,\ldots,\alpha_4=x,y}
     [W_I,[W_I,Y]].
     \label{eq:BDN_q4_Geff}
-\end{align}
+\end{equation}
 Thus, for both $q=2$ and $q=4$,
 \begin{equation}
     {\cal E}_{t,q,g}^{(k)}
@@ -1859,15 +1369,15 @@ Thus, for both $q=2$ and $q=4$,
 \subsection{Full versus genuine Spin SYK}
 \label{subsec:full_vs_genuine_spin_syk}
 
-The full Spin-SYK model of \cite{BasuDasNandy2026} allows several of the
+The full Spin-SYK model of \cite{BasuDasNandy} allows several of the
 constituent indices $i_1,\ldots,i_q$ to correspond to different Pauli
 components on the same physical site.  Because only $\sigma^x$ and
-$\sigma^y$ occur, at most two constituent indices can come from one site.
-The total number of terms in the full model is
+$\sigma^y$ occur, at most two constituent indices can come from one
+site.  The total number of terms in the full model is
 \begin{equation}
     M_{q,{\rm full}}^{(2)}
     =
-    \binom{2N_{\rm Spin}}{q},
+    \binom{2N_{\rm Spin}}q,
     \label{eq:BDN_full_number}
 \end{equation}
 whereas the number of genuine $q$-site terms is
@@ -1887,8 +1397,10 @@ $2^q\binom{N_{\rm Spin}}q$.  Their ratio obeys
     \nonumber\\
     &=
     1-
-    \frac{q(q-1)}{4N_{\rm Spin}}
-    +O(N_{\rm Spin}^{-2}).
+    \frac{q(q-1)}
+         {4N_{\rm Spin}}
+    +
+    O(N_{\rm Spin}^{-2}).
     \label{eq:BDN_genuine_fraction}
 \end{align}
 Thus the number of collision terms is
@@ -1899,22 +1411,20 @@ Thus the number of collision terms is
     \label{eq:BDN_collision_number}
 \end{equation}
 Since
-$\sigma_q^{(2)}=O(N_{\rm Spin}^{-(q-1)})$, their contribution to the
-unscaled effective generator is only
+\begin{equation}
+    \sigma_q^{(2)}
+    =
+    O(N_{\rm Spin}^{-(q-1)}),
+\end{equation}
+their contribution to the unscaled effective generator is
 \begin{equation}
     \Delta G_{\rm eff}^{(k)}
     =
     O(1),
     \label{eq:BDN_collision_G}
 \end{equation}
-whereas the genuine $q$-site sector gives
-\begin{equation}
-    G_{{\rm eff},q,g}^{(k,2)}
-    =
-    O(N_{\rm Spin}).
-    \label{eq:BDN_genuine_G_scaling}
-\end{equation}
-On the diffusive time scale $t^2=O(N_{\rm Spin}^{-1})$,
+whereas the genuine $q$-site sector is $O(N_{\rm Spin})$.  On the
+diffusive time scale $t^2=O(N_{\rm Spin}^{-1})$,
 \begin{equation}
     t^2\Delta G_{\rm eff}^{(k)}
     =
@@ -1930,26 +1440,26 @@ Consequently, for fixed even $q$,
     e^{-t^2G_{{\rm eff},q,g}^{(k,2)}}.
     \label{eq:BDN_full_genuine_same}
 \end{equation}
-In particular, the full and genuine quadratic models have the same leading
-large $N_{\rm Spin}$ Gaussian decay, and the same is true of the full
-and genuine quartic models.  The self-site terms in the quadratic model and
-the lower-support collision terms in the quartic model first affect the
-diffusive evolution at relative order $1/N_{\rm Spin}$.
+In particular, the full and genuine quadratic models have the same
+leading large-$N_{\rm Spin}$ Gaussian decay, and the same is true of the
+full and genuine quartic models.  The self-site terms in the quadratic
+model and the lower-support collision terms in the quartic model first
+affect the diffusive evolution at order $1/N_{\rm Spin}$.
 
 
-\subsection{Conserved $\mathbb{Z}_2$ charge in the two-component model}
+\subsection{Conserved $\mathbb Z_2$ charge in the two-component model}
 \label{subsec:BDN_Z2_charge}
 
-There is one additional difference between the two-component model and the
-generic three-component bosonic Spin SYK model.  Define
+There is one additional difference between the two-component model and
+the generic three-component bosonic Spin SYK model.  Define
 \begin{equation}
     \Gamma^3
     :=
     \bigotimes_{r=1}^{N_{\rm Spin}}\sigma_r^z.
     \label{eq:BDN_Gamma3}
 \end{equation}
-Every constituent operator in Eq.~\eqref{eq:BDN_constituent_O} anticommutes
-with $\Gamma^3$,
+Every constituent operator in Eq.~\eqref{eq:BDN_constituent_O}
+anticommutes with $\Gamma^3$,
 \begin{equation}
     \{\Gamma^3,O_i\}=0.
     \label{eq:BDN_Gamma_O}
@@ -1988,38 +1498,37 @@ Hence
     a=1,\ldots,k.
     \label{eq:BDN_replica_charge_commutant}
 \end{equation}
-Together with replica permutations, these charges are therefore contained
-in the kernel algebra of $G_{\rm eff}^{(k)}$.  In particular, the
-two-component $k$-twirl cannot converge to the unrestricted Haar twirl on
-the full Hilbert space.  If the interaction algebra is otherwise
-irreducible within each fixed-$\Gamma^3$ sector, the natural candidate for
-the late-time limit is instead the Haar twirl separately within the two
-$\Gamma^3=\pm1$ sectors.  Establishing this last irreducibility statement is
-a separate Lie-algebra problem and is not implied by the overlap counting
-above.
+Together with the replica permutations, these operators therefore lie in
+the kernel of $G_{\rm eff}^{(k)}$.  In particular, the two-component
+$k$-twirl cannot converge to the unrestricted Haar twirl on the full
+Hilbert space.  Determining whether these charges and the replica
+permutations generate the complete invariant algebra requires a separate
+analysis of the interaction algebra and is not implied by the overlap
+counting above.
 
 
 \subsection{Summary}
 
-The quadratic and quartic bosonic Spin SYK models have the same large $N$
-mechanism as the quenched fermionic SYK model discussed above.  Their
-interaction terms have bounded support, disjoint interactions commute, and
-the probability that two randomly chosen interactions fail to commute is
-$O(1/N)$.  With the usual extensive normalization
-$\sigma_NM_N=\Theta(N)$, the finite large $N$ time variable is
+The quadratic and quartic bosonic Spin SYK models obey the same large-$N$
+mechanism established in Sec.~\ref{subsec:quenched_syk_gaussian_regulator}.
+Their interaction terms have bounded support, the number of leading
+$q$-body terms is $\Theta(N^q)$, and the probability that two randomly
+chosen interaction terms fail to commute is $O(1/N)$.  With the usual
+extensive normalization,
 \begin{equation}
-    \tau_N=\sigma_NM_Nt^2=O(1),
+    \sigma_NM_N=\Theta(N),
+\end{equation}
+the finite large-$N$ time variable is
+\begin{equation}
+    \tau_N
+    =
+    \sigma_NM_Nt^2
+    =
+    O(1),
     \qquad
     t=O(N^{-1/2}).
 \end{equation}
-At every fixed order in the connected cumulant expansion,
-\begin{equation}
-    \Omega_1=O(1),
-    \qquad
-    \Omega_n=O(N^{-(n-1)}),
-    \quad n\geq2,
-\end{equation}
-and the leading $k$-twirl is therefore the Gaussian decay
+The leading $k$-twirl is therefore
 \begin{equation}
     \boxed{
     {\cal E}_t^{(k)}
@@ -2040,22 +1549,760 @@ and the leading $k$-twirl is therefore the Gaussian decay
     \label{eq:bosonic_spin_syk_final_box}
 \end{equation}
 For the two-component Spin SYK model, the full and genuine ensembles give
-the same generator at leading order, while the exact $\Gamma^3$ charge
-restricts the invariant algebra for even $q$.
+the same leading generator, while the exact $\Gamma^3$ charge enlarges
+the invariant algebra for even $q$.
 
 
-    \NL{Is there an ergodicity statement in the $k$-fold establishing that the $k$-fold semigroup generates the whole unitary ensemble. This is equivalent to the absence of other charges}
 
-    \NL{For actual SYK, we expect a semi-group to emerge at very low frequency $(\beta\omega)\ll (\beta g)$. is there something related to this that we can say? for example, can we replace the Brownian noise with time-independent noise, and use a low-pass filter to project to low frequencies...}
+\section{Gaussian decay in large $N$ SYK}
+\label{sec:largeN_SYK}
 
-    %\section{To do}
+We now return to fermionic SYK and study the structure of the effective
+generator in more detail.  The SYK model is comprised of $N$ Majorana
+fermions $\chi_i$, $i=1,\ldots,N$, with
+\begin{equation}
+    \{\chi_i,\chi_j\}=2\delta_{ij},
+\end{equation}
+and Hamiltonian
+\begin{equation}
+    H
+    =
+    i^{q/2}
+    \sum_{i_1<\cdots<i_q}
+    J_{i_1\cdots i_q}
+    \chi_{i_1}\cdots\chi_{i_q}.
+    \label{eq:SYK_H_static}
+\end{equation}
+We restrict to even $q$ and even $N$.  In the notation of
+Sec.~\ref{subsec:quenched_syk_gaussian_regulator}, define
+\begin{equation}
+    V_I
+    :=
+    \chi_{i_1}\cdots\chi_{i_q},
+    \qquad
+    W_I
+    :=
+    i^{q/2}V_I.
+    \label{eq:SYK_VW}
+\end{equation}
+It follows from the Majorana algebra that
+\begin{equation}
+    V_I^2
+    =
+    (-1)^{q(q-1)/2}
+    =
+    (-1)^{q/2},
+\end{equation}
+so that
+\begin{equation}
+    W_I=W_I^\dagger,
+    \qquad
+    W_I^2=1.
+    \label{eq:SYK_W_square}
+\end{equation}
 
-    
-    
-    
-    
-    Then, write the term inside in terms of $k$ qubits (by Jordan Wigner) and compare to eq 9 of Nick.
+The time-independent noise is
+\begin{equation}
+    \mathbb E[J_I]=0,
+    \qquad
+    \mathbb E[J_IJ_J]
+    =
+    \sigma\delta_{IJ},
+\end{equation}
+with the normalization used in [1,2],
+\begin{equation}
+    \sigma
+    =
+    \frac{2^{q-1}q!}{q^2N^{q-1}}J.
+    \label{eq:SYK_sigma}
+\end{equation}
+There are $\binom Nq$ terms in the Hamiltonian, which for fixed $q$ and
+large $N$ grows as $N^q/q!$.  For $q=2$ and $q=4$ this normalization
+gives, respectively,
+\begin{equation}
+    \sigma=\frac{J}{N},
+    \qquad
+    \sigma=\frac{12J}{N^3}.
+\end{equation}
 
+
+\subsection{Jordan-Wigner transform}
+
+Assuming that $N$ is even, we pair the Majorana fermions
+$\chi_{2j-1}$ and $\chi_{2j}$ into $N/2$ complex fermions
+\begin{equation}
+    c_j
+    :=
+    \frac12
+    \left(
+       \chi_{2j-1}
+       +
+       i\chi_{2j}
+    \right),
+\end{equation}
+which satisfy
+\begin{equation}
+    \{c_l,c_j^\dagger\}=\delta_{lj},
+    \qquad
+    \{c_l,c_j\}
+    =
+    \{c_l^\dagger,c_j^\dagger\}
+    =
+    0.
+\end{equation}
+We use the standard qubit convention
+\begin{equation}
+    \sigma_j^-
+    =
+    \frac12(X_j+iY_j)
+    =
+    |0\rangle\langle1|_j,
+    \qquad
+    N_j
+    :=
+    c_j^\dagger c_j
+    =
+    \frac{1-Z_j}{2}.
+    \label{eq:SYK_qubit_convention}
+\end{equation}
+Then
+\begin{equation}
+    Z_j
+    =
+    -i\chi_{2j-1}\chi_{2j},
+    \qquad
+    (-1)^{N_j}=Z_j,
+\end{equation}
+and the Jordan-Wigner transformation is
+\begin{align}
+    c_j
+    &=
+    (Z_1\cdots Z_{j-1})\sigma_j^-,
+    \nonumber\\
+    \chi_{2j-1}
+    &=
+    (Z_1\cdots Z_{j-1})X_j,
+    \nonumber\\
+    \chi_{2j}
+    &=
+    (Z_1\cdots Z_{j-1})Y_j.
+    \label{eq:SYK_JW}
+\end{align}
+
+Let
+\begin{equation}
+    |e\rangle
+    =
+    \frac{1}{\sqrt d}
+    \sum_{\mathbf n}
+    |\mathbf n\rangle_L|\mathbf n\rangle_R
+\end{equation}
+be the maximally entangled vector in this fixed Jordan-Wigner basis.
+For any operator $O$,
+\begin{equation}
+    (O_L-O_R^T)|e\rangle=0.
+    \label{eq:SYK_general_mirror}
+\end{equation}
+It is convenient to define the Majorana operators on the $R$ copy by
+\begin{equation}
+    \chi_{j,R}
+    :=
+    (\chi_j^T)_R.
+    \label{eq:SYK_R_majorana}
+\end{equation}
+Then
+\begin{equation}
+    (\chi_{j,L}-\chi_{j,R})|e\rangle=0,
+\end{equation}
+while the $L$ and $R$ Majoranas still commute because they act on
+different tensor factors.
+
+For the Hermitian SYK interaction
+\begin{equation}
+    W_I
+    =
+    i^{q/2}
+    \chi_{i_1}\cdots\chi_{i_q},
+\end{equation}
+transpose reverses the order of the Majoranas.  Therefore
+\begin{align}
+    (W_I^T)_R
+    &=
+    i^{q/2}
+    \chi_{i_q,R}\cdots\chi_{i_1,R}
+    \nonumber\\
+    &=
+    (-i)^{q/2}
+    \chi_{i_1,R}\cdots\chi_{i_q,R}.
+    \label{eq:SYK_W_transpose}
+\end{align}
+
+
+\subsection{Totally anti-commuting variables}
+
+Since we are interested in the $k$-twirl moment operator
+\begin{equation}
+    U^{\otimes k}\otimes(U^*)^{\otimes k},
+\end{equation}
+consider $k$ copies of the $L$ Majoranas and $k$ copies of the $R$
+Majoranas,
+\begin{equation}
+    \chi_{l,L}^{(a)},
+    \qquad
+    \chi_{l,R}^{(a)},
+    \qquad
+    l=1,\ldots,N,
+    \qquad
+    a=1,\ldots,k.
+\end{equation}
+Majoranas belonging to different tensor factors commute.  It will be
+convenient to replace them by $2k$ mutually anti-commuting sets.
+
+For each copy define the total parity operator
+\begin{equation}
+    Q_{L/R}^{(a)}
+    =
+    (-1)^{
+       \sum_{j=1}^{N/2}N_j^{(a)}
+    }
+    =
+    \prod_{j=1}^{N/2}
+    Z_{j,L/R}^{(a)}
+    =
+    (-i)^{N/2}
+    \prod_{l=1}^N
+    \chi_{l,L/R}^{(a)}.
+    \label{eq:SYK_copy_parity}
+\end{equation}
+For even $N$,
+\begin{equation}
+    \{
+       Q_{L/R}^{(a)},
+       \chi_{l,L/R}^{(a)}
+    \}
+    =
+    0,
+    \qquad
+    (Q_{L/R}^{(a)})^2=1,
+\end{equation}
+while $Q_{L/R}^{(a)}$ commutes with Majoranas on all other copies.
+
+Define
+\begin{equation}
+    \Sigma^{(a)}
+    :=
+    \left(
+       \prod_{b=1}^{a-1}
+       Q_L^{(b)}Q_R^{(b)}
+    \right)
+    Q_L^{(a)},
+\end{equation}
+and introduce
+\begin{equation}
+    \psi_{l,L}^{(a)}
+    :=
+    i\Sigma^{(a)}
+    \chi_{l,L}^{(a)},
+    \qquad
+    \psi_{l,R}^{(a)}
+    :=
+    \Sigma^{(a)}
+    \chi_{l,R}^{(a)}.
+    \label{eq:SYK_psi_def}
+\end{equation}
+One checks that these are self-adjoint Majorana fermions satisfying
+\begin{equation}
+    \{
+       \psi_{l,\alpha}^{(a)},
+       \psi_{l',\beta}^{(b)}
+    \}
+    =
+    2\delta_{ll'}\delta_{ab}\delta_{\alpha\beta},
+    \qquad
+    \alpha,\beta=L,R.
+    \label{eq:majorana_CAR}
+\end{equation}
+
+A useful feature of this definition is that for even $q$ the Klein
+factors cancel inside every $q$-body interaction:
+\begin{align}
+    \chi_{i_1,L}^{(a)}
+    \cdots
+    \chi_{i_q,L}^{(a)}
+    &=
+    \psi_{i_1,L}^{(a)}
+    \cdots
+    \psi_{i_q,L}^{(a)},
+    \nonumber\\
+    \chi_{i_1,R}^{(a)}
+    \cdots
+    \chi_{i_q,R}^{(a)}
+    &=
+    \psi_{i_1,R}^{(a)}
+    \cdots
+    \psi_{i_q,R}^{(a)}.
+    \label{eq:SYK_evenq_Klein}
+\end{align}
+
+Define
+\begin{equation}
+    \Psi_{I,\alpha}^{(a)}
+    :=
+    \psi_{i_1,\alpha}^{(a)}
+    \cdots
+    \psi_{i_q,\alpha}^{(a)}.
+\end{equation}
+Using Eq.~\eqref{eq:SYK_W_transpose}, the hatted interaction appearing
+in the $k$-twirl is
+\begin{align}
+    \widehat W_I^{(k)}
+    &=
+    i^{q/2}
+    \sum_{a=1}^k
+    \Psi_{I,L}^{(a)}
+    -
+    (-i)^{q/2}
+    \sum_{a=1}^k
+    \Psi_{I,R}^{(a)}.
+    \label{eq:VSYK}
+\end{align}
+
+It is often convenient to bundle the replica label
+$a=1,\ldots,k$ and the side label $\alpha\in\{L,R\}$ into a single
+flavor index
+\begin{equation}
+    A=(a,\alpha),
+    \qquad
+    A=1,\ldots,2k.
+\end{equation}
+Define
+\begin{equation}
+    s_A
+    =
+    \begin{cases}
+       1, & \alpha=L,\\[1mm]
+       -(-1)^{q/2}, & \alpha=R.
+    \end{cases}
+    \label{eq:SYK_sA}
+\end{equation}
+Then
+\begin{equation}
+    \widehat W_I^{(k)}
+    =
+    i^{q/2}
+    \sum_{A=1}^{2k}
+    s_A\Psi_I^A.
+    \label{eq:SYK_hatW_flavor}
+\end{equation}
+
+
+\subsection{$k$-twirl map in large $N$ SYK}
+
+From Sec.~\ref{subsec:quenched_syk_gaussian_regulator}, the effective
+operator on the doubled moment space is
+\begin{equation}
+    \widehat G_{\rm eff}^{(k)}
+    =
+    \frac{\sigma}{2}
+    \sum_{i_1<\cdots<i_q}
+    \left(
+       \widehat W_{i_1\cdots i_q}^{(k)}
+    \right)^2.
+    \label{eq:SYK_Geff_start}
+\end{equation}
+
+Motivated by the form of Eq.~\eqref{eq:SYK_hatW_flavor}, define the
+antisymmetric bilinears
+\begin{equation}
+    M_i^{AB}
+    :=
+    \frac{i}{2}
+    [\psi_i^A,\psi_i^B],
+    \qquad
+    M_i^{AB}=-M_i^{BA}.
+    \label{eq:def_M}
+\end{equation}
+For $A\neq B$,
+\begin{equation}
+    M_i^{AB}
+    =
+    i\psi_i^A\psi_i^B,
+    \qquad
+    (M_i^{AB})^\dagger=M_i^{AB},
+    \qquad
+    (M_i^{AB})^2=1,
+    \label{eq:M_as_product}
+\end{equation}
+while
+\begin{equation}
+    M_i^{AA}=0.
+\end{equation}
+
+For $i\neq j$, the bilinears commute:
+\begin{equation}
+    [M_i^{AB},M_j^{CD}]
+    =
+    0,
+    \qquad
+    i\neq j.
+    \label{eq:M_commute_different_sites}
+\end{equation}
+For the same site,
+\begin{equation}
+    [M_i^{AB},\psi_j^C]
+    =
+    2i\delta_{ij}
+    \left(
+       \delta^{BC}\psi_i^A
+       -
+       \delta^{AC}\psi_i^B
+    \right),
+    \label{eq:M_comm_psi}
+\end{equation}
+and hence
+\begin{equation}
+    [M_i^{AB},M_j^{CD}]
+    =
+    2i\delta_{ij}
+    \left(
+       \delta^{BC}M_i^{AD}
+       -
+       \delta^{AC}M_i^{BD}
+       -
+       \delta^{BD}M_i^{AC}
+       +
+       \delta^{AD}M_i^{BC}
+    \right).
+    \label{eq:so2k_commutator}
+\end{equation}
+Thus each site carries a copy of $\mathfrak{so}(2k)$, while generators
+at different sites commute.
+
+For $A\neq B$ and even $q$,
+\begin{equation}
+    \Psi_I^A\Psi_I^B
+    =
+    M_{i_1}^{AB}\cdots M_{i_q}^{AB},
+    \label{eq:SYK_Psi_product}
+\end{equation}
+while
+\begin{equation}
+    i^q(\Psi_I^A)^2=1.
+\end{equation}
+Substituting Eq.~\eqref{eq:SYK_hatW_flavor} into
+Eq.~\eqref{eq:SYK_Geff_start} therefore gives
+\begin{equation}
+    \boxed{
+    \widehat G_{\rm eff}^{(k)}
+    =
+    \sigma k\binom Nq
+    +
+    \sigma i^q
+    \sum_{A<B}
+    s_As_B\,e_q^{AB},
+    }
+    \label{eq:Geff_poly_form}
+\end{equation}
+where
+\begin{equation}
+    e_q^{AB}
+    :=
+    \sum_{i_1<\cdots<i_q}
+    M_{i_1}^{AB}\cdots M_{i_q}^{AB}.
+    \label{eq:eABq}
+\end{equation}
+
+
+\subsection{Properties of the generator $G_{\rm eff}^{(k)}$}
+
+Fix a pair $A<B$ and define
+\begin{equation}
+    S^{AB}
+    :=
+    \sum_{i=1}^N M_i^{AB}.
+    \label{eq:SYK_SAB}
+\end{equation}
+For fixed $(A,B)$, the operators $M_i^{AB}$ commute at distinct sites and
+square to identity.  Therefore they are simultaneously diagonalizable
+with eigenvalues $\pm1$, and
+\begin{equation}
+    S^{AB}
+    \in
+    \{-N,-N+2,\ldots,N-2,N\},
+    \label{eq:SYK_S_spectrum}
+\end{equation}
+with binomial multiplicities.
+
+Moreover, $e_q^{AB}$ is a polynomial in the single collective variable
+$S^{AB}$.  Its generating function is
+\begin{align}
+    \sum_{q=0}^N z^qe_q^{AB}
+    &=
+    \prod_{i=1}^N
+    (1+zM_i^{AB})
+    \nonumber\\
+    &=
+    (1+z)^{(N+S^{AB})/2}
+    (1-z)^{(N-S^{AB})/2}.
+    \label{eq:SYK_e_generating}
+\end{align}
+For even $q$,
+\begin{equation}
+    e_q^{AB}
+    =
+    \sum_{r=0}^{q/2}
+    c_{q,r}(N)
+    (S^{AB})^{q-2r}.
+    \label{eq:eABq_poly}
+\end{equation}
+For example,
+\begin{equation}
+    e_2^{AB}
+    =
+    \frac{
+       (S^{AB})^2-N
+    }{2},
+\end{equation}
+and
+\begin{equation}
+    e_4^{AB}
+    =
+    \frac{
+       (S^{AB})^4
+       -
+       2(3N-4)(S^{AB})^2
+       +
+       3N(N-2)
+    }{24}.
+    \label{eq:SYK_e4}
+\end{equation}
+
+It is convenient to strip off factorials and define the monic
+normalization of the Krawtchouk polynomial
+\begin{equation}
+    P_q(S)
+    :=
+    q!\,e_q(S).
+\end{equation}
+Newton identities give the three-term recursion
+\begin{equation}
+    P_{q+1}(S)
+    =
+    SP_q(S)
+    -
+    q(N-q+1)P_{q-1}(S),
+    \qquad
+    P_0(S)=1,
+    \qquad
+    P_1(S)=S.
+    \label{eq:krawtchouk_recursion}
+\end{equation}
+Equivalently, $P_q(S)$ is the characteristic polynomial of the
+$q\times q$ tridiagonal matrix with diagonal entries $S$ and off-diagonal
+entries
+\begin{equation}
+    \sqrt{m(N-m+1)},
+    \qquad
+    m=1,\ldots,q-1.
+\end{equation}
+
+Expanding
+\begin{equation}
+    P_q(S)
+    =
+    \sum_{r=0}^{\lfloor q/2\rfloor}
+    \widetilde c_{q,r}(N)S^{q-2r}
+\end{equation}
+gives
+\begin{equation}
+    c_{q,r}(N)
+    =
+    \frac{\widetilde c_{q,r}(N)}{q!},
+\end{equation}
+with recursion
+\begin{equation}
+    (q+1)c_{q+1,r}(N)
+    =
+    c_{q,r}(N)
+    -
+    (N-q+1)c_{q-1,r-1}(N).
+    \label{eq:cqr_recursion}
+\end{equation}
+A fully explicit form is
+\begin{equation}
+    c_{q,r}(N)
+    =
+    \frac{(-1)^r}{q!}
+    \sum_{\substack{
+       1\leq m_1<\cdots<m_r\leq q-1\\
+       m_{j+1}\geq m_j+2
+    }}
+    \prod_{j=1}^r
+    m_j(N-m_j+1).
+    \label{eq:cqr_matching}
+\end{equation}
+In particular,
+\begin{equation}
+    c_{q,0}(N)=\frac1{q!},
+    \qquad
+    c_{q,1}(N)
+    =
+    -
+    \frac{
+       q(q-1)(3N-2q+4)
+    }{
+       6q!
+    },
+\end{equation}
+and for $q=2n$ and even $N$,
+\begin{equation}
+    c_{2n,n}(N)
+    =
+    (-1)^n
+    \binom{N/2}{n}.
+\end{equation}
+
+
+\subsubsection{Large-$N$ limits of $e_q^{AB}$}
+
+Define
+\begin{equation}
+    m^{AB}
+    :=
+    \frac{S^{AB}}{N}.
+\end{equation}
+
+\paragraph{1) $N\rightarrow\infty$ with $q$ fixed.}
+
+On each joint eigenspace,
+\begin{equation}
+    \frac{e_q^{AB}}{\binom Nq}
+    =
+    (m^{AB})^q
+    -
+    \frac{q(q-1)}{2N}
+    \left(
+       1-(m^{AB})^2
+    \right)
+    (m^{AB})^{q-2}
+    +
+    O(N^{-2}).
+    \label{eq:eq_largeN_fixedq}
+\end{equation}
+In particular,
+\begin{equation}
+    e_q^{AB}
+    =
+    \binom Nq
+    (m^{AB})^q
+    +
+    O(N^{q-1}).
+\end{equation}
+
+\paragraph{2) $N,q\rightarrow\infty$ with $q^2/N$ fixed.}
+
+Let
+\begin{equation}
+    \frac{q^2}{N}
+    =
+    \lambda
+\end{equation}
+be held fixed.  The generating function
+Eq.~\eqref{eq:SYK_e_generating} gives
+\begin{align}
+    &(1+z)^{(N+S^{AB})/2}
+     (1-z)^{(N-S^{AB})/2}
+    \nonumber\\
+    &\hspace{15mm}
+    =
+    \exp\left[
+       S^{AB}z
+       -
+       \frac N2z^2
+       +
+       O(S^{AB}z^3)
+       +
+       O(Nz^4)
+    \right].
+\end{align}
+For the coefficient regime $q=O(\sqrt N)$, the leading quadratic
+approximation gives the Hermite scaling
+\begin{equation}
+    e_q^{AB}
+    \sim
+    \frac{N^{q/2}}{q!}
+    {\rm He}_q
+    \left(
+       \frac{S^{AB}}{\sqrt N}
+    \right),
+    \label{eq:eq_hermite_scaling}
+\end{equation}
+where the probabilists' Hermite polynomials are defined by
+\begin{equation}
+    e^{xt-t^2/2}
+    =
+    \sum_{q=0}^\infty
+    {\rm He}_q(x)
+    \frac{t^q}{q!}.
+\end{equation}
+
+Using Eq.~\eqref{eq:eABq_poly}, the doubled-space generator may therefore
+also be written
+\begin{equation}
+    \widehat G_{\rm eff}^{(k)}
+    =
+    \sigma k\binom Nq
+    +
+    \sigma i^q
+    \sum_{A<B}
+    s_As_B
+    \sum_{r=0}^{q/2}
+    c_{q,r}(N)
+    (S^{AB})^{q-2r}.
+    \label{eq:Geff_sum_over_AB}
+\end{equation}
+At each site $i$, the $M_i^{AB}$ generate a copy of
+$\mathfrak{so}(2k)$, while different sites commute.  Therefore the global
+sums $S^{AB}=\sum_iM_i^{AB}$ generate the diagonal
+$\mathfrak{so}(2k)$ action, and
+Eq.~\eqref{eq:Geff_sum_over_AB} exhibits
+$\widehat G_{\rm eff}^{(k)}$ as an element of
+$U(\mathfrak{so}(2k))$.
+
+Finally, on the physical $k$-replica Hilbert space define the Hermitian
+operators
+\begin{equation}
+    X_I
+    :=
+    \sqrt{\sigma}
+    \sum_{a=1}^kW_I^{(a)}.
+\end{equation}
+The corresponding positive generator is
+\begin{align}
+    G_{\rm eff}^{(k)}(Y)
+    &=
+    \frac12
+    \sum_I
+    [X_I,[X_I,Y]]
+    \nonumber\\
+    &=
+    -\sum_I
+    \left(
+       X_IYX_I
+       -
+       \frac12\{X_I^2,Y\}
+    \right).
+    \label{eq:SYK_superoperator_G}
+\end{align}
+Thus $-G_{\rm eff}^{(k)}$ is in Lindblad form with self-adjoint jump
+operators $X_I$, and the large-$N$ quenched $k$-twirl is
+\begin{equation}
+    \boxed{
+    {\cal E}_t^{(k)}
+    \simeq
+    e^{-t^2G_{\rm eff}^{(k)}}.
+    }
+\end{equation}
 
 
     \section{Exponential decay and semi-groups from Brownian dynamics}
@@ -2134,164 +2381,7 @@ restricts the invariant algebra for even $q$.
         \mathcal{E}_{g;T}(\mathbb{Y})=e^{-T\mathcal{G}_{eff}^{(k)}}(\mathbb{Y})\ .
     \end{eqnarray}
 
-    \section{Semigroup in Brownian SYK}
-
-    The Brownian Sachdev-Ye-Kitaev (SYK) model is a variant of the standard SYK
-    model where the static quenched disorder terms in the Hamiltonian are
-    replaced by time-dependent stochastic variables \cite{saad2018semiclassical}.
-    The Hamiltonian is given by:
-    \begin{equation}
-        \label{SYKHam}H(t) = i^{q/2}\sum_{i_1<\cdots <i_q}J_{i_1\cdots i_q}(t) (\chi
-        _{i_1}\cdots \chi_{i_q})\ .
-    \end{equation}
-
-    The couplings $J_{I}(t)$ are independent Gaussian white noise processes defined
-    by:
-    \begin{align}
-        \overline{J_I(t)}            & = 0, \nonumber                      \\
-        \overline{J_I(t) J_{I'}(t')} & = \sigma\delta_{II'}\delta(t-t')\nn \\
-        \sigma                       & =\frac{2^{q-1}q!}{q^{2}N^{q-1}}J\ .
-    \end{align}
-
-    Plugging (\ref{VSYK}) into the equation for $\hat{\mathbb{G}}_{eff}^{(k)}$,
-    we obtain Lindblad operators
-    \begin{eqnarray}
-        &&\mathbb{X}_{i_1<\cdots <i_q}=\sum_a (\psi_{i_1}^{(a)}\cdots \psi_{i_q}^{(a)})=\sum_a
-        (\chi_{i_1}^{(a)}\cdots \chi_{i_q}^{(a)})
-    \end{eqnarray}
-    and
-    % The diagonal terms in the sum above, i.e. $a=b$, simplify to
-    % \begin{align}
-    % &\frac{2}{q!}\sum_{\text{distinct} \: i_1\cdots i_q}\sum_{a=1}^k\lb 1-\psi^{(aa)}_{i_1;LR}\cdots \psi^{(aa)}_{i_q;LR}\rb \nonumber\\
-    % &=2\lb {N \choose q}-\sum_{i_1<\cdots<i_q}\sum_{a=1}^k\psi^{(aa)}_{i_1;LR}\cdots \psi^{(aa)}_{i_q;LR}\rb.\label{eq:diagonal_terms}
-    % \end{align}
-    % To compute the off-diagonal terms, i.e., $a\neq b$, we first note that
-
-    % ----
-
-    % Bilinear operators $\psi^{(ab)}_{ll';\alpha\beta}$ provide an orthonormal basis for the set of all operators in the full Hilbert space of $k N$ qubits:
-    % \begin{eqnarray}
-    % &&\psi^{(ab)}_{ll';\alpha\beta}\equiv \psi^{(a)}_{l \alpha}\psi^{(b)}_{l' \beta}\ .
-    % \end{eqnarray}
-
-    % %-----
-
-    % Note that there is asymmetry between the $L$ and $R$ copies in the dictionary between the complex fermions and the qubits. Since we are ultimately interested in the Weyl fermions,
-    % Note the asymmetry between $L$ and $R$.
-    % As a result,
-    % \begin{eqnarray}
-    % &&\chi_{2k-1,L}=(-1)^{k-1}Q_{k-1}X_{kL},\qquad \chi_{2k,L}=(-1)^{k-1}Q_{k-1}Y_{kL}\nn\\
-    % &&\chi_{2k-1,R}=(-1)^{k-1}Q_{k-1}(-Z_k)Y_k,\qquad \chi_{2k,R}=(-1)^{k-1}Q_{k-1}(-Z_k)X_k\nn\\
-    % &&Z_{kL}=-i\chi_{2k-1,L}\chi_{2k,L},\qquad Z_{kR}=i\chi_{2k-1,R}\chi_{2k,R}\nn\\
-    % &&Q_k=\prod_{j=1}^{2k}
-    % \end{eqnarray}
-
-    % Written in terms of the Weyl fermions, we find
-    % \begin{eqnarray}
-    % &&(\chi_{2k-1,L}+i\chi_{2k-1,R})\ket{e}^{\otimes N/2}=0=(\chi_{2k,L}+i\chi_{2k,R})\ket{e}^{\otimes N/2}\nn\\
-    % && (\chi_{2k-1,L}-i\chi_{2k-1,R})\ket{f}^{\otimes N/2}=0=(\chi_{2k,L}+i\chi_{2k,R})\ket{f}^{\otimes N/2}\ .
-    % \end{eqnarray}
-    % Note that $(\chi_{2k,L}+i\chi_{2k-1,R})$ kills both vectors above. Notice that the vector $\ket{e}^{\otimes N/2}$ has the advantage that we do not need to distinguish between $\chi_{2k-1}$ and $\chi_{2k}$, we can simply write the mirror equation
-    % \begin{eqnarray}
-    % \chi_{j,L}\ket{e}^{\otimes N/2}=-i\chi_{j,R}\ket{e}^{\otimes N/2}\ .
-    % \end{eqnarray}
-
-    % In the GNS Hilbert space, the Hamiltonian of SYK for $q$ and $N$ both even can be written as
-    % \begin{eqnarray}
-    % \hat{H}=H_L-H_R=\sum_{i_1<\cdots<i_q}J_{i_1\cdots i_q}\lb \chi_{i_1L}\cdots \chi_{i_qL}-  \chi_{i_1R}\cdots \chi_{i_qR}\rb
-    % \end{eqnarray}
-    % Therefore, we can write $\hat{H}=H\otimes 1-1\otimes H$.
-
-    % -----
-
-    % We define the complex fermions
-    % \begin{eqnarray}
-    % \hat{\chi}_j^{(a)}=\chi^{(a),L}_j-i\chi^{(a),R}_j\ .
-    % \end{eqnarray}
-    % and we denote their corresponding vacuum with the infinite temperature TFD vector $\ket{1}$ is defined as
-    % \begin{eqnarray}
-    % \hat{\chi}^{(a)}_j\ket{1}^{(a)}=0\ .
-    % \end{eqnarray}
-
-    % Define the operators
-    % \begin{eqnarray}
-    % Q^{(a)}=\chi^{(a)}_1\cdots \chi^{(a)}_N
-    % \end{eqnarray}
-    % so that
-    % \begin{eqnarray}
-    % Q^{(a)}\chi_j^{(a)}=(-1)^{N-j}\chi^{(a)}_1\cdots \chi_{j-1}^{(a)}\chi^{(a)}_j\cdots \chi_N^{(a)}=(-1)^{N-1}\chi_j^{(a)}Q^{(a)}\ .
-    % \end{eqnarray}
-    % We assume that $N$ is even, so that
-    % \begin{eqnarray}
-    % &&Q^{(a)}\chi^{(j)}=-\chi_j^{(a)}Q^{(a)},\qquad Q^{(a)}Q^{(a)}=(-1)^{(N/2 \mod 2 )}\ .
-    % \end{eqnarray}
-    % Following \cite{}, we define
-    % \begin{eqnarray}
-    % \psi^{(a)}_j=i Q\chi^{(a)}_j
-    % \end{eqnarray}
-    % so that
-    % \begin{eqnarray}
-    % \chi^{(a)}_{i_1}\cdots \chi^{(a)}_{i_M}=(-1)^{N M}\psi^{(a)}_{i_1}\cdots \psi^{(a)}_{i_M}
-    % \end{eqnarray}
-    % where we are assuming both $N$ and $M$ are even.
-
-    % For example, for the case $q=2$, the Lindblad operators are
-    % \begin{eqnarray}
-    % \mathbb{X}
-    % \end{eqnarray}
-
-    % We will see that thanks to the Brownian time-dependent noise, the averaged dynamical evolution of the system above is exactly solvable even at finite $N$. The time-evolution operator is
-    % \begin{eqnarray}
-    %     &&U(t)=\mathcal{T}\lb e^{-i\int_0^t dt' H(t')}\rb
-    % \end{eqnarray}
-    % and we are interested in computing
-    % \begin{eqnarray}
-    %     &&\overline{U(T)\otimes U(T)^\dagger}=\overline{\mathcal{T}\lb e^{-i\int_0^t dt\: \tilde{H}(t')}\rb}\nn\\
-    %     &&\tilde{H}(t)=H_L(t)-H_R(t)=i^{q/2}\sum_I J_I(t)(\Psi_I^L-\Psi_I^R),
-    % \end{eqnarray}
-    % where $H_L$ and $H_R$ are two identical copies of $H$.
-
-    % The Brownian averages over $J(t)$ can be done using a path-integral
-    % \begin{eqnarray}
-    %     &&\int \mathcal{D}J_I\: e^{-\frac{1}{2\sigma}\sum_I\int dt' J_I(t')^2}\ .
-    % \end{eqnarray}
-    % Therefore,
-    % \begin{eqnarray}
-    %     \overline{U(T)\otimes U(T)^\dagger}&&=\int\mathcal{D}J_I \exp\lb\frac{-1}{2\sigma}\sum_I \int_0^T dt'dt J_I(t')\delta(t'-t)\lb J_I(t)+2i\sigma \mathbb{X}_I\rb\rb\nn\\
-    %     &&=e^{-\frac{\sigma T}{2}\sum_I \mathbb{X}_I^2}\int \mathcal{D}\tilde{J}_I\exp\lb \frac{-1}{2\sigma}\sum_I \tilde{J}_I^2\rb\nn\\
-    %     &&=e^{-\frac{\sigma T}{2}\sum_I \mathbb{X}_I^2}\nn\\
-    %     &&\tilde{J}=J+i\sigma \mathbb{X}_I\ .
-    % \end{eqnarray}
-    % In other words, we find
-    % \begin{eqnarray}
-    %    &&\overline{U(T)\otimes U(T)^\dagger}=e^{-T H_{eff}} \nn\\
-    %    &&H_{eff}=\frac{\sigma}{2}\tilde{H}^2=\frac{\sigma(-1)^q}{2}\sum_I (\Psi^L_I-\Psi^R_I)^2\ .
-    % \end{eqnarray}
-    % This argument can be repeated for any $H=\sum_I J_I(t) H_I$. Since
-    % \begin{eqnarray}
-    %     \tilde{H} X\ket{1}=\sum_I [H_I,\mathcal{O}]\ket{1}\nn\ .
-    % \end{eqnarray}
-    % The super-operator that corresponds to $\tilde{H}_{eff}$ is
-    % \begin{eqnarray}
-    %     \sum_I [H_I,[H_I,\mO]]\ .
-    % \end{eqnarray}
-
-    \subsection{Time-dependent correlators}
-
-    We can compute time-dependent correlators as well. The first observation is that
-    we can always order times such that $t_{1}<t_{2}<\cdots <t_{k}$. Then, it follows
-    from the calculation in the previous section that
-    \begin{eqnarray}
-        \mathcal{E}_g\lb\otimes_{i=1}^k \lb U(t_i)\otimes U(t_i)^*\rb\rb=e^{-(t_k-t_{k-1}) \mathbb{G}^{(1)}_{eff}}e^{-(t_2-t_1)\mathbb{G}^{(k-1)}_{eff}}e^{-t_1\mathbb{G}^{(k)}_{eff}}
-    \end{eqnarray}
-    where $G_{eff}^{(j)}$ is defined using (\ref{eq:Geff_sum_over_AB}) with $\alpha
-    ,\beta=L,R$ but $a,b=1,\cdots j$.
-
-    We would like to use this to compute correlation functions
-
-    % \NL{What is the $k$-fold of the semigroup? expand in small $t$: $1-t\mathcal{L}$, and construct the probability measure over unitaries in this limit.}
-
-
+ 
 
     \section{Semigroups in Brownian bosonic and Spin SYK models}
 \label{sec:brownian_spin_syk}
@@ -3430,6 +3520,165 @@ same-site collision terms correct this equation at finite $n$, but are
 subleading in the fixed-$q$ large-$n$ limit.  The leading Brownian
 large-$n$ dynamics of Spin-SYK$_4$ and gSpin-SYK$_4$ are therefore the
 same, while their exact finite-$n$ semigroups are different.
+
+
+   \section{Semigroup in Brownian SYK}
+
+    The Brownian Sachdev-Ye-Kitaev (SYK) model is a variant of the standard SYK
+    model where the static quenched disorder terms in the Hamiltonian are
+    replaced by time-dependent stochastic variables \cite{saad2018semiclassical}.
+    The Hamiltonian is given by:
+    \begin{equation}
+        \label{SYKHam}H(t) = i^{q/2}\sum_{i_1<\cdots <i_q}J_{i_1\cdots i_q}(t) (\chi
+        _{i_1}\cdots \chi_{i_q})\ .
+    \end{equation}
+
+    The couplings $J_{I}(t)$ are independent Gaussian white noise processes defined
+    by:
+    \begin{align}
+        \overline{J_I(t)}            & = 0, \nonumber                      \\
+        \overline{J_I(t) J_{I'}(t')} & = \sigma\delta_{II'}\delta(t-t')\nn \\
+        \sigma                       & =\frac{2^{q-1}q!}{q^{2}N^{q-1}}J\ .
+    \end{align}
+
+    Plugging (\ref{VSYK}) into the equation for $\hat{\mathbb{G}}_{eff}^{(k)}$,
+    we obtain Lindblad operators
+    \begin{eqnarray}
+        &&\mathbb{X}_{i_1<\cdots <i_q}=\sum_a (\psi_{i_1}^{(a)}\cdots \psi_{i_q}^{(a)})=\sum_a
+        (\chi_{i_1}^{(a)}\cdots \chi_{i_q}^{(a)})
+    \end{eqnarray}
+    and
+    % The diagonal terms in the sum above, i.e. $a=b$, simplify to
+    % \begin{align}
+    % &\frac{2}{q!}\sum_{\text{distinct} \: i_1\cdots i_q}\sum_{a=1}^k\lb 1-\psi^{(aa)}_{i_1;LR}\cdots \psi^{(aa)}_{i_q;LR}\rb \nonumber\\
+    % &=2\lb {N \choose q}-\sum_{i_1<\cdots<i_q}\sum_{a=1}^k\psi^{(aa)}_{i_1;LR}\cdots \psi^{(aa)}_{i_q;LR}\rb.\label{eq:diagonal_terms}
+    % \end{align}
+    % To compute the off-diagonal terms, i.e., $a\neq b$, we first note that
+
+    % ----
+
+    % Bilinear operators $\psi^{(ab)}_{ll';\alpha\beta}$ provide an orthonormal basis for the set of all operators in the full Hilbert space of $k N$ qubits:
+    % \begin{eqnarray}
+    % &&\psi^{(ab)}_{ll';\alpha\beta}\equiv \psi^{(a)}_{l \alpha}\psi^{(b)}_{l' \beta}\ .
+    % \end{eqnarray}
+
+    % %-----
+
+    % Note that there is asymmetry between the $L$ and $R$ copies in the dictionary between the complex fermions and the qubits. Since we are ultimately interested in the Weyl fermions,
+    % Note the asymmetry between $L$ and $R$.
+    % As a result,
+    % \begin{eqnarray}
+    % &&\chi_{2k-1,L}=(-1)^{k-1}Q_{k-1}X_{kL},\qquad \chi_{2k,L}=(-1)^{k-1}Q_{k-1}Y_{kL}\nn\\
+    % &&\chi_{2k-1,R}=(-1)^{k-1}Q_{k-1}(-Z_k)Y_k,\qquad \chi_{2k,R}=(-1)^{k-1}Q_{k-1}(-Z_k)X_k\nn\\
+    % &&Z_{kL}=-i\chi_{2k-1,L}\chi_{2k,L},\qquad Z_{kR}=i\chi_{2k-1,R}\chi_{2k,R}\nn\\
+    % &&Q_k=\prod_{j=1}^{2k}
+    % \end{eqnarray}
+
+    % Written in terms of the Weyl fermions, we find
+    % \begin{eqnarray}
+    % &&(\chi_{2k-1,L}+i\chi_{2k-1,R})\ket{e}^{\otimes N/2}=0=(\chi_{2k,L}+i\chi_{2k,R})\ket{e}^{\otimes N/2}\nn\\
+    % && (\chi_{2k-1,L}-i\chi_{2k-1,R})\ket{f}^{\otimes N/2}=0=(\chi_{2k,L}+i\chi_{2k,R})\ket{f}^{\otimes N/2}\ .
+    % \end{eqnarray}
+    % Note that $(\chi_{2k,L}+i\chi_{2k-1,R})$ kills both vectors above. Notice that the vector $\ket{e}^{\otimes N/2}$ has the advantage that we do not need to distinguish between $\chi_{2k-1}$ and $\chi_{2k}$, we can simply write the mirror equation
+    % \begin{eqnarray}
+    % \chi_{j,L}\ket{e}^{\otimes N/2}=-i\chi_{j,R}\ket{e}^{\otimes N/2}\ .
+    % \end{eqnarray}
+
+    % In the GNS Hilbert space, the Hamiltonian of SYK for $q$ and $N$ both even can be written as
+    % \begin{eqnarray}
+    % \hat{H}=H_L-H_R=\sum_{i_1<\cdots<i_q}J_{i_1\cdots i_q}\lb \chi_{i_1L}\cdots \chi_{i_qL}-  \chi_{i_1R}\cdots \chi_{i_qR}\rb
+    % \end{eqnarray}
+    % Therefore, we can write $\hat{H}=H\otimes 1-1\otimes H$.
+
+    % -----
+
+    % We define the complex fermions
+    % \begin{eqnarray}
+    % \hat{\chi}_j^{(a)}=\chi^{(a),L}_j-i\chi^{(a),R}_j\ .
+    % \end{eqnarray}
+    % and we denote their corresponding vacuum with the infinite temperature TFD vector $\ket{1}$ is defined as
+    % \begin{eqnarray}
+    % \hat{\chi}^{(a)}_j\ket{1}^{(a)}=0\ .
+    % \end{eqnarray}
+
+    % Define the operators
+    % \begin{eqnarray}
+    % Q^{(a)}=\chi^{(a)}_1\cdots \chi^{(a)}_N
+    % \end{eqnarray}
+    % so that
+    % \begin{eqnarray}
+    % Q^{(a)}\chi_j^{(a)}=(-1)^{N-j}\chi^{(a)}_1\cdots \chi_{j-1}^{(a)}\chi^{(a)}_j\cdots \chi_N^{(a)}=(-1)^{N-1}\chi_j^{(a)}Q^{(a)}\ .
+    % \end{eqnarray}
+    % We assume that $N$ is even, so that
+    % \begin{eqnarray}
+    % &&Q^{(a)}\chi^{(j)}=-\chi_j^{(a)}Q^{(a)},\qquad Q^{(a)}Q^{(a)}=(-1)^{(N/2 \mod 2 )}\ .
+    % \end{eqnarray}
+    % Following \cite{}, we define
+    % \begin{eqnarray}
+    % \psi^{(a)}_j=i Q\chi^{(a)}_j
+    % \end{eqnarray}
+    % so that
+    % \begin{eqnarray}
+    % \chi^{(a)}_{i_1}\cdots \chi^{(a)}_{i_M}=(-1)^{N M}\psi^{(a)}_{i_1}\cdots \psi^{(a)}_{i_M}
+    % \end{eqnarray}
+    % where we are assuming both $N$ and $M$ are even.
+
+    % For example, for the case $q=2$, the Lindblad operators are
+    % \begin{eqnarray}
+    % \mathbb{X}
+    % \end{eqnarray}
+
+    % We will see that thanks to the Brownian time-dependent noise, the averaged dynamical evolution of the system above is exactly solvable even at finite $N$. The time-evolution operator is
+    % \begin{eqnarray}
+    %     &&U(t)=\mathcal{T}\lb e^{-i\int_0^t dt' H(t')}\rb
+    % \end{eqnarray}
+    % and we are interested in computing
+    % \begin{eqnarray}
+    %     &&\overline{U(T)\otimes U(T)^\dagger}=\overline{\mathcal{T}\lb e^{-i\int_0^t dt\: \tilde{H}(t')}\rb}\nn\\
+    %     &&\tilde{H}(t)=H_L(t)-H_R(t)=i^{q/2}\sum_I J_I(t)(\Psi_I^L-\Psi_I^R),
+    % \end{eqnarray}
+    % where $H_L$ and $H_R$ are two identical copies of $H$.
+
+    % The Brownian averages over $J(t)$ can be done using a path-integral
+    % \begin{eqnarray}
+    %     &&\int \mathcal{D}J_I\: e^{-\frac{1}{2\sigma}\sum_I\int dt' J_I(t')^2}\ .
+    % \end{eqnarray}
+    % Therefore,
+    % \begin{eqnarray}
+    %     \overline{U(T)\otimes U(T)^\dagger}&&=\int\mathcal{D}J_I \exp\lb\frac{-1}{2\sigma}\sum_I \int_0^T dt'dt J_I(t')\delta(t'-t)\lb J_I(t)+2i\sigma \mathbb{X}_I\rb\rb\nn\\
+    %     &&=e^{-\frac{\sigma T}{2}\sum_I \mathbb{X}_I^2}\int \mathcal{D}\tilde{J}_I\exp\lb \frac{-1}{2\sigma}\sum_I \tilde{J}_I^2\rb\nn\\
+    %     &&=e^{-\frac{\sigma T}{2}\sum_I \mathbb{X}_I^2}\nn\\
+    %     &&\tilde{J}=J+i\sigma \mathbb{X}_I\ .
+    % \end{eqnarray}
+    % In other words, we find
+    % \begin{eqnarray}
+    %    &&\overline{U(T)\otimes U(T)^\dagger}=e^{-T H_{eff}} \nn\\
+    %    &&H_{eff}=\frac{\sigma}{2}\tilde{H}^2=\frac{\sigma(-1)^q}{2}\sum_I (\Psi^L_I-\Psi^R_I)^2\ .
+    % \end{eqnarray}
+    % This argument can be repeated for any $H=\sum_I J_I(t) H_I$. Since
+    % \begin{eqnarray}
+    %     \tilde{H} X\ket{1}=\sum_I [H_I,\mathcal{O}]\ket{1}\nn\ .
+    % \end{eqnarray}
+    % The super-operator that corresponds to $\tilde{H}_{eff}$ is
+    % \begin{eqnarray}
+    %     \sum_I [H_I,[H_I,\mO]]\ .
+    % \end{eqnarray}
+
+    \subsection{Time-dependent correlators}
+
+    We can compute time-dependent correlators as well. The first observation is that
+    we can always order times such that $t_{1}<t_{2}<\cdots <t_{k}$. Then, it follows
+    from the calculation in the previous section that
+    \begin{eqnarray}
+        \mathcal{E}_g\lb\otimes_{i=1}^k \lb U(t_i)\otimes U(t_i)^*\rb\rb=e^{-(t_k-t_{k-1}) \mathbb{G}^{(1)}_{eff}}e^{-(t_2-t_1)\mathbb{G}^{(k-1)}_{eff}}e^{-t_1\mathbb{G}^{(k)}_{eff}}
+    \end{eqnarray}
+    where $G_{eff}^{(j)}$ is defined using (\ref{eq:Geff_sum_over_AB}) with $\alpha
+    ,\beta=L,R$ but $a,b=1,\cdots j$.
+
+    We would like to use this to compute correlation functions
+
+    % \NL{What is the $k$-fold of the semigroup? expand in small $t$: $1-t\mathcal{L}$, and construct the probability measure over unitaries in this limit.}
+
 
 
     \section{Approaching \texorpdfstring{$k$}{k}-designs}
